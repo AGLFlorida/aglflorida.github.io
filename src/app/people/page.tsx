@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default async function PeoplPage() {
   return (
     <div className="max-w-4xl mx-auto py-8">
@@ -12,7 +14,7 @@ export default async function PeoplPage() {
             </div>
           </li> */}
           <li className="flex items-center space-x-4">
-            <img src="/people/face.png" alt="Co-founder 2" className="w-16 h-16 rounded-full" />
+          <Image src="/people/face.png" alt="Co-founder 2" width={64} height={64} className="rounded-full" />
             <div>
               <h2 className="text-xl font-semibold">
                 <a
