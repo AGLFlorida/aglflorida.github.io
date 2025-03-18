@@ -43,17 +43,16 @@ export default function PrivacyPage() {
         <h2>Updates to This Policy</h2>
         <p>
           This privacy policy may be updated occasionally to reflect changes in our practices. 
-          Users will be notified of any material changes through the Site.
+          Users can find any material changes by visiting the Site.
         </p>
 
         <h2>Contact</h2>
         <p>
-          If you have questions about this privacy policy, you can reach out through my GitHub profile 
-          linked in the header.
+          If you have questions about this privacy policy, please use the contact form linked in the footer.
         </p>
 
         <p className="text-sm text-gray-500 mt-8">
-          Last updated: {new Date().toLocaleDateString()}
+          Last updated: 3/18/2025 {/*new Date().toLocaleDateString()*/}
         </p>
       </div>
     </div>
