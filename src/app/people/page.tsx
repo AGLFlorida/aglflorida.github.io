@@ -7,7 +7,7 @@ export default async function PeoplPage() {
       <div className="bg-white p-6 rounded-lg shadow">
         <ul className="space-y-3">
           <li className="flex items-center space-x-4">
-            <img src="/people/face2.png" alt="Co-founder 1" className="w-16 h-16 rounded-full" />
+            <Image src="/people/face2.png" alt="Co-founder 1" width={64} height={64} className="rounded-full" />
             <div>
               <h2 className="text-xl font-semibold">
                 <a
