@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface FormData {
   name: string;
@@ -12,6 +13,14 @@ type Status = "sending" | "success" | "error" | null;
 
 const success = "Thank you for contacting AGL Consulting of Florida.";
 
+declare global {
+  interface Window {
+    grecaptcha?: {
+      reset: () => void;
+    };
+  }
+}
+
 export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -20,6 +29,7 @@ export default function ContactPage() {
   });
 
   const [status, setStatus] = useState<Status>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/1oY3nolFTHpH34NNbIi1DZfJwZYx5-y9Mcyv9bi5KiuQ/formResponse";
 
@@ -34,11 +44,15 @@ export default function ContactPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleCaptchaChange = (token: string | null) => {
+    setCaptchaToken(token);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
 
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name || !formData.email || !formData.message || !captchaToken) {
       setStatus("error");
       return null;
     }
@@ -57,6 +71,12 @@ export default function ContactPage() {
 
       setStatus("success");
       setFormData({ name: "", email: "", message: "" }); // Reset form
+      // Reset the captcha
+      setCaptchaToken(null);
+      if (typeof window !== 'undefined') {
+        // Reset the captcha widget
+        window.grecaptcha?.reset();
+      }
     } catch (e) {
       console.log(e);
       setStatus("error");
@@ -105,10 +125,16 @@ export default function ContactPage() {
             className="w-full p-2 border rounded-md"
           />
         </div>
+        <div className="flex justify-center my-4">
+          <ReCAPTCHA
+            sitekey="6Lc3-PoqAAAAAOBDfRKS8Es-iqAy3JQ4qWif_kJy"
+            onChange={handleCaptchaChange}
+          />
+        </div>
         <button
           type="submit"
           className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition"
-          disabled={status === "sending"}
+          disabled={status === "sending" || !captchaToken}
         >
           {status === "sending" ? "Sending..." : "Send Message"}
         </button>
