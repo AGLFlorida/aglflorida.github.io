@@ -52,6 +52,12 @@ export default function ContactPage() {
     e.preventDefault();
     setStatus("sending");
 
+    const honeypot = (e.currentTarget.elements.namedItem('website') as HTMLInputElement).value;
+    if (honeypot) {
+      setStatus("error");
+      return null;
+    }
+
     if (!formData.name || !formData.email || !formData.message || !captchaToken) {
       setStatus("error");
       return null;
@@ -125,6 +131,14 @@ export default function ContactPage() {
             className="w-full p-2 border rounded-md"
           />
         </div>
+        {/* Honeypot field */}
+        <input
+          type="text"
+          name="website"
+          style={{ display: 'none' }}
+          tabIndex={-1}
+          autoComplete="off"
+        />
         <div className="flex justify-center my-4">
           <ReCAPTCHA
             sitekey="6Lc3-PoqAAAAAOBDfRKS8Es-iqAy3JQ4qWif_kJy"
