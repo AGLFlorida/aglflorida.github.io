@@ -18,15 +18,15 @@ export default async function Home() {
             should amplify the human experience, not obscure it.<br />
             <br />
             AGL Consulting partners with small and mid-sized businesses that need to modernize their technology without losing sight of 
-            their core mission. Many of these organizations lack the time, resources, or focus to prioritize software and IT strategy—AGL 
+            their core mission. Many of these organizations lack the time, resources, or focus to prioritize software and IT strategy&mdash;AGL 
             steps in to fill that gap with clarity, capability, and a human-first approach.<br />
             <br />
             Founded by seasoned engineering leaders with decades of experience across high-growth platforms like TeamSnap and Boats Group, 
-            AGL brings executive-level insight, technical leadership, and operational discipline to companies that can't justify a 
+            AGL brings executive-level insight, technical leadership, and operational discipline to companies that can&apos;t justify a 
             full-time CTO but still demand world-class technology outcomes.<br />
             <br />
             Whether advising on infrastructure, improving developer workflows, or managing complex migrations, AGL delivers practical, 
-            people-centric solutions designed for long-term impact—not short-term hype. <br />
+            people-centric solutions designed for long-term impact&mdash;not short-term hype. <br />
             <br />
             At its core, AGL exists to help businesses do what they do best&mdash;by making technology work for people, not the other way 
             around.
