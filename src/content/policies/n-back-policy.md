@@ -1,6 +1,6 @@
 # Privacy Policy for Dual N Back
 
-Last updated: 25-Feb-2025
+Last updated: 15-May-2025
 
 ## Introduction
 [Your App Name] ("we" or "us" or "our") respects the privacy of our users ("user" or "you").
@@ -29,11 +29,12 @@ All game data is stored locally on your device. We do not transmit or store your
 You can:
 - Delete all app data by uninstalling the app
 - Reset game data through the settings menu
-- Contact us at [your@email.com] for support
+- See raw data through the settings menu
+- Contact us at [support@aglflorida.com] for support
 
 ## Changes to This Policy
 We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
 
 ## Contact Us
 If you have any questions about this Privacy Policy, please contact us at:
-[your@email.com]
+[support@aglflorida.com]
