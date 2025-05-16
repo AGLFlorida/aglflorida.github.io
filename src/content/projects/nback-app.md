@@ -1,7 +1,7 @@
 ---
 title: "Mobile App Project: N-back"
 date: "2024-03-20"
-description: "Currently in development"
+description: "N-Back: A Memory Game"
 # features:
   # - "Cross-platform compatibility"
   # - "Real-time synchronization"
@@ -11,7 +11,7 @@ technologies:
   - "React Native"
   - "TypeScript"
   # - "Firebase"
-  - "Redux"
+  - "Zustand"
 links:
   # - text: "App Store"
   #   url: "https://apps.apple.com/your-app"
