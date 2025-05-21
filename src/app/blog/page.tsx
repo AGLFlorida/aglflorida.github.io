@@ -15,14 +15,15 @@ export async function generateStaticParams() {
   }));
 }
 
+// Looks like the interface for this changed between Next 14 and 15?
+// Adding a small workaround (hack) to make the typescript compiler happy.
 export async function generateMetadata(
-  { params }: {
-    params: { slug: string };
-  },
+  { params }: { params: Promise<{ slug: string }> },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = params;
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
 
   return {
     title: `Blog: ${slug}`,
@@ -62,8 +63,8 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
             key={pageNum}
             href={`/blog?page=${pageNum}`}
             className={`px-3 py-1 rounded ${pageNum === currentPage
-                ? 'bg-blue-600 text-white'
-                : 'text-blue-600 hover:bg-blue-100'
+              ? 'bg-blue-600 text-white'
+              : 'text-blue-600 hover:bg-blue-100'
               }`}
           >
             {pageNum}
@@ -96,7 +97,7 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
                 className="block group"
               >
                 <h2 className="text-2xl font-semibold text-blue-600 group-hover:text-blue-800 mb-2">
-                  {post.title}
+                  {post.title} <i className="fa-solid fa-link text-lg"></i>
                 </h2>
                 <p className="text-sm text-gray-500 mb-3">{post.date}</p>
                 {post.excerpt && (

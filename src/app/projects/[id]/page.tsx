@@ -1,5 +1,4 @@
 import { getProjectById, getSortedProjects } from "@/lib/getProjects";
-import Link from "next/link";
 
 type Params = Promise<{ id: string }>;
 
@@ -18,12 +17,6 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <div>
-        <Link href={`/projects`} className="text-blue-600 hover:text-blue-800">
-          {'\u2190'} Projects
-        </Link>
-      </div>
-
       <h1 className="text-3xl font-bold mb-8">{project.title}</h1>
 
       <div className="bg-white p-6 rounded-lg shadow mb-8">

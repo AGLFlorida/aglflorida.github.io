@@ -2,6 +2,7 @@ import './globals.css';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { Breadcrumbs } from '@/lib/Breadcrumbs';
 
 import type { Metadata } from 'next';
 
@@ -127,7 +128,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </header>
-        <main className="max-w-7xl mx-auto p-4">{children}</main>
+        <main className="max-w-7xl mx-auto p-4">
+          <Breadcrumbs />
+          {children}
+        </main>
         <footer className="text-center py-4 text-gray-600">
           <div>{'\u00A9'} {currentYear} AGL Consulting LLC</div>
           <div className="mt-2">

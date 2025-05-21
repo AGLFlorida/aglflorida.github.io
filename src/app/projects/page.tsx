@@ -22,7 +22,11 @@ export default async function ProjectsPage() {
       <div className="space-y-6">
         {projects.map((project) => (
           <div key={project.id} className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold mb-2">{project.title}</h2>
+            <h2 className="text-2xl font-semibold mb-2">
+              <Link href={`/projects/${project.id}`}>
+                {project.title} <i className="fa-solid fa-link text-lg"></i>
+              </Link>
+            </h2>
             <p className="text-gray-600 mb-4">{project.description}</p>
             <div className="flex space-x-4">
               {project.links?.map((link, index) => (
@@ -38,12 +42,12 @@ export default async function ProjectsPage() {
                   <span>{link.text}</span>
                 </a>
               ))}
-              <Link
+              {/* <Link
                 href={`/projects/${project.id}`}
                 className="text-blue-600 hover:text-blue-800"
               >
                 Details {'\u2192'}
-              </Link>
+              </Link> */}
             </div>
           </div>
         ))}

@@ -94,6 +94,11 @@ export default async function Home() {
               </li>
             ))}
           </ul>
+          <br />
+          <hr />
+          <Link href="/blog/" className="text-blue-600 hover:text-blue-800">
+            More...
+          </Link>
         </div>
 
         {/* Currently Reading Section */}
