@@ -1,5 +1,17 @@
 import Link from "next/link";
 import { getPolicies } from "@/lib/getPolicies";
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  return {
+    title: 'Policies | AGL Consulting LLC',
+    alternates: {
+      canonical: `${baseUrl}/policies`,
+    },
+  };
+}
 
 export default async function PoliciesPage() {
   const policies = await getPolicies();

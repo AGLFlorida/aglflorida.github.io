@@ -14,21 +14,21 @@ export default async function Home() {
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-2xl font-bold mb-4">Welcome</h2>
           <p className="mb-4">
-            In a world of accelerating connectivity and rapid AI proliferation, AGL Consulting is grounded in a simple belief: technology 
+            In a world of accelerating connectivity and rapid AI proliferation, AGL Consulting is grounded in a simple belief: technology
             should amplify the human experience, not obscure it.<br />
             <br />
-            AGL Consulting partners with small and mid-sized businesses that need to modernize their technology without losing sight of 
-            their core mission. Many of these organizations lack the time, resources, or focus to prioritize software and IT strategy&mdash;AGL 
+            AGL Consulting partners with small and mid-sized businesses that need to modernize their technology without losing sight of
+            their core mission. Many of these organizations lack the time, resources, or focus to prioritize software and IT strategy&mdash;AGL
             steps in to fill that gap with clarity, capability, and a human-first approach.<br />
             <br />
-            Founded by seasoned engineering leaders with decades of experience across high-growth platforms like TeamSnap and Boats Group, 
-            AGL brings executive-level insight, technical leadership, and operational discipline to companies that can&apos;t justify a 
+            Founded by seasoned engineering leaders with decades of experience across high-growth platforms like TeamSnap and Boats Group,
+            AGL brings executive-level insight, technical leadership, and operational discipline to companies that can&apos;t justify a
             full-time CTO but still demand world-class technology outcomes.<br />
             <br />
-            Whether advising on infrastructure, improving developer workflows, or managing complex migrations, AGL delivers practical, 
+            Whether advising on infrastructure, improving developer workflows, or managing complex migrations, AGL delivers practical,
             people-centric solutions designed for long-term impact&mdash;not short-term hype. <br />
             <br />
-            At its core, AGL exists to help businesses do what they do best&mdash;by making technology work for people, not the other way 
+            At its core, AGL exists to help businesses do what they do best&mdash;by making technology work for people, not the other way
             around.
           </p>
         </div>
@@ -41,7 +41,9 @@ export default async function Home() {
             {featuredProjects.map((project) => (
               <div key={project.id}>
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                  {project.title}
+                  <Link href={`/projects/${project.id}`}>
+                    {project.title} <i className="fa-solid fa-link text-lg"></i>
+                  </Link>
                 </h3>
                 <p className="mb-3 text-gray-600">{project.description}</p>
                 <div className="flex space-x-4">

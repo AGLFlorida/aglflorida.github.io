@@ -20,7 +20,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
     <div className="max-w-4xl mx-auto py-8">
       <div>
         <Link href={`/projects`} className="text-blue-600 hover:text-blue-800">
-          ← Projects
+          {'\u2190'} Projects
         </Link>
       </div>
 

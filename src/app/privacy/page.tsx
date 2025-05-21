@@ -1,3 +1,16 @@
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  return {
+    title: 'Privacy Policy | AGL Consulting LLC',
+    alternates: {
+      canonical: `${baseUrl}/privacy`,
+    },
+  };
+}
+
 export default function PrivacyPage() {
   return (
     <div className="max-w-4xl mx-auto py-8">

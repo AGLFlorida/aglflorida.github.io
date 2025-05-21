@@ -1,6 +1,18 @@
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export default async function PeoplPage() {
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  return {
+    title: 'People | AGL Consulting LLC',
+    alternates: {
+      canonical: `${baseUrl}/people`,
+    },
+  };
+}
+
+export default async function PeoplePage() {
   return (
     <div className="max-w-4xl mx-auto py-8">
       <h1 className="text-3xl font-bold mb-8">Our People</h1>

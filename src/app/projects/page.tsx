@@ -1,5 +1,17 @@
 import Link from "next/link";
 import { getSortedProjects } from "@/lib/getProjects";
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  return {
+    title: 'Projects | AGL Consulting LLC',
+    alternates: {
+      canonical: `${baseUrl}/projects`,
+    },
+  };
+}
 
 export default async function ProjectsPage() {
   const projects = await getSortedProjects();
@@ -30,7 +42,7 @@ export default async function ProjectsPage() {
                 href={`/projects/${project.id}`}
                 className="text-blue-600 hover:text-blue-800"
               >
-                Details →
+                Details {'\u2192'}
               </Link>
             </div>
           </div>

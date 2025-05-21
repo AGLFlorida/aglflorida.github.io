@@ -29,6 +29,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
+      url: `${baseUrl}/policies`,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/blog`,
       changeFrequency: 'weekly',
       priority: 0.8,
@@ -40,5 +45,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...blogPosts,
     ...projectPages,
+    {
+      url: `${baseUrl}/people`,
+      changeFrequency: 'monthly',
+      priority: 0.25,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      changeFrequency: 'monthly',
+      priority: 0.125,
+    },
+    {
+      url: `${baseUrl}/security`,
+      changeFrequency: 'monthly',
+      priority: 0.125,
+    }
   ];
 }

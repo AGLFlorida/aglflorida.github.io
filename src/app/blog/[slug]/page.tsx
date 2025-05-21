@@ -25,7 +25,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     <div className="max-w-4xl mx-auto py-8">
       <div>
         <Link href={`/blog`} className="text-blue-600 hover:text-blue-800">
-          ← Back
+          {'\u2190'} Back
         </Link>
       </div>
       <div className="bg-white p-6 rounded-lg shadow">

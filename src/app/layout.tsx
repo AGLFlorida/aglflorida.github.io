@@ -2,13 +2,34 @@ import './globals.css';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export const metadata = {
-  title: 'AGL Consulting LLC',
-  description: 'AGL Consulting LLC is a software development company based in Florida.',
-  icons: {
-    icon: '/favicon.png',
-  },
-};
+
+import type { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+  return {
+    title: 'AGL Consulting LLC',
+    description: 'AGL Consulting LLC is a software development company based in Florida.',
+    alternates: {
+      canonical: baseUrl,
+    },
+    icons: {
+      icon: '/favicon.png',
+    },
+  };
+}
+
+// export const metadata = {
+//   title: 'AGL Consulting LLC',
+//   description: 'AGL Consulting LLC is a software development company based in Florida.',
+//   icons: {
+//     icon: '/favicon.png',
+//   },
+//   alternates: {
+//     canonical: ${process.env.NEXT_PUBLIC_BASE_URL},
+//   },
+// };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const currentYear = new Date().getFullYear();
@@ -108,16 +129,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </header>
         <main className="max-w-7xl mx-auto p-4">{children}</main>
         <footer className="text-center py-4 text-gray-600">
-          <div>© {currentYear} AGL Consulting LLC</div>
+          <div>{'\u00A9'} {currentYear} AGL Consulting LLC</div>
           <div className="mt-2">
             <Link href="/privacy" className="text-blue-600 hover:text-blue-800">
               Privacy Policy
             </Link>
-          </div>
-          <div className="mt-2">
-            <a href="/contact" className="text-blue-600 hover:text-blue-800">
+            {" | "}
+            <Link href="/security" className="text-blue-600 hover:text-blue-800">
+              Security Policy
+            </Link>
+            {" | "}
+            <Link href="/contact" className="text-blue-600 hover:text-blue-800">
               Contact Us
-            </a>
+            </Link >
           </div>
         </footer>
       </body>

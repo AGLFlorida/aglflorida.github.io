@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getSortedPosts } from "@/lib/getPosts";
+import type { Metadata, ResolvingMetadata } from 'next';
 
 const POSTS_PER_PAGE = 5;
 
@@ -14,6 +15,22 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata(
+  { params }: {
+    params: { slug: string };
+  },
+  _parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { slug } = params;
+
+  return {
+    title: `Blog: ${slug}`,
+    alternates: {
+      canonical: `https://aglflorida.com/blog/${slug}`,
+    },
+  };
+}
+
 type SearchParams = Promise<{ page?: string }>;
 
 export default async function BlogPage({ searchParams }: { searchParams: SearchParams }) {
@@ -21,7 +38,7 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
   const posts = getSortedPosts();
   const currentPage = Number(page) || 1;
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
-  
+
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
   const endIndex = startIndex + POSTS_PER_PAGE;
   const currentPosts = posts.slice(startIndex, endIndex);
@@ -34,7 +51,7 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
             href={`/blog?page=${currentPage - 1}`}
             className="text-blue-600 hover:text-blue-800"
           >
-            ← Previous
+            {'\u2190'} Previous
           </Link>
         )}
       </div>
@@ -43,11 +60,10 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
           <Link
             key={pageNum}
             href={`/blog?page=${pageNum}`}
-            className={`px-3 py-1 rounded ${
-              pageNum === currentPage
+            className={`px-3 py-1 rounded ${pageNum === currentPage
                 ? 'bg-blue-600 text-white'
                 : 'text-blue-600 hover:bg-blue-100'
-            }`}
+              }`}
           >
             {pageNum}
           </Link>
@@ -59,7 +75,7 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
             href={`/blog?page=${currentPage + 1}`}
             className="text-blue-600 hover:text-blue-800"
           >
-            Next →
+            Next {'\u2192'}
           </Link>
         )}
       </div>
