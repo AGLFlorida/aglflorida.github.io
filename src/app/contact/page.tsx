@@ -22,21 +22,13 @@ declare global {
   }
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
-  return {
-    title: 'Contact Us | AGL Consulting LLC',
-    description: 'Get in touch with AGL Consulting LLC. We\'d love to hear from you.',
-    alternates: {
-      canonical: `${baseUrl}/contact`,
-    },
-    icons: {
-      icon: '/favicon.png',
-    },
-  };
-}
-
+export const metadata = {
+  title: 'Contact | AGL Consulting LLC',
+  description: 'Get in touch with AGL Consulting LLC. We\'d love to hear from you.',
+  alternates: {
+    canonical: 'https://aglflorida.com/contact',
+  },
+};
 
 export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
