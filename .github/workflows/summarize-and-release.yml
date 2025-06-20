@@ -3,6 +3,10 @@ name: Summarize Commits and Tag Release
 on:
   push:
     branches: [main]
+    paths:
+      - '**'
+    paths-ignore:
+      - '*.md'
 
 permissions:
   contents: write
@@ -15,6 +19,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Skip if only root markdown files changed
+        run: |
+          echo "Checking for meaningful changes..."
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -vE '^([^/]+\.md)$' | grep -q .; then
+            echo "Meaningful files changed. Continuing..."
+          else
+            echo "Only root-level .md files changed. Skipping workflow."
+            exit 0
+          fi
 
       - name: Set up Git config
         run: |
