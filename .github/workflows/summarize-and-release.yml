@@ -41,12 +41,17 @@ jobs:
           else
             latest=$(git rev-list --max-parents=0 HEAD)
           fi
-          echo "latest_tag=$latest" >> $GITHUB_OUTPUT 
+          echo "latest_tag=$latest" >> $GITHUB_OUTPUT
 
       - name: Get commit messages since last tag
         id: get_commits
         run: |
-          commits=$(git log ${{ steps.get_tag.outputs.latest_tag }}..HEAD --pretty=format:"%s")
+          latest=${{ steps.get_tag.outputs.latest_tag }}
+          if git tag --list | grep -q "$latest"; then
+            commits=$(git log "$latest"..HEAD --pretty=format:"%s")
+          else
+            commits=$(git log --pretty=format:"%s")
+          fi
           echo "commit_messages<<EOF" >> $GITHUB_OUTPUT
           echo "$commits" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
