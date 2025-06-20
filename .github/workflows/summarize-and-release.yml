@@ -33,11 +33,15 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Get latest tag
+      - name: Get latest tag or first commit
         id: get_tag
         run: |
-          latest=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-          echo "latest_tag=$latest" >> $GITHUB_OUTPUT
+          if git describe --tags --abbrev=0 >/dev/null 2>&1; then
+            latest=$(git describe --tags --abbrev=0)
+          else
+            latest=$(git rev-list --max-parents=0 HEAD)
+          fi
+          echo "latest_tag=$latest" >> $GITHUB_OUTPUT 
 
       - name: Get commit messages since last tag
         id: get_commits
