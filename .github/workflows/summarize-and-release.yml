@@ -3,8 +3,6 @@ name: Summarize Commits and Tag Release
 on:
   push:
     branches: [main]
-    paths:
-      - '**'
     paths-ignore:
       - '*.md'
 
