@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HF_API_KEY: ${{ secrets.HUGGINGFACE_API_KEY }}
+      HF_API_ENDPOINT: ${{ vars.HUGGINGFACE_API_ENDPOINT }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -46,9 +47,8 @@ jobs:
       - name: Get commit messages since last tag
         id: get_commits
         run: |
-          latest=${{ steps.get_tag.outputs.latest_tag }}
-          if git tag --list | grep -q "$latest"; then
-            commits=$(git log "$latest"..HEAD --pretty=format:"%s")
+          if git tag --list | grep -q "${{ steps.get_tag.outputs.latest_tag }}"; then
+            commits=$(git log ${{ steps.get_tag.outputs.latest_tag }}..HEAD --pretty=format:"%s")
           else
             commits=$(git log --pretty=format:"%s")
           fi
@@ -59,17 +59,16 @@ jobs:
       - name: Summarize commits using HuggingFace
         id: summarize
         run: |
-          input=$(jq -Rs '.' <<< "${{ steps.get_commits.outputs.commit_messages }}")
-          payload=$(jq -n --arg text "summarize: $input" '{inputs: $text}')
-          endpoint="https://api-inference.huggingface.co/models/google/flan-t5-base"
+          input="summarize: ${{ steps.get_commits.outputs.commit_messages }}"
+          payload="{\"inputs\": \"$input\"}"
 
           for i in {1..3}; do
             response=$(curl -sS --retry 3 --max-time 30 \
               -H "Authorization: Bearer $HF_API_KEY" \
               -H "Content-Type: application/json" \
-              -d "$payload" "$endpoint")
+              -d "$payload" "$HF_API_ENDPOINT")
 
-            summary=$(echo "$response" | jq -r '.[0].generated_text // empty')
+            summary=$(echo "$response" | grep -o '"generated_text": *"[^"]*"' | sed 's/"generated_text": *"\(.*\)"/\1/')
             if [ -n "$summary" ]; then break; fi
           done
 
@@ -90,13 +89,22 @@ jobs:
           if [ -f "$TEMPLATE" ]; then
             cp "$TEMPLATE" "$OUTFILE"
           else
-            echo -e "---\ntitle: Release Notes for ${DATE}\ndate: ${ISO_DATE}\n---\n\n" > "$OUTFILE"
+            echo -e "---\ntitle: Release Notes for ${DATE}\ndate: ${ISO_DATE}\n---\n\n{{ summary }}" > "$OUTFILE"
           fi
 
           sed -i "s/{{ date }}/$DATE/g" "$OUTFILE"
           sed -i "s/{{ iso_date }}/$ISO_DATE/g" "$OUTFILE"
-          sed -i "/{{ summary }}/r /dev/stdin" "$OUTFILE" <<< "${{ steps.summarize.outputs.summary }}"
-          sed -i "/{{ summary }}/d" "$OUTFILE"
+
+          summary="${{ steps.summarize.outputs.summary }}"
+          if grep -q '{{ summary }}' "$OUTFILE"; then
+            if [ -n "$summary" ]; then
+              sed -i "s|{{ summary }}|$summary|" "$OUTFILE"
+            else
+              sed -i "/{{ summary }}/d" "$OUTFILE"
+            fi
+          else
+            echo "$summary" >> "$OUTFILE"
+          fi
 
           echo "outfile=$OUTFILE" >> $GITHUB_OUTPUT
 
