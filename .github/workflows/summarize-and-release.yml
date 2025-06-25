@@ -110,9 +110,8 @@ jobs:
             exit 0
           fi
 
-      - name: Create Blog Post Markdown from Template
-        id: release
-        run: 
+      # - name: Create Blog Post Markdown from Template
+      #   id: release 
         # run: |
         #   today=$(date +'%Y%b%d')
         #   iso_date=$(date -Iseconds)
