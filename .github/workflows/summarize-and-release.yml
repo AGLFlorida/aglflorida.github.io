@@ -1,153 +1,131 @@
-name: Summarize Commits and Tag Release
+name: Summarize and Tag Release
 
 on:
   push:
     branches: [main]
     paths-ignore:
-      - '*.md'
-
-permissions:
-  contents: write
+      - '/*.md'
 
 jobs:
-  summarize_and_release:
+  summarize:
     runs-on: ubuntu-latest
+
     env:
-      HF_API_KEY: ${{ secrets.HUGGINGFACE_API_KEY }}
       HF_API_ENDPOINT: ${{ vars.HUGGINGFACE_API_ENDPOINT }}
+      HF_API_KEY: ${{ secrets.HUGGINGFACE_API_KEY }}
+
     steps:
-      - name: Checkout repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Skip if only root markdown files changed
+      - name: Ensure jq is installed
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Get Latest Git Tag or First Commit
+        id: latest_tag
         run: |
-          echo "Checking for meaningful changes..."
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -vE '^([^/]+\.md)$' | grep -q .; then
-            echo "Meaningful files changed. Continuing..."
+          if git describe --tags --abbrev=0 > /dev/null 2>&1; then
+            echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
           else
-            echo "Only root-level .md files changed. Skipping workflow."
+            echo "tag=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Get Commit Messages Since Last Tag
+        id: commit_log
+        run: |
+          if git tag --list | grep -q "${{ steps.latest_tag.outputs.tag }}"; then
+            raw_log=$(git log "${{ steps.latest_tag.outputs.tag }}"..HEAD --pretty=format:"%s")
+          else
+            raw_log=$(git log --pretty=format:"%s")
+          fi
+
+          clean_log=$(echo "$raw_log" | grep -v '^Merge' | sed -E 's/[\x{1F600}-\x{1F6FF}\x{2600}-\x{26FF}]//gu')
+          if [ -z "$clean_log" ]; then
+            echo "No new commits to summarize. Exiting."
             exit 0
           fi
 
-      - name: Set up Git config
+          printf "%s\n" "$clean_log" > commit_log.txt
+          echo "log_path=commit_log.txt" >> $GITHUB_OUTPUT
+
+      - name: Prepare Prompt and Query Model
+        id: summary
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Get latest tag or first commit
-        id: get_tag
-        run: |
-          if git describe --tags --abbrev=0 >/dev/null 2>&1; then
-            latest=$(git describe --tags --abbrev=0)
-          else
-            latest=$(git rev-list --max-parents=0 HEAD)
-          fi
-          echo "latest_tag=$latest" >> $GITHUB_OUTPUT
-
-      - name: Get commit messages since last tag
-        id: get_commits
-        run: |
-          if git tag --list | grep -q "${{ steps.get_tag.outputs.latest_tag }}"; then
-            commits=$(git log ${{ steps.get_tag.outputs.latest_tag }}..HEAD --pretty=format:"%s")
-          else
-            commits=$(git log --pretty=format:"%s")
-          fi
-          echo "commit_messages<<EOF" >> $GITHUB_OUTPUT
-          echo "$commits" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Summarize commits using HuggingFace
-        id: summarize
-        run: |
-          input="summarize: ${{ steps.get_commits.outputs.commit_messages }}"
-          payload="{\"inputs\": \"$input\"}"
-
-          for i in {1..3}; do
-            response=$(curl -sS --retry 3 --max-time 30 \
-              -H "Authorization: Bearer $HF_API_KEY" \
-              -H "Content-Type: application/json" \
-              -d "$payload" "$HF_API_ENDPOINT")
-
-            summary=$(echo "$response" | grep -o '"generated_text": *"[^"]*"' | sed 's/"generated_text": *"\(.*\)"/\1/')
-            if [ -n "$summary" ]; then break; fi
-          done
-
-          echo "summary<<EOF" >> $GITHUB_OUTPUT
-          echo "$summary" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Generate release notes markdown file
-        id: generate_md
-        run: |
-          DATE=$(date +"%Y%b%d")
-          ISO_DATE=$(date -I)
-          TEMPLATE=".templates/release-note-template.md"
-          OUTFILE="src/content/blog/releasenotes-${DATE}.md"
-
-          mkdir -p src/content/blog
-
-          if [ -f "$TEMPLATE" ]; then
-            cp "$TEMPLATE" "$OUTFILE"
-          else
-            echo -e "---\ntitle: Release Notes for ${DATE}\ndate: ${ISO_DATE}\n---\n\n{{ summary }}" > "$OUTFILE"
-          fi
-
-          sed -i "s/{{ date }}/$DATE/g" "$OUTFILE"
-          sed -i "s/{{ iso_date }}/$ISO_DATE/g" "$OUTFILE"
-
-          summary="${{ steps.summarize.outputs.summary }}"
-          if grep -q '{{ summary }}' "$OUTFILE"; then
-            if [ -n "$summary" ]; then
-              sed -i "s|{{ summary }}|$summary|" "$OUTFILE"
-            else
-              sed -i "/{{ summary }}/d" "$OUTFILE"
-            fi
-          else
-            echo "$summary" >> "$OUTFILE"
-          fi
-
-          echo "outfile=$OUTFILE" >> $GITHUB_OUTPUT
-
-      - name: Commit release notes markdown
-        run: |
-          git add ${{ steps.generate_md.outputs.outfile }}
-          git commit -m "docs: add release notes for ${{ steps.generate_md.outputs.outfile }}"
-          git push origin main
-
-      - name: Determine next semantic version
-        id: next_version
-        run: |
-          current="${{ steps.get_tag.outputs.latest_tag }}"
-          version="${current#v}"
-          IFS='.' read -r major minor patch <<< "$version"
-          bump="patch"
-
+          prompt="Summarize the following commit messages into a single paragraph suitable for a press release:\n"
+          input="$prompt"
           while IFS= read -r line; do
-            if echo "$line" | grep -q "BREAKING CHANGE"; then bump="major"; break
-            elif echo "$line" | grep -q "^feat:"; then bump="minor"
-            elif echo "$line" | grep -q "^fix:" && [ "$bump" != "minor" ]; then bump="patch"
-            fi
-          done <<< "${{ steps.get_commits.outputs.commit_messages }}"
+            input+="- $line\n"
+          done < "${{ steps.commit_log.outputs.log_path }}"
 
-          if [ "$bump" = "major" ]; then major=$((major + 1)); minor=0; patch=0
-          elif [ "$bump" = "minor" ]; then minor=$((minor + 1)); patch=0
-          else patch=$((patch + 1))
+          json=$(jq -n --arg txt "$input" '{inputs: $txt}')
+
+          response_file=$(mktemp)
+          http_code=$(curl -sS -w "%{http_code}" -o "$response_file" \
+            -H "Authorization: Bearer $HF_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "$json" "$HF_API_ENDPOINT")
+
+          if [[ "$http_code" =~ ^2 ]]; then
+            summary=$(jq -r '.[0].generated_text // .[0].summary_text // empty' "$response_file")
+          else
+            summary="This release includes:"
+            while IFS= read -r line; do
+              case "$line" in
+                feat:*) summary+=$'\n'"- Added: ${line#feat: }" ;;
+                fix:*) summary+=$'\n'"- Fixed: ${line#fix: }" ;;
+                chore:*) summary+=$'\n'"- Maintenance: ${line#chore: }" ;;
+                docs:*) summary+=$'\n'"- Docs updated: ${line#docs: }" ;;
+              esac
+            done < "${{ steps.commit_log.outputs.log_path }}"
           fi
 
-          new_tag="v$major.$minor.$patch"
-          echo "version=$new_tag" >> $GITHUB_OUTPUT
+          printf "%s\n" "$summary" > summary.txt
+          echo "summary_file=summary.txt" >> $GITHUB_OUTPUT
 
-      - name: Create Git tag
+      - name: Create Blog Post Markdown from Template
+        id: blog
         run: |
-          git tag ${{ steps.next_version.outputs.version }}
-          git push origin ${{ steps.next_version.outputs.version }}
+          today=$(date +'%Y%b%d')
+          iso_date=$(date -Iseconds)
+          blog_path="src/content/blog/releasenotes-${today}.md"
+          summary=$(cat "${{ steps.summary.outputs.summary_file }}")
 
-      - name: Draft GitHub release with Release Drafter
-        uses: release-drafter/release-drafter@v5
-        with:
-          config-name: release-drafter.yml
-          tag: ${{ steps.next_version.outputs.version }}
-          name: ${{ steps.next_version.outputs.version }}
-          publish: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Escape forward slashes and ampersands for safe sed injection
+          escaped_summary=$(printf '%s\n' "$summary" | sed -e 's/[\/&]/\\&/g')
+
+          sed -e "s/{{ date }}/$today/" \
+              -e "s/{{ iso_date }}/$iso_date/" \
+              -e "s/{{ summary }}/$escaped_summary/" \
+              .templates/release-note-template.md > "$blog_path"
+
+          echo "blog_path=$blog_path" >> $GITHUB_OUTPUT
+
+      - name: Commit and Push Blog Post
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add "${{ steps.blog.outputs.blog_path }}"
+          commit_message="docs: add release notes for ${{ steps.blog.outputs.blog_path }}"
+          sanitized_message=$(echo "$commit_message" | tr -d '\n' | sed 's/[^[:print:]]//g')
+          git commit -m "$sanitized_message"
+          git push
+
+      - name: Compute Next Version
+        id: version
+        run: |
+          current_tag="${{ steps.latest_tag.outputs.tag }}"
+          if [[ "$current_tag" =~ ^v([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+            major="${BASH_REMATCH[1]}"
+            minor="${BASH_REMATCH[2]}"
+            patch="${BASH_REMATCH[3]}"
+            new_tag="v$major.$((minor + 1)).0"
+          else
+            new_tag="v0.1.0"
+          fi
+          echo "tag=$new_tag" >> $GITHUB_OUTPUT
+
+      - name: Tag Release Commit
+        run: |
+          commit_sha=$(git rev-parse HEAD)
+          git tag -a "${{ steps.version.outputs.tag }}" -m "Release ${{ steps.version.outputs.tag }}" "$commit_sha"
+          git push origin "${{ steps.version.outputs.tag }}"
