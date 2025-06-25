@@ -7,6 +7,9 @@ on:
       - '/*.md'
       - 'src/content/releases/*.md'
 
+permissions:
+  contents: write
+
 jobs:
   summarize:
     runs-on: ubuntu-latest
