@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths-ignore:
       - '/*.md'
+      - 'src/content/releases/*.md'
 
 jobs:
   summarize:
