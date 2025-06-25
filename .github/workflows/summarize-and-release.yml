@@ -58,7 +58,7 @@ jobs:
       - name: Prepare Prompt and Query Model
         id: summary
         run: |
-          prompt="In first person -- i.e. using 'we', summarize the following commit messages into a single paragraph suitable for a press release:\n"
+          prompt="In first person -- i.e. using 'we', summarize the following commit messages into a single paragraph suitable for a press release. Don't include version numbers:\n"
           input="$prompt"
           while IFS= read -r line; do
             input+="- $line\n"
@@ -121,7 +121,7 @@ jobs:
       - name: Create Blog Post Markdown from Template
         id: release 
         run: |
-          today=$(date +'%Y%b%d')
+          today=$(date +'%Y%b%d-%H%M%S')
           iso_date=$(date -Iseconds)
           release_path="src/content/releases/releasenotes-${today}.md"
           summary=$(cat "${{ steps.summary.outputs.summary_file }}")
