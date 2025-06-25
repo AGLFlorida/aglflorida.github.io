@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { getSortedPosts } from "@/lib/getPosts";
 import { getSortedProjects } from "@/lib/getProjects";
+import { getSortedReleases } from "@/lib/getReleases";
 
 export default async function Home() {
   const posts = getSortedPosts();
+  const releases = await getSortedReleases();
   const projects = await getSortedProjects();
   const featuredProjects = projects.slice(0, 2); // Show only first 2 projects
+  const featuredReleases = releases.slice(0, 4);
 
   return (
     <div className="flex flex-col lg:flex-row gap-8 mt-8">
@@ -101,23 +104,30 @@ export default async function Home() {
           </Link>
         </div>
 
-        {/* Currently Reading Section */}
-        {/* <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-bold mb-4">Currently Reading</h2>
-          <div className="space-y-3">
-            <a
-              href="https://www.goodreads.com/book/show/498886.Grinding_It_Out"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block hover:bg-gray-50 p-2 -mx-2 rounded transition"
-            >
-              <h3 className="font-medium text-blue-600 hover:text-blue-800">
-                Grinding It Out: The Making of McDonald's
-              </h3>
-              <p className="text-sm text-gray-500">by Ray Kroc</p>
-            </a>
-          </div>
-        </div> */}
+        {/* Latest Releases Section */}
+        <div className="bg-white p-6 rounded-lg shadow">
+          <h2 className="text-xl font-bold mb-4">Latest Releases</h2>
+          <ul className="space-y-3">
+            {featuredReleases.map((release) => (
+              <li key={release.id}>
+                <Link
+                  href={`/releases/${release.id}`}
+                  className="block hover:bg-gray-50 p-2 -mx-2 rounded transition"
+                >
+                  <h3 className="font-medium text-blue-600 hover:text-blue-800">
+                    {release.title}
+                  </h3>
+                  {/* <p className="text-sm text-gray-500">{release.date}</p> */}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <br />
+          <hr />
+          <Link href="/releases/" className="text-blue-600 hover:text-blue-800">
+            More...
+          </Link>
+        </div>
       </div>
     </div>
   );

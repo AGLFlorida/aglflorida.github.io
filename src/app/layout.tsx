@@ -122,6 +122,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     >
                       Policies
                     </Link>
+                    <Link
+                      href="/releases"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                    >
+                      Releases
+                    </Link>
                   </div>
                 </div>
               </div>
