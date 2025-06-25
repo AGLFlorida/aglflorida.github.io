@@ -5,11 +5,10 @@
 name: Deploy Next.js site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    # branches: ["main"]
-    tags:
-      - 'v*'
+  workflow_run:
+    workflows: ["Summarize and Tag Release"]
+    types:
+      - completed
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,11 +28,14 @@ concurrency:
 jobs:
   # Build job
   build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     environment: github-pages
     steps:
-      - name: Checkout
+      - name: Checkout Main
         uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Detect package manager
         id: detect-package-manager
         run: |
