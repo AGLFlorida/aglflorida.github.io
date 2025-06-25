@@ -125,8 +125,17 @@ jobs:
 
           sed -e "s/{{ date }}/$today/" \
               -e "s/{{ iso_date }}/$iso_date/" \
-              -e "s/{{ summary }}/$escaped_summary/" \
               .templates/release-note-template.md > "$release_path"
+
+          awk -v summary="$summary" '
+            {
+              if ($0 ~ /{{ summary }}/) {
+                print summary
+              } else {
+                print $0
+              }
+            }
+          ' "$release_path" > "${release_path}.tmp" && mv "${release_path}.tmp" "$release_path"
 
           echo "release_path=$release_path" >> $GITHUB_OUTPUT
 
