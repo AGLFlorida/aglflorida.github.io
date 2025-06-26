@@ -149,8 +149,8 @@ jobs:
 
       - name: Commit and Push Release Post
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "${{ steps.release.outputs.release_path }}"
           
           if git diff --cached --quiet; then
