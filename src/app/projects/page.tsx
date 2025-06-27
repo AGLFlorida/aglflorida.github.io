@@ -42,6 +42,7 @@ export default async function ProjectsPage() {
                 >
                   {link.text === "App Store" && <i className="fab fa-app-store text-lg"></i>}
                   {link.text === "Play Store" && <i className="fab fa-google-play text-lg"></i>}
+                  {link.text === "Github" && <i className="fab fa-github text-lg"></i>}
                   <span>{link.text}</span>
                 </a>
               ))}
