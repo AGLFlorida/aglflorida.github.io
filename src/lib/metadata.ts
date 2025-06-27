@@ -27,15 +27,17 @@ export function metadataFactory(base: string, title: string) {
     const slugOrId = resolvedParams.slug ?? resolvedParams.id
 
     let customTitle;
+    let parameterizedSlugOrId;
     if (slugOrId) {
       customTitle = humanize(slugOrId);
+      parameterizedSlugOrId = '/' + slugOrId
     }
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
     return {
       title: `${base}: ${customTitle || title}`,
       alternates: {
-        canonical: `${baseUrl}/${base.toLowerCase()}/${slugOrId || ''}`,
+        canonical: `${baseUrl}/${base.toLowerCase()}${parameterizedSlugOrId || ''}`,
       },
     };
   };
