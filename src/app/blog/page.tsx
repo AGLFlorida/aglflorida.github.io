@@ -74,6 +74,9 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
   return (
     <div className="max-w-4xl mx-auto py-8">
       <h1 className="text-3xl font-bold mb-8">Blog Posts</h1>
+      <p className="mb-4">
+        News, musings, and information related to the AGL Florida and its ongoing work. 
+      </p>
       <div className="bg-white p-6 rounded-lg shadow">
         <PaginationControls />
         <div className="space-y-6">

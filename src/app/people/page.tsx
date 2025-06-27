@@ -16,6 +16,9 @@ export default async function PeoplePage() {
   return (
     <div className="max-w-4xl mx-auto py-8">
       <h1 className="text-3xl font-bold mb-8">Our People</h1>
+      <p className="mb-4">
+        The People Behind Human-Centered Tech.
+      </p>
       <div className="bg-white p-6 rounded-lg shadow">
         <ul className="space-y-3">
           <li className="flex items-center space-x-4">

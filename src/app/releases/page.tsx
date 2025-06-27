@@ -18,7 +18,10 @@ export default async function ReleasesPage() {
 
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8">AI Generated Release Notes</h1>
+      <h1 className="text-3xl font-bold mb-8">Release Notes</h1>
+      <p className="mb-4">
+        A batch of AI generated release notes based on the git log. 
+      </p>
       <div className="space-y-6">
         {releases.map((release) => (
           <div key={release.id} className="bg-white p-6 rounded-lg shadow">

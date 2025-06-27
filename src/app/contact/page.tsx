@@ -16,6 +16,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function ContactPage() {
   return (
     <main className="p-8">
+      <p className="mb-4">
+        Talk Tech Strategy with AGL Consulting.
+      </p>
       <ContactForm />
     </main>
   );

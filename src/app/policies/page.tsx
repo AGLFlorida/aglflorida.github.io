@@ -19,6 +19,9 @@ export default async function PoliciesPage() {
   return (
     <div className="max-w-4xl mx-auto py-8">
       <h1 className="text-3xl font-bold mb-8">Policies</h1>
+      <p className="mb-4">
+        How AGL Works with Clarity and Care.
+      </p>
       <div className="bg-white p-6 rounded-lg shadow">
         <ul className="space-y-3">
           {policies.map((policy) => (

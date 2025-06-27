@@ -19,6 +19,9 @@ export default async function ProjectsPage() {
   return (
     <div className="max-w-4xl mx-auto py-8">
       <h1 className="text-3xl font-bold mb-8">Projects</h1>
+      <p className="mb-4">
+        The projects we have under development or found interesting. Practical Tech with Real-World Impact.
+      </p>
       <div className="space-y-6">
         {projects.map((project) => (
           <div key={project.id} className="bg-white p-6 rounded-lg shadow">
