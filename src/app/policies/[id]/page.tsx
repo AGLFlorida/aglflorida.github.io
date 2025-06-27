@@ -1,4 +1,10 @@
 import { getPolicyById, getPolicies } from "@/lib/getPolicies";
+import { metadataFactory } from "@/lib/metadata";
+
+export const generateMetadata = metadataFactory(
+  "Policies",
+  ""
+);
 
 type Params = Promise<{ id: string }>;
 

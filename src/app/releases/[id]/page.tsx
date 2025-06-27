@@ -1,4 +1,10 @@
 import { getReleaseById, getSortedReleases } from "@/lib/getReleases";
+import { metadataFactory } from "@/lib/metadata";
+
+export const generateMetadata = metadataFactory(
+  "Releases",
+  ""
+);
 
 type Params = Promise<{ id: string }>;
 

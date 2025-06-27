@@ -5,7 +5,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   return {
-    title: 'People | AGL Consulting LLC',
+    title: 'Meet the Team | The People Behind Human-Centered Tech',
     alternates: {
       canonical: `${baseUrl}/people`,
     },

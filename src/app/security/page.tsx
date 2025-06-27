@@ -4,7 +4,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   return {
-    title: 'Security Policy | AGL Consulting LLC',
+    title: 'Security Policy | Thoughtful, Transparent, and Paranoid (In a Good Way)',
     alternates: {
       canonical: `${baseUrl}/security`,
     },
@@ -74,7 +74,7 @@ export default function PrivacyPage() {
         </p>
 
         <p className="text-sm text-gray-500 mt-8">
-          Last updated: 5/21/2025 {/*new Date().toLocaleDateString()*/}
+          Last updated: 6/27/2025 {/*new Date().toLocaleDateString()*/}
         </p>
       </div>
     </div>

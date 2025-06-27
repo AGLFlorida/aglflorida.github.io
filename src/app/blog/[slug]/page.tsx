@@ -1,9 +1,15 @@
 import { getPostBySlug, getSortedPosts } from "@/lib/getPosts";
+import { metadataFactory } from "@/lib/metadata";
 
 export async function generateStaticParams() {
   const posts = getSortedPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
+
+export const generateMetadata = metadataFactory(
+  "Blog",
+  ""
+);
 
 type Params = Promise<{ slug: string }>;
 

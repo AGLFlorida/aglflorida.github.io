@@ -6,7 +6,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   return {
-    title: 'Releases | AGL Consulting LLC',
+    title: 'Release Notes | Behind the Scenes of AGL\'s Latest Work',
     alternates: {
       canonical: `${baseUrl}/releases`,
     },
@@ -18,7 +18,7 @@ export default async function ReleasesPage() {
 
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8">Releases</h1>
+      <h1 className="text-3xl font-bold mb-8">AI Generated Release Notes</h1>
       <div className="space-y-6">
         {releases.map((release) => (
           <div key={release.id} className="bg-white p-6 rounded-lg shadow">
