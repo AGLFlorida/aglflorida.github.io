@@ -1,6 +1,6 @@
 ---
 title: "Mobile App Project: Fitness Log"
-date: "2024-03-20"
+date: "2025-03-20"
 description: "Currently in development"
 # features:
   # - "Cross-platform compatibility"
