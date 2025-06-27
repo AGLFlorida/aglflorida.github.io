@@ -4,7 +4,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   return {
-    title: 'Privacy Policy | AGL Consulting LLC',
+    title: 'Privacy Policy | We Respect Your Data and Your Trust',
     alternates: {
       canonical: `${baseUrl}/privacy`,
     },

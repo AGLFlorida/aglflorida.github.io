@@ -1,6 +1,6 @@
 ---
 title: "Mobile App Project: N-back"
-date: "2024-03-20"
+date: "2025-03-20"
 description: "N-Back: A Memory Game"
 # features:
   # - "Cross-platform compatibility"

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getSortedPosts } from "@/lib/getPosts";
-import type { Metadata, ResolvingMetadata } from 'next';
+import { metadataFactory } from "@/lib/metadata";
 
 const POSTS_PER_PAGE = 5;
 
@@ -15,23 +15,10 @@ export async function generateStaticParams() {
   }));
 }
 
-// Looks like the interface for this changed between Next 14 and 15?
-// Adding a small workaround (hack) to make the typescript compiler happy.
-export async function generateMetadata(
-  { params }: { params: Promise<{ slug: string }> },
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _parent: ResolvingMetadata
-): Promise<Metadata> {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
-
-  return {
-    title: `Blog: ${slug}`,
-    alternates: {
-      canonical: `https://aglflorida.com/blog/${slug}`,
-    },
-  };
-}
+export const generateMetadata = metadataFactory(
+  "Blog",
+  "All Posts"
+);
 
 type SearchParams = Promise<{ page?: string }>;
 
@@ -87,6 +74,9 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
   return (
     <div className="max-w-4xl mx-auto py-8">
       <h1 className="text-3xl font-bold mb-8">Blog Posts</h1>
+      <p className="mb-4">
+        News, musings, and information related to the AGL Florida and its ongoing work. 
+      </p>
       <div className="bg-white p-6 rounded-lg shadow">
         <PaginationControls />
         <div className="space-y-6">

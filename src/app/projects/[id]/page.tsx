@@ -1,4 +1,5 @@
 import { getProjectById, getSortedProjects } from "@/lib/getProjects";
+import { metadataFactory } from "@/lib/metadata";
 
 type Params = Promise<{ id: string }>;
 
@@ -6,6 +7,11 @@ export async function generateStaticParams() {
   const projects = await getSortedProjects();
   return projects.map((project) => ({ id: project.id }));
 }
+
+export const generateMetadata = metadataFactory(
+  "Projects",
+  ""
+);
 
 export default async function ProjectPage({ params }: { params: Params }) {
   const { id } = await params;
