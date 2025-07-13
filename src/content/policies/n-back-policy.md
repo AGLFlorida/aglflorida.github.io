@@ -3,7 +3,7 @@
 Last updated: 15-May-2025
 
 ## Introduction
-[Your App Name] ("we" or "us" or "our") respects the privacy of our users ("user" or "you").
+AGL Consulting ("we" or "us" or "our") respects the privacy of our users ("user" or "you").
 This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application (the "App").
 
 ## Information We Collect
