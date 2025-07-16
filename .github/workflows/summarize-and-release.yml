@@ -152,11 +152,14 @@ jobs:
 
           echo "release_path=$release_path" >> $GITHUB_OUTPUT
 
+      - name: Configure Git user
+        run: |
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Commit and Push Release Post
         if: steps.skip_check.outputs.should_skip == 'false'
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "${{ steps.release.outputs.release_path }}"
           
           if git diff --cached --quiet; then
