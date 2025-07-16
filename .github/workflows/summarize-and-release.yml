@@ -119,11 +119,14 @@ jobs:
         run: |
           if [ ! -s summary.txt ]; then
             echo "No summary to commit or tag. Exiting."
-            exit 0
+            echo "should_skip=true" >> $GITHUB_OUTPUT
+          else 
+            echo "should_skip=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Create Blog Post Markdown from Template
         id: release 
+        if: steps.skip_check.outputs.should_skip == 'false'
         run: |
           today=$(date +'%Y%b%d-%H%M%S')
           iso_date=$(date -Iseconds)
@@ -150,6 +153,7 @@ jobs:
           echo "release_path=$release_path" >> $GITHUB_OUTPUT
 
       - name: Commit and Push Release Post
+        if: steps.skip_check.outputs.should_skip == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
