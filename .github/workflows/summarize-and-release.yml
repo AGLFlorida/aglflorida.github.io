@@ -57,6 +57,8 @@ jobs:
 
       - name: Prepare Prompt and Query Model
         id: summary
+        # force skipping until we sort out the inference api issue
+        if: false
         run: |
           prompt="In first person -- i.e. using 'we', summarize the following commit messages into a single paragraph suitable for a press release. Don't include version numbers:\n"
           input="$prompt"
