@@ -83,6 +83,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               >
                 <i className="fab fa-google-play text-lg"></i>
               </a>
+              <a
+                href="https://apps.apple.com/us/developer/agl-consulting-llc/id1801519023"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-2xl text-gray-100 hover:text-gray-300"
+              >
+                <i className="fab fa-app-store text-lg"></i>
+              </a>
               <div className="relative group">
                 <button
                   className="text-2xl text-gray-100 hover:text-gray-300 p-2"
