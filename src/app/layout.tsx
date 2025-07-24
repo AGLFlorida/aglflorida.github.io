@@ -128,6 +128,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     >
                       Releases
                     </Link>
+                    <a
+                      href="https://coff.ee/aglflorida"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                    >
+                      Buy me a coffee
+                    </a>
                   </div>
                 </div>
               </div>
