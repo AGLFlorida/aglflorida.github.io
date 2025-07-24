@@ -17,6 +17,10 @@ export default async function Home() {
         <div className="bg-white p-6 rounded-lg shadow">
           <h1 className="text-2xl font-bold mb-4">Welcome to AGL of Florida</h1>
           <p className="mb-4">
+            In reality, this business serves two purposes. It's a staging ground for the founders' development projects and idea. Additionally, our business facing 
+            identity is as follows... (should be read like a movie voice-over!)
+          </p>
+          <p className="mb-4">
             In a world of accelerating connectivity and rapid AI proliferation, AGL Consulting is grounded in a simple belief: technology
             should amplify the human experience, not obscure it.<br />
             <br />
