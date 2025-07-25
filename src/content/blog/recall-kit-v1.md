@@ -16,7 +16,7 @@ RecallKit presents a clean, distraction-free interface to help users master info
   Easily build your own flashcard decks with support for hundreds of cards per set.
 
 - **Import and Export**  
-  Share your decks with friends or back them up via JSON import/export.
+  Share your decks with friends or back them up via CSV or JSON import/export.
 
 - **Offline-First Experience**  
   Study anytime, anywhere — even without internet access.
@@ -26,7 +26,7 @@ RecallKit presents a clean, distraction-free interface to help users master info
 
 ## Built for iOS and Android
 
-RecallKit is available now on the **App Store**, supporting iPhone phones with a native, performant experience powered by Swift and SwiftUI.
+RecallKit is available now on the **App Store**, supporting iPhone with a native, performant experience powered by Swift and SwiftUI.
 
 ## Why RecallKit?
 
@@ -42,6 +42,5 @@ RecallKit is available now on the **App Store**, supporting iPhone phones with a
 For interviews, partnerships, or review access, please contact:
 
 **Brandon Shoop**  
-Founder, AGL Consulting  
-Email: support@recallkit.app  
+Founder, AGL Consulting   
 Website: https://aglflorida.com/contact
