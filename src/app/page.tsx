@@ -17,7 +17,7 @@ export default async function Home() {
         <div className="bg-white p-6 rounded-lg shadow">
           <h1 className="text-2xl font-bold mb-4">Welcome to AGL of Florida</h1>
           <p className="mb-4">
-            In reality, this business serves two purposes. It&apos;s a staging ground for the founders&apos; development projects and idea. Additionally, our business facing 
+            In reality, this business serves two purposes. It&apos;s a staging ground for the founders&apos; development projects and ideas. Additionally, our business facing 
             identity is as follows... (should be read like a movie voice-over!)
           </p>
           <p className="mb-4">
