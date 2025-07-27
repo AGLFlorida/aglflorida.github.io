@@ -117,7 +117,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         Home
                       </Link>
                       <Link
-                        href="/blog"
+                        href="/blog/page/1"
                         className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                       >
                         Company Blog

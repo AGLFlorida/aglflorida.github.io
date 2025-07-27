@@ -51,7 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...policyPages,
     {
-      url: `${baseUrl}/blog`,
+      url: `${baseUrl}/blog/page/1`,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
