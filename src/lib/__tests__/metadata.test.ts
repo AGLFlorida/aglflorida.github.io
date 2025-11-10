@@ -1,5 +1,5 @@
 import { metadataFactory } from '../metadata';
-import type { Metadata, ResolvingMetadata } from 'next';
+import type { ResolvingMetadata } from 'next';
 
 describe('metadata', () => {
   const originalEnv = process.env.NEXT_PUBLIC_BASE_URL;

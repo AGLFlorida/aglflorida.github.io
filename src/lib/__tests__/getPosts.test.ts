@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { getSortedPosts, getPostBySlug, type BlogPost } from '../getPosts';
+import { getSortedPosts, getPostBySlug } from '../getPosts';
+import matter from 'gray-matter';
 
 // Mock dependencies
 jest.mock('fs');
@@ -16,7 +17,7 @@ jest.mock('remark', () => ({
 }));
 
 const mockedFs = fs as jest.Mocked<typeof fs>;
-const matter = require('gray-matter');
+const mockedMatter = matter as jest.MockedFunction<typeof matter>;
 
 describe('getPosts', () => {
   beforeEach(() => {
@@ -28,6 +29,7 @@ describe('getPosts', () => {
     it('should return sorted posts by date (newest first)', () => {
       const mockFileNames = ['post-2025-03-17.md', 'post-2025-07-25.md', 'post-2025-05-10.md'];
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
       mockedFs.readFileSync.mockImplementation((filePath: string) => {
         const fileName = path.basename(filePath);
@@ -43,7 +45,7 @@ describe('getPosts', () => {
         return '';
       });
 
-      matter.mockImplementation((content: string) => {
+      mockedMatter.mockImplementation((content: string) => {
         const dateMatch = content.match(/date: (.+)/);
         const titleMatch = content.match(/title: (.+)/);
         const excerptMatch = content.match(/excerpt: (.+)/);
@@ -68,10 +70,11 @@ describe('getPosts', () => {
     it('should extract slug from filename', () => {
       const mockFileNames = ['my-awesome-post.md'];
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
       mockedFs.readFileSync.mockReturnValue('---\ntitle: My Post\ndate: 2025-03-17\nexcerpt: Excerpt\n---\nContent');
 
-      matter.mockReturnValue({
+      mockedMatter.mockReturnValue({
         data: {
           title: 'My Post',
           date: '2025-03-17',
@@ -87,10 +90,11 @@ describe('getPosts', () => {
     it('should return all required post fields', () => {
       const mockFileNames = ['test-post.md'];
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
       mockedFs.readFileSync.mockReturnValue('---\ntitle: Test Post\ndate: 2025-03-17\nexcerpt: Test excerpt\n---\nContent');
 
-      matter.mockReturnValue({
+      mockedMatter.mockReturnValue({
         data: {
           title: 'Test Post',
           date: '2025-03-17',
@@ -110,6 +114,7 @@ describe('getPosts', () => {
     });
 
     it('should return empty array when no files exist', () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue([] as any);
 
       const posts = getSortedPosts();
@@ -125,7 +130,7 @@ describe('getPosts', () => {
 
       mockedFs.readFileSync.mockReturnValue(mockContent);
 
-      matter.mockReturnValue({
+      mockedMatter.mockReturnValue({
         data: {
           title: 'My First Post',
           date: '2025-03-17',
@@ -158,7 +163,7 @@ describe('getPosts', () => {
 
       mockedFs.readFileSync.mockReturnValue(mockContent);
 
-      matter.mockReturnValue({
+      mockedMatter.mockReturnValue({
         data: {
           title: 'Test',
           date: '2025-03-17',

@@ -43,6 +43,7 @@ describe('BlogPostPage', () => {
   });
 
   it('should render not found message when post does not exist', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockGetPostBySlug.mockResolvedValue(null as any);
 
     const params = Promise.resolve({ slug: 'non-existent' });

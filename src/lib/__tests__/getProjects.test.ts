@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { getSortedProjects, getProjectById, type Project } from '../getProjects';
+import { getSortedProjects, getProjectById } from '../getProjects';
+import matter from 'gray-matter';
 
 // Mock dependencies
 jest.mock('fs');
@@ -16,7 +17,7 @@ jest.mock('remark', () => ({
 }));
 
 const mockedFs = fs as jest.Mocked<typeof fs>;
-const matter = require('gray-matter');
+const mockedMatter = matter as jest.MockedFunction<typeof matter>;
 
 describe('getProjects', () => {
   beforeEach(() => {
@@ -28,6 +29,7 @@ describe('getProjects', () => {
     it('should return sorted projects by date (newest first)', async () => {
       const mockFileNames = ['project-2025-03-17.md', 'project-2025-07-25.md', 'project-2025-05-10.md'];
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
       mockedFs.readFileSync.mockImplementation((filePath: string) => {
         const fileName = path.basename(filePath);
@@ -43,7 +45,7 @@ describe('getProjects', () => {
         return '';
       });
 
-      matter.mockImplementation((content: string) => {
+      mockedMatter.mockImplementation((content: string) => {
         const dateMatch = content.match(/date: (.+)/);
         const titleMatch = content.match(/title: (.+)/);
         const descMatch = content.match(/description: (.+)/);
@@ -71,10 +73,11 @@ describe('getProjects', () => {
     it('should process markdown content to HTML', async () => {
       const mockFileNames = ['test-project.md'];
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
       mockedFs.readFileSync.mockReturnValue('---\ntitle: Test Project\ndate: 2025-07-25\ndescription: Test\nfeatures: []\ntechnologies: []\nlinks: []\n---\n# Project content');
 
-      matter.mockReturnValue({
+      mockedMatter.mockReturnValue({
         data: {
           title: 'Test Project',
           date: '2025-07-25',
@@ -94,10 +97,11 @@ describe('getProjects', () => {
     it('should extract id from filename', async () => {
       const mockFileNames = ['recall-kit.md'];
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
       mockedFs.readFileSync.mockReturnValue('---\ntitle: RecallKit\ndate: 2025-07-25\ndescription: Test\nfeatures: []\ntechnologies: []\nlinks: []\n---\nContent');
 
-      matter.mockReturnValue({
+      mockedMatter.mockReturnValue({
         data: {
           title: 'RecallKit',
           date: '2025-07-25',
@@ -117,10 +121,11 @@ describe('getProjects', () => {
     it('should include all project fields', async () => {
       const mockFileNames = ['test-project.md'];
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
       mockedFs.readFileSync.mockReturnValue('---\ntitle: Test Project\ndate: 2025-07-25\ndescription: Test description\nfeatures: [Feature 1, Feature 2]\ntechnologies: [Swift, SwiftUI]\nlinks: [{text: App Store, url: https://example.com}]\n---\nContent');
 
-      matter.mockReturnValue({
+      mockedMatter.mockReturnValue({
         data: {
           title: 'Test Project',
           date: '2025-07-25',
@@ -148,6 +153,7 @@ describe('getProjects', () => {
     });
 
     it('should return empty array when no files exist', async () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue([] as any);
 
       const projects = await getSortedProjects();
@@ -163,7 +169,7 @@ describe('getProjects', () => {
 
       mockedFs.readFileSync.mockReturnValue(mockContent);
 
-      matter.mockReturnValue({
+      mockedMatter.mockReturnValue({
         data: {
           title: 'RecallKit',
           date: '2025-07-25',
@@ -214,7 +220,7 @@ describe('getProjects', () => {
 
       mockedFs.readFileSync.mockReturnValue(mockContent);
 
-      matter.mockReturnValue({
+      mockedMatter.mockReturnValue({
         data: {
           title: 'Minimal',
           date: '2025-07-25',

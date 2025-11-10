@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { getPolicies, getPolicyById, type Policy } from '../getPolicies';
+import { getPolicies, getPolicyById } from '../getPolicies';
 
 // Mock dependencies
 jest.mock('fs');
@@ -26,6 +26,7 @@ describe('getPolicies', () => {
     it('should return all policies with processed HTML content', async () => {
       const mockFileNames = ['recall-kit-policy.md', 'n-back-policy.md', 'swoleapp-policy.md'];
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
       mockedFs.readFileSync.mockImplementation((filePath: string) => {
         const fileName = path.basename(filePath);
@@ -52,6 +53,7 @@ describe('getPolicies', () => {
     it('should generate title from id by capitalizing words', async () => {
       const mockFileNames = ['recall-kit-policy.md'];
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
       mockedFs.readFileSync.mockReturnValue('# Privacy Policy\n\nContent');
 
@@ -63,6 +65,7 @@ describe('getPolicies', () => {
     it('should process markdown content to HTML', async () => {
       const mockFileNames = ['test-policy.md'];
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
       mockedFs.readFileSync.mockReturnValue('# Policy Title\n\nPolicy content');
 
@@ -74,6 +77,7 @@ describe('getPolicies', () => {
     it('should handle single word policy names', async () => {
       const mockFileNames = ['policy.md'];
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
       mockedFs.readFileSync.mockReturnValue('# Policy\n\nContent');
 
@@ -85,6 +89,7 @@ describe('getPolicies', () => {
     it('should handle multiple hyphens in policy names', async () => {
       const mockFileNames = ['recall-kit-policy-sp.md'];
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
       mockedFs.readFileSync.mockReturnValue('# Policy\n\nContent');
 
@@ -94,6 +99,7 @@ describe('getPolicies', () => {
     });
 
     it('should return empty array when no files exist', async () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockedFs.readdirSync.mockReturnValue([] as any);
 
       const policies = await getPolicies();
