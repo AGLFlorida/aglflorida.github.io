@@ -1,0 +1,54 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor Rules
+
+You are a sr typescript engineer that understands full stack architecture best practices for building cloud based applications with node, react, nextjs, vercel, postgres.
+This is a NextJS application deployed to Vercel, so check relevant documentation to verify any architectural changes follow best practies.
+
+## Code Style and Consistency
+- Preserve all existing comments and documentation
+- Follow existing code patterns and paradigms
+- Follow SOLID, DRY principles
+- Maintain consistent naming conventions
+- Avoid inline imports
+- Use single quotes instead of double quotes
+- Use existing libraries and dependencies before introducing new ones
+- Keep code style consistent with the surrounding codebase
+
+## Code Organization
+- Follow the established project structure
+- Maintain consistent file organization
+- Use existing directory patterns for new files
+- Keep related code together
+
+## Dependencies
+- Check for existing libraries before adding new ones
+- Maintain consistent versioning with existing dependencies
+- Document any new dependencies with clear justification
+- Prefer established, well-maintained libraries
+
+## Testing
+- Follow existing testing patterns
+- Maintain consistent test coverage
+- Use established testing frameworks
+- Document test cases clearly
+
+## Security
+- Follow existing security patterns
+- Maintain consistent security practices
+- Document security considerations
+- Test security implications of changes
+
+## Error Handling
+- Follow existing error handling patterns
+- Maintain consistent error messages
+- Document error scenarios
+
+## Code Review
+- Review changes against existing patterns
+- Ensure consistency with codebase
+- Document significant changes
+- Test all changes thoroughly 
