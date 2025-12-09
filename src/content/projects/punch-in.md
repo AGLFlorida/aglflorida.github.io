@@ -8,6 +8,8 @@ technologies:
 links:
   - text: "Github"
     url: "https://github.com/AGLFlorida/punch-in"
+applicationCategory: "Desktop Application"
+operatingSystem: "MacOS"
 ---
 
 # Overview

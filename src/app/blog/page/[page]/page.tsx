@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getSortedPosts } from "@/lib/getPosts";
 import { metadataFactory } from "@/lib/metadata";
+import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
 
 const POSTS_PER_PAGE = 5;
 
@@ -14,7 +15,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export const generateMetadata = metadataFactory("Blog", "All Posts");
+export const generateMetadata = metadataFactory("Blog", "All Posts", {
+  description: "Browse all blog posts from AGL Consulting LLC on technology, software development, and technical product management.",
+});
 
 type Params = Promise<{ page: string }>;
 
@@ -27,9 +30,14 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
   const endIndex = startIndex + POSTS_PER_PAGE;
   const currentPosts = posts.slice(startIndex, endIndex);
+  const breadcrumbSchema = generateBreadcrumbSchemaForPath(`/blog/page/${page}`);
 
   return (
     <div className="max-w-4xl mx-auto py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <h1 className="text-3xl font-bold mb-8">Blog Posts</h1>
       <div className="bg-white p-6 rounded-lg shadow">
         <PaginationControls currentPage={currentPage} totalPages={totalPages} />
@@ -40,7 +48,11 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 <h2 className="text-2xl font-semibold text-blue-600 group-hover:text-blue-800 mb-2">
                   {post.title}
                 </h2>
-                <p className="text-sm text-gray-500 mb-3">{post.date}</p>
+                <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                  <p>{post.date}</p>
+                  <span className="text-gray-300">•</span>
+                  <p>By Brandon Shoop</p>
+                </div>
                 {post.excerpt && <p className="text-gray-600">{post.excerpt}</p>}
               </Link>
             </div>

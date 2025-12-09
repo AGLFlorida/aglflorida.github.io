@@ -7,7 +7,7 @@ features:
   - "Rewarded ads and in-app purchases"
 technologies:
   - "Swift"
-  - "SwiftIO"
+  - "SwiftUI"
 links:
   - text: "App Store"
     url: "https://apps.apple.com/us/app/recallkit-study-cards/id6748545140"

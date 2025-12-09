@@ -239,6 +239,108 @@ describe('getProjects', () => {
       expect(project?.technologies).toEqual([]);
       expect(project?.links).toEqual([]);
     });
+
+    it('should extract applicationCategory from frontmatter', async () => {
+      const mockId = 'test-project';
+      const mockContent = '---\ntitle: Test Project\ndate: 2025-07-25\ndescription: Test\napplicationCategory: MobileApplication\nfeatures: []\ntechnologies: []\nlinks: []\n---\nContent';
+
+      mockedFs.readFileSync.mockReturnValue(mockContent);
+
+      mockedMatter.mockReturnValue({
+        data: {
+          title: 'Test Project',
+          date: '2025-07-25',
+          description: 'Test',
+          applicationCategory: 'MobileApplication',
+          features: [],
+          technologies: [],
+          links: [],
+        },
+        content: 'Content',
+      });
+
+      const project = await getProjectById(mockId);
+
+      expect(project).not.toBeNull();
+      expect(project?.applicationCategory).toBe('MobileApplication');
+    });
+
+    it('should extract operatingSystem from frontmatter', async () => {
+      const mockId = 'test-project';
+      const mockContent = '---\ntitle: Test Project\ndate: 2025-07-25\ndescription: Test\noperatingSystem: iOS, Android\nfeatures: []\ntechnologies: []\nlinks: []\n---\nContent';
+
+      mockedFs.readFileSync.mockReturnValue(mockContent);
+
+      mockedMatter.mockReturnValue({
+        data: {
+          title: 'Test Project',
+          date: '2025-07-25',
+          description: 'Test',
+          operatingSystem: 'iOS, Android',
+          features: [],
+          technologies: [],
+          links: [],
+        },
+        content: 'Content',
+      });
+
+      const project = await getProjectById(mockId);
+
+      expect(project).not.toBeNull();
+      expect(project?.operatingSystem).toBe('iOS, Android');
+    });
+
+    it('should extract both applicationCategory and operatingSystem from frontmatter', async () => {
+      const mockId = 'test-project';
+      const mockContent = '---\ntitle: Test Project\ndate: 2025-07-25\ndescription: Test\napplicationCategory: MobileApplication\noperatingSystem: iOS, Android\nfeatures: []\ntechnologies: []\nlinks: []\n---\nContent';
+
+      mockedFs.readFileSync.mockReturnValue(mockContent);
+
+      mockedMatter.mockReturnValue({
+        data: {
+          title: 'Test Project',
+          date: '2025-07-25',
+          description: 'Test',
+          applicationCategory: 'MobileApplication',
+          operatingSystem: 'iOS, Android',
+          features: [],
+          technologies: [],
+          links: [],
+        },
+        content: 'Content',
+      });
+
+      const project = await getProjectById(mockId);
+
+      expect(project).not.toBeNull();
+      expect(project?.applicationCategory).toBe('MobileApplication');
+      expect(project?.operatingSystem).toBe('iOS, Android');
+    });
+
+    it('should handle projects without applicationCategory and operatingSystem', async () => {
+      const mockId = 'test-project';
+      const mockContent = '---\ntitle: Test Project\ndate: 2025-07-25\ndescription: Test\nfeatures: []\ntechnologies: []\nlinks: []\n---\nContent';
+
+      mockedFs.readFileSync.mockReturnValue(mockContent);
+
+      mockedMatter.mockReturnValue({
+        data: {
+          title: 'Test Project',
+          date: '2025-07-25',
+          description: 'Test',
+          features: [],
+          technologies: [],
+          links: [],
+        },
+        content: 'Content',
+      });
+
+      const project = await getProjectById(mockId);
+
+      expect(project).not.toBeNull();
+      expect(project?.applicationCategory).toBeUndefined();
+      expect(project?.operatingSystem).toBeUndefined();
+    });
   });
 });
 
