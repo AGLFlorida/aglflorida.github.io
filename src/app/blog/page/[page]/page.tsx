@@ -48,7 +48,11 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 <h2 className="text-2xl font-semibold text-blue-600 group-hover:text-blue-800 mb-2">
                   {post.title}
                 </h2>
-                <p className="text-sm text-gray-500 mb-3">{post.date}</p>
+                <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                  <p>{post.date}</p>
+                  <span className="text-gray-300">•</span>
+                  <p>By Brandon Shoop</p>
+                </div>
                 {post.excerpt && <p className="text-gray-600">{post.excerpt}</p>}
               </Link>
             </div>

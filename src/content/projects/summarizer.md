@@ -8,6 +8,8 @@ technologies:
 links:
   - text: "Github"
     url: "https://github.com/AGLFlorida/summarizer"
+applicationCategory: "GenAI utilility"
+operatingSystem: "MacOS"
 ---
 
 ## Overview

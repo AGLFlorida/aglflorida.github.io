@@ -56,7 +56,11 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       />
       <div className="bg-white p-6 rounded-lg shadow">
         <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
-        <p className="text-sm text-gray-500 mb-6">{post.date}</p>
+        <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
+          <p>{post.date}</p>
+          <span className="text-gray-300">•</span>
+          <p>By Brandon Shoop</p>
+        </div>
         <article className="prose max-w-none" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
       </div>
     </div>
