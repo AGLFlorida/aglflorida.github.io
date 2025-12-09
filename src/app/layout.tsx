@@ -3,21 +3,27 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { Breadcrumbs } from '@/lib/Breadcrumbs';
+import { generatePersonSchema, generateWebsiteSchema } from '@/lib/schema';
+import { generateOpenGraphMetadata, generateTwitterMetadata } from '@/lib/metadata';
 
 import type { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
+  const title = 'AGL Consulting LLC';
+  const description = 'AGL Consulting LLC is a software development company based in Florida.';
 
   return {
-    title: 'AGL Consulting LLC',
-    description: 'AGL Consulting LLC is a software development company based in Florida.',
+    title,
+    description,
     alternates: {
       canonical: baseUrl,
     },
     icons: {
       icon: '/favicon.png',
     },
+    openGraph: generateOpenGraphMetadata(title, description, baseUrl),
+    twitter: generateTwitterMetadata(title, description),
   };
 }
 
@@ -34,6 +40,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const currentYear = new Date().getFullYear();
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
+  const personSchema = generatePersonSchema(baseUrl);
+  const websiteSchema = generateWebsiteSchema(baseUrl);
 
   return (
     <html lang="en">
@@ -43,6 +52,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
       </head>
       <body className="bg-gray-100 text-gray-900">
         <header className="relative h-64 md:h-80">
