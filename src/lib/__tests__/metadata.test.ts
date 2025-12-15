@@ -1,6 +1,24 @@
 import { metadataFactory, generateOpenGraphMetadata, generateTwitterMetadata } from '../metadata';
 import type { ResolvingMetadata } from 'next';
 
+// Helper types for testing metadata structures
+type OpenGraphTestType = {
+  title?: string;
+  description?: string;
+  url?: string;
+  siteName?: string;
+  locale?: string;
+  type?: 'website' | 'article';
+  images?: Array<{ url: string }> | { url: string } | string | string[];
+};
+
+type TwitterTestType = {
+  card?: string;
+  title?: string;
+  description?: string;
+  images?: string | string[];
+};
+
 describe('metadata', () => {
   const originalEnv = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -18,7 +36,7 @@ describe('metadata', () => {
         'Test Title',
         'Test description',
         'https://example.com/test'
-      );
+      ) as OpenGraphTestType;
 
       expect(og?.title).toBe('Test Title');
       expect(og?.description).toBe('Test description');
@@ -26,8 +44,11 @@ describe('metadata', () => {
       expect(og?.siteName).toBe('AGL Consulting LLC');
       expect(og?.locale).toBe('en_US');
       expect(og?.type).toBe('website');
-      expect(og?.images).toHaveLength(1);
-      expect(og?.images?.[0]?.url).toBe('https://example.com/siteicon.png');
+      expect(og?.images).toBeDefined();
+      const images = Array.isArray(og?.images) ? og.images : [og?.images];
+      const firstImage = images[0];
+      const imageUrl = typeof firstImage === 'string' ? firstImage : firstImage?.url;
+      expect(imageUrl).toBe('https://example.com/siteicon.png');
     });
 
     it('should use article type when specified', () => {
@@ -37,7 +58,7 @@ describe('metadata', () => {
         'https://example.com/test',
         undefined,
         'article'
-      );
+      ) as OpenGraphTestType;
 
       expect(og?.type).toBe('article');
     });
@@ -48,9 +69,11 @@ describe('metadata', () => {
         'Test description',
         'https://example.com/test',
         'https://example.com/custom-image.png'
-      );
-
-      expect(og?.images?.[0]?.url).toBe('https://example.com/custom-image.png');
+      ) as OpenGraphTestType;
+      const images = Array.isArray(og?.images) ? og.images : [og?.images];
+      const firstImage = images[0];
+      const imageUrl = typeof firstImage === 'string' ? firstImage : firstImage?.url;
+      expect(imageUrl).toBe('https://example.com/custom-image.png');
     });
 
     it('should fallback to default URL when env var is not set', () => {
@@ -59,9 +82,11 @@ describe('metadata', () => {
         'Test Title',
         'Test description',
         'https://aglflorida.com/test'
-      );
-
-      expect(og?.images?.[0]?.url).toBe('https://aglflorida.com/siteicon.png');
+      ) as OpenGraphTestType;
+      const images = Array.isArray(og?.images) ? og.images : [og?.images];
+      const firstImage = images[0];
+      const imageUrl = typeof firstImage === 'string' ? firstImage : firstImage?.url;
+      expect(imageUrl).toBe('https://aglflorida.com/siteicon.png');
     });
   });
 
@@ -70,13 +95,14 @@ describe('metadata', () => {
       const twitter = generateTwitterMetadata(
         'Test Title',
         'Test description'
-      );
+      ) as TwitterTestType;
 
       expect(twitter?.card).toBe('summary_large_image');
       expect(twitter?.title).toBe('Test Title');
       expect(twitter?.description).toBe('Test description');
-      expect(twitter?.images).toHaveLength(1);
-      expect(twitter?.images?.[0]).toBe('https://example.com/siteicon.png');
+      expect(twitter?.images).toBeDefined();
+      const images = Array.isArray(twitter?.images) ? twitter.images : [twitter?.images];
+      expect(images[0]).toBe('https://example.com/siteicon.png');
     });
 
     it('should use custom image when provided', () => {
@@ -84,9 +110,9 @@ describe('metadata', () => {
         'Test Title',
         'Test description',
         'https://example.com/custom-image.png'
-      );
-
-      expect(twitter?.images?.[0]).toBe('https://example.com/custom-image.png');
+      ) as TwitterTestType;
+      const images = Array.isArray(twitter?.images) ? twitter.images : [twitter?.images];
+      expect(images[0]).toBe('https://example.com/custom-image.png');
     });
 
     it('should fallback to default URL when env var is not set', () => {
@@ -94,9 +120,9 @@ describe('metadata', () => {
       const twitter = generateTwitterMetadata(
         'Test Title',
         'Test description'
-      );
-
-      expect(twitter?.images?.[0]).toBe('https://aglflorida.com/siteicon.png');
+      ) as TwitterTestType;
+      const images = Array.isArray(twitter?.images) ? twitter.images : [twitter?.images];
+      expect(images[0]).toBe('https://aglflorida.com/siteicon.png');
     });
   });
 
@@ -241,7 +267,7 @@ describe('metadata', () => {
 
       expect(metadata.openGraph).toBeDefined();
       expect(metadata.openGraph?.title).toBe('Blog: All Posts');
-      expect(metadata.openGraph?.type).toBe('website');
+      expect((metadata.openGraph as OpenGraphTestType)?.type).toBe('website');
     });
 
     it('should exclude Open Graph metadata when includeOpenGraph is false', async () => {
@@ -288,7 +314,7 @@ describe('metadata', () => {
 
       const metadata = await generateMetadata({ params }, parent);
 
-      expect(metadata.openGraph?.type).toBe('article');
+      expect((metadata.openGraph as OpenGraphTestType)?.type).toBe('article');
     });
 
     it('should use custom image when provided', async () => {
@@ -300,8 +326,22 @@ describe('metadata', () => {
 
       const metadata = await generateMetadata({ params }, parent);
 
-      expect(metadata.openGraph?.images?.[0]?.url).toBe('https://example.com/custom-image.png');
-      expect(metadata.twitter?.images?.[0]).toBe('https://example.com/custom-image.png');
+      const ogImages = Array.isArray(metadata.openGraph?.images) 
+        ? metadata.openGraph.images 
+        : metadata.openGraph?.images 
+          ? [metadata.openGraph.images] 
+          : [];
+      const twitterImages = Array.isArray(metadata.twitter?.images)
+        ? metadata.twitter.images
+        : metadata.twitter?.images
+          ? [metadata.twitter.images]
+          : [];
+      const firstOgImage = ogImages[0];
+      const ogImageUrl = typeof firstOgImage === 'string' 
+        ? firstOgImage 
+        : (firstOgImage as { url?: string })?.url;
+      expect(ogImageUrl).toBe('https://example.com/custom-image.png');
+      expect(twitterImages[0]).toBe('https://example.com/custom-image.png');
     });
   });
 });

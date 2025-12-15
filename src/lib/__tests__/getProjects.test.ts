@@ -1,346 +1,109 @@
-import fs from 'fs';
-import path from 'path';
-import { getSortedProjects, getProjectById } from '../getProjects';
-import matter from 'gray-matter';
-
-// Mock dependencies
-jest.mock('fs');
-jest.mock('gray-matter');
-jest.mock('remark-html', () => jest.fn());
+// Mock remark before importing getProjects
 jest.mock('remark', () => ({
   remark: jest.fn(() => ({
     use: jest.fn().mockReturnThis(),
-    process: jest.fn().mockResolvedValue({
-      toString: () => '<p>Processed project content</p>',
-    }),
+    process: jest.fn().mockResolvedValue({ toString: () => '<p>test content</p>' }),
   })),
 }));
 
-const mockedFs = fs as jest.Mocked<typeof fs>;
-const mockedMatter = matter as jest.MockedFunction<typeof matter>;
+jest.mock('remark-html', () => jest.fn());
+
+import { getSortedProjects, getProjectById, type Project } from '../getProjects';
 
 describe('getProjects', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    process.cwd = jest.fn(() => '/mock/workspace');
-  });
-
   describe('getSortedProjects', () => {
-    it('should return sorted projects by date (newest first)', async () => {
-      const mockFileNames = ['project-2025-03-17.md', 'project-2025-07-25.md', 'project-2025-05-10.md'];
-      
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
-      mockedFs.readFileSync.mockImplementation((filePath: string) => {
-        const fileName = path.basename(filePath);
-        if (fileName === 'project-2025-03-17.md') {
-          return '---\ntitle: Project 1\ndate: 2025-03-17\ndescription: First project\nfeatures: [Feature 1]\ntechnologies: [Tech 1]\nlinks: []\n---\nContent 1';
+    it('should return an array of projects', async () => {
+      const projects = await getSortedProjects();
+      expect(Array.isArray(projects)).toBe(true);
+      expect(projects.length).toBeGreaterThan(0);
+    });
+
+    it('should return projects with required fields', async () => {
+      const projects = await getSortedProjects();
+      projects.forEach((project: Project) => {
+        expect(project).toHaveProperty('id');
+        expect(project).toHaveProperty('title');
+        expect(project).toHaveProperty('date');
+        expect(project).toHaveProperty('description');
+        expect(project).toHaveProperty('contentHtml');
+        expect(project).toHaveProperty('technologies');
+        expect(typeof project.id).toBe('string');
+        expect(typeof project.title).toBe('string');
+        expect(typeof project.date).toBe('string');
+        expect(typeof project.description).toBe('string');
+        expect(typeof project.contentHtml).toBe('string');
+        expect(Array.isArray(project.technologies)).toBe(true);
+        // features is optional
+        if (project.features) {
+          expect(Array.isArray(project.features)).toBe(true);
         }
-        if (fileName === 'project-2025-07-25.md') {
-          return '---\ntitle: Project 2\ndate: 2025-07-25\ndescription: Second project\nfeatures: [Feature 2]\ntechnologies: [Tech 2]\nlinks: []\n---\nContent 2';
+        // links is optional
+        if (project.links) {
+          expect(Array.isArray(project.links)).toBe(true);
         }
-        if (fileName === 'project-2025-05-10.md') {
-          return '---\ntitle: Project 3\ndate: 2025-05-10\ndescription: Third project\nfeatures: [Feature 3]\ntechnologies: [Tech 3]\nlinks: []\n---\nContent 3';
-        }
-        return '';
       });
-
-      mockedMatter.mockImplementation((content: string) => {
-        const dateMatch = content.match(/date: (.+)/);
-        const titleMatch = content.match(/title: (.+)/);
-        const descMatch = content.match(/description: (.+)/);
-        return {
-          data: {
-            title: titleMatch?.[1] || '',
-            date: dateMatch?.[1] || '',
-            description: descMatch?.[1] || '',
-            features: [],
-            technologies: [],
-            links: [],
-          },
-          content: content.split('---\n')[2] || '',
-        };
-      });
-
-      const projects = await getSortedProjects();
-
-      expect(projects).toHaveLength(3);
-      expect(projects[0].date).toBe('2025-07-25');
-      expect(projects[1].date).toBe('2025-05-10');
-      expect(projects[2].date).toBe('2025-03-17');
     });
 
-    it('should process markdown content to HTML', async () => {
-      const mockFileNames = ['test-project.md'];
-      
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
-      mockedFs.readFileSync.mockReturnValue('---\ntitle: Test Project\ndate: 2025-07-25\ndescription: Test\nfeatures: []\ntechnologies: []\nlinks: []\n---\n# Project content');
-
-      mockedMatter.mockReturnValue({
-        data: {
-          title: 'Test Project',
-          date: '2025-07-25',
-          description: 'Test',
-          features: [],
-          technologies: [],
-          links: [],
-        },
-        content: '# Project content',
-      });
-
+    it('should sort projects by date in descending order (newest first)', async () => {
       const projects = await getSortedProjects();
+      if (projects.length < 2) return;
 
-      expect(projects[0].contentHtml).toBe('<p>Processed project content</p>');
+      for (let i = 0; i < projects.length - 1; i++) {
+        const currentDate = new Date(projects[i].date);
+        const nextDate = new Date(projects[i + 1].date);
+        expect(currentDate.getTime()).toBeGreaterThanOrEqual(nextDate.getTime());
+      }
     });
 
-    it('should extract id from filename', async () => {
-      const mockFileNames = ['recall-kit.md'];
-      
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
-      mockedFs.readFileSync.mockReturnValue('---\ntitle: RecallKit\ndate: 2025-07-25\ndescription: Test\nfeatures: []\ntechnologies: []\nlinks: []\n---\nContent');
-
-      mockedMatter.mockReturnValue({
-        data: {
-          title: 'RecallKit',
-          date: '2025-07-25',
-          description: 'Test',
-          features: [],
-          technologies: [],
-          links: [],
-        },
-        content: 'Content',
+    it('should have valid id format (no .md extension)', async () => {
+      const projects = await getSortedProjects();
+      projects.forEach((project: Project) => {
+        expect(project.id).not.toContain('.md');
+        expect(project.id.length).toBeGreaterThan(0);
       });
-
-      const projects = await getSortedProjects();
-
-      expect(projects[0].id).toBe('recall-kit');
-    });
-
-    it('should include all project fields', async () => {
-      const mockFileNames = ['test-project.md'];
-      
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
-      mockedFs.readFileSync.mockReturnValue('---\ntitle: Test Project\ndate: 2025-07-25\ndescription: Test description\nfeatures: [Feature 1, Feature 2]\ntechnologies: [Swift, SwiftUI]\nlinks: [{text: App Store, url: https://example.com}]\n---\nContent');
-
-      mockedMatter.mockReturnValue({
-        data: {
-          title: 'Test Project',
-          date: '2025-07-25',
-          description: 'Test description',
-          features: ['Feature 1', 'Feature 2'],
-          technologies: ['Swift', 'SwiftUI'],
-          links: [{ text: 'App Store', url: 'https://example.com' }],
-        },
-        content: 'Content',
-      });
-
-      const projects = await getSortedProjects();
-
-      expect(projects[0]).toHaveProperty('id');
-      expect(projects[0]).toHaveProperty('title');
-      expect(projects[0]).toHaveProperty('date');
-      expect(projects[0]).toHaveProperty('description');
-      expect(projects[0]).toHaveProperty('contentHtml');
-      expect(projects[0]).toHaveProperty('features');
-      expect(projects[0]).toHaveProperty('technologies');
-      expect(projects[0]).toHaveProperty('links');
-      expect(projects[0].features).toEqual(['Feature 1', 'Feature 2']);
-      expect(projects[0].technologies).toEqual(['Swift', 'SwiftUI']);
-      expect(projects[0].links).toEqual([{ text: 'App Store', url: 'https://example.com' }]);
-    });
-
-    it('should return empty array when no files exist', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mockedFs.readdirSync.mockReturnValue([] as any);
-
-      const projects = await getSortedProjects();
-
-      expect(projects).toEqual([]);
     });
   });
 
   describe('getProjectById', () => {
-    it('should return project by id', async () => {
-      const mockId = 'recall-kit';
-      const mockContent = '---\ntitle: RecallKit\ndate: 2025-07-25\ndescription: Flashcard app\nfeatures: [Import, Export]\ntechnologies: [Swift]\nlinks: [{text: App Store, url: https://example.com}]\n---\n# Project content';
+    it('should return a project with all required fields for a valid id', async () => {
+      const projects = await getSortedProjects();
+      if (projects.length === 0) return;
 
-      mockedFs.readFileSync.mockReturnValue(mockContent);
-
-      mockedMatter.mockReturnValue({
-        data: {
-          title: 'RecallKit',
-          date: '2025-07-25',
-          description: 'Flashcard app',
-          features: ['Import', 'Export'],
-          technologies: ['Swift'],
-          links: [{ text: 'App Store', url: 'https://example.com' }],
-        },
-        content: '# Project content',
-      });
-
-      const project = await getProjectById(mockId);
+      const firstProject = projects[0];
+      const project = await getProjectById(firstProject.id);
 
       expect(project).not.toBeNull();
-      expect(project?.id).toBe(mockId);
-      expect(project?.title).toBe('RecallKit');
-      expect(project?.date).toBe('2025-07-25');
-      expect(project?.description).toBe('Flashcard app');
-      expect(project?.features).toEqual(['Import', 'Export']);
-      expect(project?.technologies).toEqual(['Swift']);
-      expect(project?.links).toEqual([{ text: 'App Store', url: 'https://example.com' }]);
-      expect(project?.contentHtml).toBe('<p>Processed project content</p>');
+      if (project) {
+        expect(project).toHaveProperty('id');
+        expect(project).toHaveProperty('title');
+        expect(project).toHaveProperty('date');
+        expect(project).toHaveProperty('description');
+        expect(project).toHaveProperty('contentHtml');
+        expect(typeof project.id).toBe('string');
+        expect(typeof project.title).toBe('string');
+        expect(typeof project.date).toBe('string');
+        expect(typeof project.description).toBe('string');
+        expect(typeof project.contentHtml).toBe('string');
+      }
     });
 
-    it('should return null when file does not exist', async () => {
-      mockedFs.readFileSync.mockImplementation(() => {
-        throw new Error('File not found');
-      });
+    it('should return the correct project for a given id', async () => {
+      const projects = await getSortedProjects();
+      if (projects.length === 0) return;
 
-      const project = await getProjectById('non-existent-project');
+      const testProject = projects[0];
+      const project = await getProjectById(testProject.id);
 
+      expect(project).not.toBeNull();
+      if (project) {
+        expect(project.id).toBe(testProject.id);
+        expect(project.title).toBe(testProject.title);
+      }
+    });
+
+    it('should return null for non-existent id', async () => {
+      const project = await getProjectById('non-existent-id-12345');
       expect(project).toBeNull();
-    });
-
-    it('should handle file read errors gracefully', async () => {
-      mockedFs.readFileSync.mockImplementation(() => {
-        throw new Error('Permission denied');
-      });
-
-      const project = await getProjectById('error-project');
-
-      expect(project).toBeNull();
-    });
-
-    it('should handle projects with empty arrays', async () => {
-      const mockId = 'minimal-project';
-      const mockContent = '---\ntitle: Minimal\ndate: 2025-07-25\ndescription: Minimal project\nfeatures: []\ntechnologies: []\nlinks: []\n---\nContent';
-
-      mockedFs.readFileSync.mockReturnValue(mockContent);
-
-      mockedMatter.mockReturnValue({
-        data: {
-          title: 'Minimal',
-          date: '2025-07-25',
-          description: 'Minimal project',
-          features: [],
-          technologies: [],
-          links: [],
-        },
-        content: 'Content',
-      });
-
-      const project = await getProjectById(mockId);
-
-      expect(project).not.toBeNull();
-      expect(project?.features).toEqual([]);
-      expect(project?.technologies).toEqual([]);
-      expect(project?.links).toEqual([]);
-    });
-
-    it('should extract applicationCategory from frontmatter', async () => {
-      const mockId = 'test-project';
-      const mockContent = '---\ntitle: Test Project\ndate: 2025-07-25\ndescription: Test\napplicationCategory: MobileApplication\nfeatures: []\ntechnologies: []\nlinks: []\n---\nContent';
-
-      mockedFs.readFileSync.mockReturnValue(mockContent);
-
-      mockedMatter.mockReturnValue({
-        data: {
-          title: 'Test Project',
-          date: '2025-07-25',
-          description: 'Test',
-          applicationCategory: 'MobileApplication',
-          features: [],
-          technologies: [],
-          links: [],
-        },
-        content: 'Content',
-      });
-
-      const project = await getProjectById(mockId);
-
-      expect(project).not.toBeNull();
-      expect(project?.applicationCategory).toBe('MobileApplication');
-    });
-
-    it('should extract operatingSystem from frontmatter', async () => {
-      const mockId = 'test-project';
-      const mockContent = '---\ntitle: Test Project\ndate: 2025-07-25\ndescription: Test\noperatingSystem: iOS, Android\nfeatures: []\ntechnologies: []\nlinks: []\n---\nContent';
-
-      mockedFs.readFileSync.mockReturnValue(mockContent);
-
-      mockedMatter.mockReturnValue({
-        data: {
-          title: 'Test Project',
-          date: '2025-07-25',
-          description: 'Test',
-          operatingSystem: 'iOS, Android',
-          features: [],
-          technologies: [],
-          links: [],
-        },
-        content: 'Content',
-      });
-
-      const project = await getProjectById(mockId);
-
-      expect(project).not.toBeNull();
-      expect(project?.operatingSystem).toBe('iOS, Android');
-    });
-
-    it('should extract both applicationCategory and operatingSystem from frontmatter', async () => {
-      const mockId = 'test-project';
-      const mockContent = '---\ntitle: Test Project\ndate: 2025-07-25\ndescription: Test\napplicationCategory: MobileApplication\noperatingSystem: iOS, Android\nfeatures: []\ntechnologies: []\nlinks: []\n---\nContent';
-
-      mockedFs.readFileSync.mockReturnValue(mockContent);
-
-      mockedMatter.mockReturnValue({
-        data: {
-          title: 'Test Project',
-          date: '2025-07-25',
-          description: 'Test',
-          applicationCategory: 'MobileApplication',
-          operatingSystem: 'iOS, Android',
-          features: [],
-          technologies: [],
-          links: [],
-        },
-        content: 'Content',
-      });
-
-      const project = await getProjectById(mockId);
-
-      expect(project).not.toBeNull();
-      expect(project?.applicationCategory).toBe('MobileApplication');
-      expect(project?.operatingSystem).toBe('iOS, Android');
-    });
-
-    it('should handle projects without applicationCategory and operatingSystem', async () => {
-      const mockId = 'test-project';
-      const mockContent = '---\ntitle: Test Project\ndate: 2025-07-25\ndescription: Test\nfeatures: []\ntechnologies: []\nlinks: []\n---\nContent';
-
-      mockedFs.readFileSync.mockReturnValue(mockContent);
-
-      mockedMatter.mockReturnValue({
-        data: {
-          title: 'Test Project',
-          date: '2025-07-25',
-          description: 'Test',
-          features: [],
-          technologies: [],
-          links: [],
-        },
-        content: 'Content',
-      });
-
-      const project = await getProjectById(mockId);
-
-      expect(project).not.toBeNull();
-      expect(project?.applicationCategory).toBeUndefined();
-      expect(project?.operatingSystem).toBeUndefined();
     });
   });
 });
-

@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { getSortedReleases, getReleaseById } from '../getReleases';
 import matter from 'gray-matter';
+import type { GrayMatterFile } from 'gray-matter';
 
 // Mock dependencies
 jest.mock('fs');
@@ -19,6 +20,18 @@ jest.mock('remark', () => ({
 const mockedFs = fs as jest.Mocked<typeof fs>;
 const mockedMatter = matter as jest.MockedFunction<typeof matter>;
 
+// Helper to create properly typed GrayMatterFile mocks
+function createMatterFile(data: Record<string, unknown>, content: string): GrayMatterFile<string> {
+  return {
+    data,
+    content,
+    orig: Buffer.from(''),
+    language: '',
+    matter: '',
+    stringify: jest.fn(),
+  };
+}
+
 describe('getReleases', () => {
 
   beforeEach(() => {
@@ -30,8 +43,7 @@ describe('getReleases', () => {
     it('should return sorted releases by date (newest first)', async () => {
       const mockFileNames = ['release-2025-06-25.md', 'release-2025-07-13.md', 'release-2025-06-27.md'];
       
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
+      mockedFs.readdirSync.mockReturnValue(mockFileNames as unknown as ReturnType<typeof fs.readdirSync>);
       mockedFs.readFileSync.mockImplementation((filePath: fs.PathOrFileDescriptor) => {
         const fileName = path.basename(filePath as string);
         if (fileName === 'release-2025-06-25.md') {
@@ -46,18 +58,19 @@ describe('getReleases', () => {
         return '';
       });
 
-      mockedMatter.mockImplementation((content: string) => {
+      mockedMatter.mockImplementation((input: string | Buffer | { content: string | Buffer }) => {
+        const content = typeof input === 'string' ? input : Buffer.isBuffer(input) ? input.toString() : input.content.toString();
         const dateMatch = content.match(/date: (.+)/);
         const titleMatch = content.match(/title: (.+)/);
         const descMatch = content.match(/description: (.+)/);
-        return {
-          data: {
+        return createMatterFile(
+          {
             title: titleMatch?.[1] || '',
             date: dateMatch?.[1] || '',
             description: descMatch?.[1] || '',
           },
-          content: content.split('---\n')[2] || '',
-        };
+          content.split('---\n')[2] || ''
+        );
       });
 
       const releases = await getSortedReleases();
@@ -71,18 +84,17 @@ describe('getReleases', () => {
     it('should process markdown content to HTML', async () => {
       const mockFileNames = ['release-2025-06-25.md'];
       
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
+      mockedFs.readdirSync.mockReturnValue(mockFileNames as unknown as ReturnType<typeof fs.readdirSync>);
       mockedFs.readFileSync.mockReturnValue('---\ntitle: Test Release\ndate: 2025-06-25\ndescription: Test\n---\n# Content');
 
-      mockedMatter.mockReturnValue({
-        data: {
+      mockedMatter.mockReturnValue(createMatterFile(
+        {
           title: 'Test Release',
           date: '2025-06-25',
           description: 'Test',
         },
-        content: '# Content',
-      });
+        '# Content'
+      ));
 
       const releases = await getSortedReleases();
 
@@ -92,18 +104,16 @@ describe('getReleases', () => {
     it('should extract id from filename', async () => {
       const mockFileNames = ['releasenotes-2025-jun-25.md'];
       
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mockedFs.readdirSync.mockReturnValue(mockFileNames as any);
+      mockedFs.readdirSync.mockReturnValue(mockFileNames as unknown as ReturnType<typeof fs.readdirSync>);
       mockedFs.readFileSync.mockReturnValue('---\ntitle: Test\ndate: 2025-06-25\ndescription: Test\n---\nContent');
 
-      mockedMatter.mockReturnValue({
-        data: {
+      mockedMatter.mockReturnValue(createMatterFile({
           title: 'Test',
           date: '2025-06-25',
           description: 'Test',
         },
-        content: 'Content',
-      });
+        'Content'
+      ));
 
       const releases = await getSortedReleases();
 
@@ -111,8 +121,7 @@ describe('getReleases', () => {
     });
 
     it('should return empty array when no files exist', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mockedFs.readdirSync.mockReturnValue([] as any);
+      mockedFs.readdirSync.mockReturnValue([] as unknown as ReturnType<typeof fs.readdirSync>);
 
       const releases = await getSortedReleases();
 
@@ -127,14 +136,13 @@ describe('getReleases', () => {
 
       mockedFs.readFileSync.mockReturnValue(mockContent);
 
-      mockedMatter.mockReturnValue({
-        data: {
+      mockedMatter.mockReturnValue(createMatterFile({
           title: 'Test Release',
           date: '2025-06-25',
           description: 'Test description',
         },
-        content: '# Release content',
-      });
+        '# Release content'
+      ));
 
       const release = await getReleaseById(mockId);
 
