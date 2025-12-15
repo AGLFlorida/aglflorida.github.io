@@ -13,6 +13,7 @@ permissions:
 
 jobs:
   summarize:
+    if: false  # Temporarily disabled
     runs-on: ubuntu-latest
 
     env:
@@ -116,26 +117,28 @@ jobs:
           
           # Fallback to local summarizer if Gemini API failed or returned empty
           if [[ -z "$summary" ]]; then
-            summary="This release includes:"
-            while IFS= read -r line; do
-              # Skip merge commits
-              if [[ "$line" == Merge* ]]; then
-                continue
-              fi
-              
+            echo "--- FALLBACK: Using most recent commit message ---"
+            # Get the most recent non-merge commit message
+            if git describe --tags --abbrev=0 >/dev/null 2>&1; then
+              latest_tag=$(git describe --tags --abbrev=0)
+              recent_commit=$(git log "$latest_tag"..HEAD --pretty=format:"%s" --no-merges | head -n 1)
+            else
+              recent_commit=$(git log --pretty=format:"%s" --no-merges | head -n 1)
+            fi
+            
+            if [[ -n "$recent_commit" ]]; then
               # Strip emoji-style colons like :shipit:
-              line_clean=$(echo "$line" | sed -E 's/:[^[:space:]]+://g')
-              
-              if [[ "$line_clean" =~ ^feat: ]]; then
-                summary+=$'\n'"- Added: ${line_clean#feat: }"
-              elif [[ "$line_clean" =~ ^fix: ]]; then
-                summary+=$'\n'"- Fixed: ${line_clean#fix: }"
-              elif [[ "$line_clean" =~ ^chore: ]]; then
-                summary+=$'\n'"- Maintenance: ${line_clean#chore: }"
-              elif [[ "$line_clean" =~ ^docs: ]]; then
-                summary+=$'\n'"- Docs updated: ${line_clean#docs: }"
+              summary=$(echo "$recent_commit" | sed -E 's/:[^[:space:]]+://g')
+            else
+              # Last resort: get any commit message
+              summary=$(git log -1 --pretty=format:"%s" --no-merges)
+              if [[ -z "$summary" ]]; then
+                summary=$(git log -1 --pretty=format:"%s")
               fi
-            done < "${{ steps.commit_log.outputs.log_path }}"
+            fi
+            
+            # Append note that AI API call failed
+            summary="${summary}"$'\n\nNote: AI-generated summary unavailable, using most recent commit message.'
           fi
           
           printf "%s\n" "$summary" > summary.txt
