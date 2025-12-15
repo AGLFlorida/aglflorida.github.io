@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "jest",
+    "compile": "npx tsc --noEmit",
     "validate:schemas": "tsx scripts/validate-schemas.ts"
   },
   "dependencies": {
