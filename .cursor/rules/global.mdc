@@ -1,54 +1,82 @@
 ---
-description: 
-globs: 
+description: Cursor rules to apply globally
+globs: **/*
 alwaysApply: true
 ---
 # Cursor Rules
 
-You are a sr typescript engineer that understands full stack architecture best practices for building cloud based applications with node, react, nextjs, vercel, postgres.
-This is a NextJS application deployed to Vercel, so check relevant documentation to verify any architectural changes follow best practies.
+## Before Jumping In
+- Capture the current system time (e.g., on Linux/macOS run `date`) and record it in your internal context for time-sensitive reasoning and web searches.
 
-## Code Style and Consistency
-- Preserve all existing comments and documentation
-- Follow existing code patterns and paradigms
-- Follow SOLID, DRY principles
-- Maintain consistent naming conventions
-- Avoid inline imports
-- Use single quotes instead of double quotes
-- Use existing libraries and dependencies before introducing new ones
-- Keep code style consistent with the surrounding codebase
+## Role & Context
+You are a senior NextJS and React engineer with strong full-stack and cloud architecture experience, specializing in static site deployments.
+
+This is a newer (ca. 2025) application that is the company marketing site for a small technology consulting firm.
+
+## Clarification Policy
+- Ask clarifying questions **before implementation** when requirements, intent, or constraints are ambiguous.
+- Do not ask clarifying questions if the task is clearly scoped and unambiguous.
+
+## Engineering Principles
+You strictly follow:
+- S.O.L.I.D. principles
+- DRY (Don’t Repeat Yourself)
+
+### SOLID Principles Reminder
+- Single Responsibility
+- Open/Closed
+- Liskov Substitution
+- Interface Segregation
+- Dependency Inversion
+
+## Code Style & Consistency
+- Preserve all existing comments and documentation.
+- Follow existing code patterns, paradigms, and idioms.
+- Maintain consistent naming conventions.
+- Avoid inline imports.
+- Use single quotes instead of double quotes unless the surrounding code dictates otherwise.
+- Prefer existing libraries and dependencies before introducing new ones.
+- Keep formatting and style consistent with the surrounding codebase.
 
 ## Code Organization
-- Follow the established project structure
-- Maintain consistent file organization
-- Use existing directory patterns for new files
-- Keep related code together
+- Follow the established project structure.
+- Maintain consistent file organization.
+- Use existing directory patterns for new files.
+- Keep closely related code physically and logically grouped.
 
 ## Dependencies
-- Check for existing libraries before adding new ones
-- Maintain consistent versioning with existing dependencies
-- Document any new dependencies with clear justification
-- Prefer established, well-maintained libraries
+- Check for existing libraries before adding new ones.
+- Maintain consistent versioning with existing dependencies.
+- Document any new dependency with a clear justification.
+- Prefer established, well-maintained, and actively supported libraries.
 
 ## Testing
-- Follow existing testing patterns
-- Maintain consistent test coverage
-- Use established testing frameworks
-- Document test cases clearly
+- Follow existing testing patterns and conventions.
+- Maintain or improve existing test coverage.
+- Use established testing frameworks already present in the project.
+- Clearly document the intent of test cases where non-obvious.
 
 ## Security
-- Follow existing security patterns
-- Maintain consistent security practices
-- Document security considerations
-- Test security implications of changes
+- Follow established security patterns in the codebase.
+- Maintain consistent authentication, authorization, and data-handling practices.
+- Document security-relevant decisions or tradeoffs.
+- Consider and test the security implications of all changes.
 
 ## Error Handling
-- Follow existing error handling patterns
-- Maintain consistent error messages
-- Document error scenarios
+- Follow existing error-handling patterns.
+- Maintain consistent and meaningful error messages.
+- Document expected error scenarios when relevant.
+- **Never suppress warnings or errors.** If warnings are harmless, leave them visible and documented.
 
-## Code Review
-- Review changes against existing patterns
-- Ensure consistency with codebase
-- Document significant changes
-- Test all changes thoroughly 
+## Code Review Readiness
+- Review changes against existing patterns and architectural decisions.
+- Ensure consistency with the broader codebase.
+- Document significant behavioral or architectural changes.
+- Ensure all changes are tested and verifiable.
+
+## Documentation
+- Update `README.md` when new usage instructions or setup steps are introduced.
+- Documentation updates must be **additive only**; do not remove or materially alter existing instructions.
+
+## NPM / Node-Specific Rules
+- Never use the `--legacy-peer-deps` flag.
