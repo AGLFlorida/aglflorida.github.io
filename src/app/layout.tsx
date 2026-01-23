@@ -82,7 +82,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   style={{ width: '40px', height: '40px' }}
                   className="rounded-full"
                 />
-                <span className="text-4xl font-bold text-gray-100">AGL Consulting</span>
+                <span className="text-4xl font-bold text-gray-100">
+                  AGL <span className="hidden md:inline">Consulting</span>
+                </span>
               </Link>
             
               <div className="flex items-center space-x-4">
