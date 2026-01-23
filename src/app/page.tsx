@@ -70,7 +70,7 @@ export default async function Home() {
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-xl font-bold mb-4">
             <Link href="/products">
-              Products
+              Products <i className="fa-solid fa-link text-lg"></i>
             </Link>
           </h2>
           <ul className="space-y-3">
@@ -97,7 +97,7 @@ export default async function Home() {
 
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-xl font-bold mb-4">
-            <Link href="/projects/">Projects</Link>
+            <Link href="/projects/">Projects <i className="fa-solid fa-link text-lg"></i></Link>
           </h2>
           <ul className="space-y-3">
             {featuredProjects.map((project) => (
