@@ -1,7 +1,7 @@
-import { getPolicies } from "@/lib/getPolicies";
-import { getSortedPosts } from "@/lib/getPosts";
-import { getSortedProjects } from "@/lib/getProjects";
-import { getSortedReleases } from "@/lib/getReleases";
+import { getPolicies } from '@/lib/getPolicies';
+import { getSortedPosts } from '@/lib/getPosts';
+import { getSortedProducts } from '@/lib/getProducts';
+import { getSortedProjects } from '@/lib/getProjects';
 import { MetadataRoute } from 'next';
 
 export const dynamic = 'force-static';
@@ -9,8 +9,8 @@ export const dynamic = 'force-static';
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const posts = getSortedPosts();
+  const products = await getSortedProducts();
   const projects = await getSortedProjects();
-  const releases = await getSortedReleases();
   const policies = await getPolicies();
 
   const blogPosts = posts.map((post) => ({
@@ -20,14 +20,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  const projectPages = projects.map((project) => ({
-    url: `${baseUrl}/projects/${project.id}`,
+  const productPages = products.map((product) => ({
+    url: `${baseUrl}/products/${product.id}`,
     changeFrequency: 'monthly' as const,
-    priority: 0.5,
+    priority: 0.6,
   }));
 
-  const releasePages = releases.map((release) => ({
-    url: `${baseUrl}/releases/${release.id}`,
+  const projectPages = projects.map((project) => ({
+    url: `${baseUrl}/projects/${project.id}`,
     changeFrequency: 'monthly' as const,
     priority: 0.5,
   }));
@@ -57,6 +57,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...blogPosts,
     {
+      url: `${baseUrl}/products`,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    ...productPages,
+    {
       url: `${baseUrl}/projects`,
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -67,12 +73,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.25,
     },
-    {
-      url: `${baseUrl}/releases`,
-      changeFrequency: 'monthly',
-      priority: 0.125,
-    },
-    ...releasePages,
     {
       url: `${baseUrl}/security`,
       changeFrequency: 'monthly',
