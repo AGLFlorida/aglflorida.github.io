@@ -59,10 +59,31 @@ describe('getProducts', () => {
       const products = await getSortedProducts();
       if (products.length < 2) return;
 
+      // Check that all products except "everything-else" are sorted by date (newest first)
+      // "everything-else" is always placed last regardless of date
       for (let i = 0; i < products.length - 1; i++) {
-        const currentDate = new Date(products[i].date);
-        const nextDate = new Date(products[i + 1].date);
+        const current = products[i];
+        const next = products[i + 1];
+        
+        // Skip comparison if next is "everything-else" (it's always last)
+        if (next.id === 'everything-else') {
+          continue;
+        }
+        
+        // Skip comparison if current is "everything-else" (shouldn't happen, but be safe)
+        if (current.id === 'everything-else') {
+          continue;
+        }
+        
+        const currentDate = new Date(current.date);
+        const nextDate = new Date(next.date);
         expect(currentDate.getTime()).toBeGreaterThanOrEqual(nextDate.getTime());
+      }
+      
+      // Verify "everything-else" is always last if it exists
+      const everythingElseIndex = products.findIndex(p => p.id === 'everything-else');
+      if (everythingElseIndex !== -1) {
+        expect(everythingElseIndex).toBe(products.length - 1);
       }
     });
 

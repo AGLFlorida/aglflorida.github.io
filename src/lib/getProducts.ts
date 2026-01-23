@@ -49,8 +49,8 @@ export async function getSortedProducts(): Promise<Product[]> {
     // If either is "everything-else", handle it specially
     if (a.id === 'everything-else' && b.id !== 'everything-else') return 1;
     if (b.id === 'everything-else' && a.id !== 'everything-else') return -1;
-    // Otherwise sort by date (newest first)
-    return a.date < b.date ? 1 : -1;
+    // Otherwise sort by date (newest first) - negate localeCompare for descending order
+    return -a.date.localeCompare(b.date);
   });
 }
 
