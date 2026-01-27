@@ -148,6 +148,7 @@ export default function ContactForm() {
   return (
     <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
       <h1 className="text-xl font-semibold mb-4">Contact Us</h1>
+      <h3 className="text-m mb-4">Expect to hear back from us within 3-5 business days.</h3>
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         <div>
           <label htmlFor="name" className="block text-sm font-medium">

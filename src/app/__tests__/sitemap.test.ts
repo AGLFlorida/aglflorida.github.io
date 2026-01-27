@@ -13,17 +13,20 @@ jest.mock('remark', () => ({
 
 jest.mock('@/lib/getPolicies');
 jest.mock('@/lib/getPosts');
+jest.mock('@/lib/getProducts');
 jest.mock('@/lib/getProjects');
 jest.mock('@/lib/getReleases');
 
 import sitemap from '../sitemap';
 import { getPolicies } from '@/lib/getPolicies';
 import { getSortedPosts } from '@/lib/getPosts';
+import { getSortedProducts } from '@/lib/getProducts';
 import { getSortedProjects } from '@/lib/getProjects';
 import { getSortedReleases } from '@/lib/getReleases';
 
 const mockGetPolicies = getPolicies as jest.MockedFunction<typeof getPolicies>;
 const mockGetSortedPosts = getSortedPosts as jest.MockedFunction<typeof getSortedPosts>;
+const mockGetSortedProducts = getSortedProducts as jest.MockedFunction<typeof getSortedProducts>;
 const mockGetSortedProjects = getSortedProjects as jest.MockedFunction<typeof getSortedProjects>;
 const mockGetSortedReleases = getSortedReleases as jest.MockedFunction<typeof getSortedReleases>;
 
@@ -42,6 +45,9 @@ describe('sitemap', () => {
   it('should generate sitemap with all required pages', async () => {
     mockGetSortedPosts.mockReturnValue([
       { slug: 'post-1', title: 'Post 1', date: '2025-01-01', excerpt: 'Excerpt 1' },
+    ]);
+    mockGetSortedProducts.mockResolvedValue([
+      { id: 'product-1', title: 'Product 1', date: '2025-01-01', type: 'mobile-app' as const, description: 'Desc', contentHtml: '' },
     ]);
     mockGetSortedProjects.mockResolvedValue([
       { id: 'project-1', title: 'Project 1', date: '2025-01-01', description: 'Desc', contentHtml: '', features: [], technologies: [], links: [] },
@@ -66,6 +72,7 @@ describe('sitemap', () => {
     mockGetSortedPosts.mockReturnValue([
       { slug: 'my-post', title: 'My Post', date: '2025-01-01', excerpt: 'Excerpt' },
     ]);
+    mockGetSortedProducts.mockResolvedValue([]);
     mockGetSortedProjects.mockResolvedValue([]);
     mockGetSortedReleases.mockResolvedValue([]);
     mockGetPolicies.mockResolvedValue([]);
@@ -81,6 +88,7 @@ describe('sitemap', () => {
 
   it('should include projects in sitemap', async () => {
     mockGetSortedPosts.mockReturnValue([]);
+    mockGetSortedProducts.mockResolvedValue([]);
     mockGetSortedProjects.mockResolvedValue([
       { id: 'recall-kit', title: 'RecallKit', date: '2025-01-01', description: 'Desc', contentHtml: '', features: [], technologies: [], links: [] },
     ]);
@@ -97,6 +105,7 @@ describe('sitemap', () => {
 
   it('should include releases in sitemap', async () => {
     mockGetSortedPosts.mockReturnValue([]);
+    mockGetSortedProducts.mockResolvedValue([]);
     mockGetSortedProjects.mockResolvedValue([]);
     mockGetSortedReleases.mockResolvedValue([
       { id: 'release-2025-01-01', title: 'Release', date: '2025-01-01', description: 'Desc', contentHtml: '' },
@@ -113,6 +122,7 @@ describe('sitemap', () => {
 
   it('should include policies in sitemap', async () => {
     mockGetSortedPosts.mockReturnValue([]);
+    mockGetSortedProducts.mockResolvedValue([]);
     mockGetSortedProjects.mockResolvedValue([]);
     mockGetSortedReleases.mockResolvedValue([]);
     mockGetPolicies.mockResolvedValue([
@@ -129,6 +139,7 @@ describe('sitemap', () => {
 
   it('should include static pages with correct priorities', async () => {
     mockGetSortedPosts.mockReturnValue([]);
+    mockGetSortedProducts.mockResolvedValue([]);
     mockGetSortedProjects.mockResolvedValue([]);
     mockGetSortedReleases.mockResolvedValue([]);
     mockGetPolicies.mockResolvedValue([]);
@@ -153,6 +164,7 @@ describe('sitemap', () => {
 
   it('should handle empty data gracefully', async () => {
     mockGetSortedPosts.mockReturnValue([]);
+    mockGetSortedProducts.mockResolvedValue([]);
     mockGetSortedProjects.mockResolvedValue([]);
     mockGetSortedReleases.mockResolvedValue([]);
     mockGetPolicies.mockResolvedValue([]);
@@ -162,6 +174,30 @@ describe('sitemap', () => {
     // Should still have static pages
     expect(result.length).toBeGreaterThan(0);
     expect(result.some(item => item.url === 'https://example.com')).toBe(true);
+  });
+
+  it('should include products in sitemap', async () => {
+    mockGetSortedPosts.mockReturnValue([]);
+    mockGetSortedProducts.mockResolvedValue([
+      { id: 'taskflow-app', title: 'TaskFlow Pro', date: '2025-01-15', type: 'mobile-app' as const, description: 'Desc', contentHtml: '' },
+      { id: 'mvp-development', title: 'MVP Development', date: '2025-01-19', type: 'consulting' as const, description: 'Desc', contentHtml: '' },
+    ]);
+    mockGetSortedProjects.mockResolvedValue([]);
+    mockGetSortedReleases.mockResolvedValue([]);
+    mockGetPolicies.mockResolvedValue([]);
+
+    const result = await sitemap();
+
+    const mobileApp = result.find(item => item.url === 'https://example.com/products/taskflow-app');
+    const consulting = result.find(item => item.url === 'https://example.com/products/mvp-development');
+    const productsPage = result.find(item => item.url === 'https://example.com/products');
+    
+    expect(mobileApp).toBeDefined();
+    expect(consulting).toBeDefined();
+    expect(productsPage).toBeDefined();
+    expect(mobileApp?.changeFrequency).toBe('monthly');
+    expect(mobileApp?.priority).toBe(0.6);
+    expect(productsPage?.priority).toBe(0.9);
   });
 });
 

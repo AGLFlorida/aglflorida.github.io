@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { getSortedPosts } from "@/lib/getPosts";
 import { getSortedProjects } from "@/lib/getProjects";
-import { getSortedReleases } from "@/lib/getReleases";
+import { getSortedProducts } from "@/lib/getProducts";
 
 export default async function Home() {
   const posts = getSortedPosts();
-  const releases = await getSortedReleases();
+  const products = await getSortedProducts();
   const projects = await getSortedProjects();
+  const featuredPosts = posts.slice(0, 4); // Show only first 4 posts
   const featuredProjects = projects.slice(0, 2); // Show only first 2 projects
-  const featuredReleases = releases.slice(0, 4);
+  const featuredProducts = products.slice(0, 5);
 
   return (
     <div className="flex flex-col lg:flex-row gap-8 mt-8">
@@ -42,37 +43,21 @@ export default async function Home() {
 
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-2xl font-bold mb-4">
-            <Link href="/projects/">Projects</Link>
+            <Link href="/blog/page/1">Company Blog</Link>
           </h2>
           <div className="space-y-6">
-            {featuredProjects.map((project) => (
-              <div key={project.id}>
+            {featuredPosts.map((post) => (
+              <div key={post.slug}>
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                  <Link href={`/projects/${project.id}`}>
-                    {project.title} <i className="fa-solid fa-link text-lg"></i>
+                  <Link href={`/blog/${post.slug}`}>
+                    {post.title} <i className="fa-solid fa-link text-lg"></i>
                   </Link>
                 </h3>
-                <p className="mb-3 text-gray-600">{project.description}</p>
-                <div className="flex space-x-4">
-                  {project.links?.map((link, index) => (
-                    <a
-                      key={index}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 flex items-center space-x-1"
-                    >
-                      {link.text === "App Store" && <i className="fab fa-app-store text-lg"></i>}
-                      {link.text === "Play Store" && <i className="fab fa-google-play text-lg"></i>}
-                      {link.text === "Github" && <i className="fab fa-github text-lg"></i>}
-                      <span>{link.text}</span>
-                    </a>
-                  ))}
-                </div>
+                <p className="mb-3 text-gray-600">{post.excerpt || post.date}</p>
               </div>
             ))}
             <hr />
-            <Link href="/projects/" className="text-blue-600 hover:text-blue-800">
+            <Link href="/blog/page/1" className="text-blue-600 hover:text-blue-800">
               More...
             </Link>
           </div>
@@ -81,55 +66,57 @@ export default async function Home() {
 
       {/* Sidebar */}
       <div className="w-full lg:w-1/3 space-y-8">
+        {/* Products Section */}
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-xl font-bold mb-4">
-            <Link href="/blog/page/1">
-              Company Blog
+            <Link href="/products">
+              Products <i className="fa-solid fa-link text-lg"></i>
             </Link>
           </h2>
           <ul className="space-y-3">
-            {posts.map((post) => (
-              <li key={post.slug}>
+            {featuredProducts.map((product) => (
+              <li key={product.id}>
                 <Link
-                  href={`/blog/${post.slug}`}
+                  href={`/products/${product.id}`}
                   className="block hover:bg-gray-50 p-2 -mx-2 rounded transition"
                 >
                   <h3 className="font-medium text-blue-600 hover:text-blue-800">
-                    {post.title}
+                    {product.title}
                   </h3>
-                  <p className="text-sm text-gray-500">{post.date}</p>
+                  <p className="text-sm text-gray-500">{product.description}</p>
                 </Link>
               </li>
             ))}
           </ul>
           <br />
           <hr />
-          <Link href="/blog/page/1" className="text-blue-600 hover:text-blue-800">
+          <Link href="/products" className="text-blue-600 hover:text-blue-800">
             More...
           </Link>
         </div>
 
-        {/* Latest Releases Section */}
         <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-bold mb-4">Latest Releases</h2>
+          <h2 className="text-xl font-bold mb-4">
+            <Link href="/projects/">Projects <i className="fa-solid fa-link text-lg"></i></Link>
+          </h2>
           <ul className="space-y-3">
-            {featuredReleases.map((release) => (
-              <li key={release.id}>
+            {featuredProjects.map((project) => (
+              <li key={project.id}>
                 <Link
-                  href={`/releases/${release.id}`}
+                  href={`/projects/${project.id}`}
                   className="block hover:bg-gray-50 p-2 -mx-2 rounded transition"
                 >
                   <h3 className="font-medium text-blue-600 hover:text-blue-800">
-                    {release.title}
+                    {project.title}
                   </h3>
-                  {/* <p className="text-sm text-gray-500">{release.date}</p> */}
+                  <p className="text-sm text-gray-500">{project.description}</p>
                 </Link>
               </li>
             ))}
           </ul>
           <br />
           <hr />
-          <Link href="/releases/" className="text-blue-600 hover:text-blue-800">
+          <Link href="/projects/" className="text-blue-600 hover:text-blue-800">
             More...
           </Link>
         </div>

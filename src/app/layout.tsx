@@ -148,6 +148,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         Projects
                       </Link>
                       <Link
+                        href="/products"
+                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                      >
+                        Products
+                      </Link>
+                      <Link
                         href="/people"
                         className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                       >
