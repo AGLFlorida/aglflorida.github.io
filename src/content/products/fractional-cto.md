@@ -3,7 +3,7 @@ title: "Fractional CTO"
 date: "2026-01-23"
 description: "Executive technology leadership for companies that need CTO-level strategy, architecture, and organizational design—without the full-time cost."
 type: "consulting"
-price: "$5,000+ monthly retainer"
+price: "Pricing Varies"
 duration: "Ongoing engagement"
 deliverables:
   - "Technology strategy and roadmap"

@@ -7,7 +7,7 @@ price: "Starting at $17,500"
 duration: "8-12 weeks"
 deliverables:
   - "AI integration strategy and architecture recommendations"
-  - "Agent framework design and implementation guidance"
+  # - "Agent framework design and implementation guidance"
   - "LLM integration recommendations for your systems and APIs"
   - "Context management and prompt engineering guidance"
   - "Tool calling and function integration recommendations"
@@ -17,7 +17,7 @@ deliverables:
   - "Documentation and team training"
 technologies:
   - "LangChain / LlamaIndex"
-  - "Custom agent frameworks"
+  # - "Custom agent frameworks"
   - "API integration patterns"
   - "Workflow orchestration"
   - "SDLC integration"
@@ -25,11 +25,11 @@ technologies:
 
 AI agents and language models are powerful, but they're only as useful as their ability to interact with your systems, data, and workflows. Building effective agentic integrations—where AI agents can read, write, and act within your technology stack—requires more than just API calls. It requires understanding context, managing state, handling errors, and designing interactions that are reliable, secure, and actually useful.
 
-Our Agentic Integrations package guides you in building AI agents that don't just generate text—they understand your business, interact with your systems, and make decisions that drive real value.
+Let us guide you in building AI enabled workflows that don't just generate text—they understand your business, interact with your systems, and make decisions that drive real value.
 
-## The Promise and Challenge of AI Agents
+## The Promise and Challenge of AGI
 
-AI agents promise to automate complex workflows, answer questions with context from your systems, and make intelligent decisions. But building agents that actually work in production is harder than it looks:
+AI promises to automate complex workflows, answer questions with context from your systems, and make intelligent decisions. But building agents that actually work in production is harder than it looks:
 
 - **Context management** — Agents need access to relevant information from your systems, databases, and APIs
 - **Tool integration** — Agents must be able to call functions, update data, trigger workflows, and interact with your stack
@@ -42,16 +42,16 @@ Most teams start with simple prompts and API calls, then hit walls when they try
 
 ## What We Guide You In Building
 
-Our Agentic Integrations package guides you in building production-ready AI agents that integrate deeply with your technology stack:
+We offer guidance in building production-ready AI agents that integrate deeply with your technology stack:
 
-### Agent Architecture & Framework
+<!-- ### Agent Architecture & Framework
 
 We guide you in designing and implementing agent architectures that fit your needs:
 - **Single-agent systems** for focused tasks and workflows
 - **Multi-agent systems** for complex processes requiring coordination
 - **Agent orchestration** for managing agent interactions and workflows
 - **State management** for maintaining context across interactions
-- **Memory systems** for learning from past interactions
+- **Memory systems** for learning from past interactions -->
 
 ### System Integration
 
@@ -141,7 +141,7 @@ We start by understanding:
 
 Based on this, we guide you in designing an agent architecture and integration strategy that fits your context.
 
-### Incremental Implementation Guidance
+<!-- ### Incremental Implementation Guidance
 
 We guide you in building agents incrementally, starting with high-value use cases:
 - **Week 1-2**: Architecture design guidance and framework setup recommendations
@@ -151,7 +151,7 @@ We guide you in building agents incrementally, starting with high-value use case
 - **Week 9-10**: Testing, validation, and optimization guidance
 - **Week 11-12**: Documentation, training, and knowledge transfer
 
-Each phase delivers working functionality, so you start seeing value early.
+Each phase delivers working functionality, so you start seeing value early. -->
 
 ### Production-Ready Patterns
 
@@ -174,7 +174,7 @@ We ensure your team can maintain and extend agents:
 
 ## Who This Is For
 
-Agentic Integrations works best for organizations that:
+These Integrations works best for organizations that:
 - **Have use cases** where AI agents could add value
 - **Want to integrate** AI with existing systems and workflows
 - **Need production-ready** solutions, not just prototypes
@@ -182,12 +182,12 @@ Agentic Integrations works best for organizations that:
 - **Want to automate** complex, context-dependent workflows
 - **Are ready to invest** in building AI capabilities
 
-If you're not sure if agentic integrations are right for you, we can help assess your use cases and design a proof-of-concept.
+If you're not sure if these are right for you, we can help assess your use cases and design a proof-of-concept.
 
 ## The AGL Difference
 
 We're not AI consultants who build demos and disappear. We're engineers who understand:
-- The realities of building production AI systems
+- The realities of building production systems
 - The importance of reliability, security, and cost control
 - How to integrate AI with existing technology stacks
 - The balance between AI capabilities and practical constraints
@@ -200,7 +200,7 @@ Our approach is:
 
 ## Investment & Timeline
 
-Agentic Integrations is an 8-12 week engagement starting at $20,000. Pricing scales based on:
+This is an 8-12 week engagement starting at $20,000. Pricing scales based on:
 - Complexity of agent use cases
 - Number of systems and APIs to integrate
 - Scope of context management and tool calling

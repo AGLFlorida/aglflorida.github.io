@@ -162,7 +162,7 @@ Our approach is:
 
 ## Investment & Timeline
 
-Agile Coaching engagements typically run 3-5 months, with regular coaching sessions, facilitation, and progress tracking. Pricing starts at $10,000 and scales based on:
+Agile Coaching engagements typically run 3-5 months, with regular coaching sessions, facilitation, and progress tracking. Pricing starts at $19,000 and scales based on:
 - Team size and number of teams
 - Scope of coaching (framework implementation vs. Scrum Master services)
 - Training and certification needs

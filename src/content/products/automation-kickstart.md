@@ -15,7 +15,7 @@ deliverables:
   - "Documentation and team training"
   - "Knowledge transfer and best practices"
 technologies:
-  - "GitHub Actions / GitLab CI / Jenkins"
+  - "GitHub Actions / Jenkins"
   - "Docker and containerization"
   - "Terraform / CloudFormation"
   - "Testing frameworks"

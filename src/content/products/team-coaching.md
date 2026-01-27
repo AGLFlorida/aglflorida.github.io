@@ -3,8 +3,8 @@ title: "Team Coaching"
 date: "2026-01-23"
 description: "Engineering manager in a box—comprehensive team leadership including 1-on-1s, career planning, Agile coaching, and process improvement."
 type: "consulting"
-price: "Starting at $40,000"
-duration: "3-6 months"
+price: "Starting at $15,000"
+duration: "Ongoing"
 deliverables:
   - "Team assessment and baseline metrics"
   - "Regular 1-on-1 coaching sessions with team members"
@@ -218,7 +218,7 @@ Our approach is:
 
 ## Investment & Timeline
 
-Team Coaching engagements typically run 3-6 months, with regular 1-on-1s, coaching sessions, facilitation, and progress tracking. Pricing starts at $12,000 and scales based on:
+Team Coaching engagements typically run 3-6 months, with regular 1-on-1s, coaching sessions, facilitation, and progress tracking. Pricing starts at $15,000 and scales based on:
 - Team size and number of team members
 - Frequency of 1-on-1s desired
 - Scope of Agile coaching and facilitation
