@@ -2,6 +2,7 @@ import { getProductById, getSortedProducts } from '@/lib/getProducts';
 import { metadataFactory } from '@/lib/metadata';
 import { generateBreadcrumbSchemaForPath } from '@/lib/BreadcrumbSchema';
 import type { ResolvingMetadata } from 'next';
+import Link from 'next/link';
 
 type Params = Promise<{ id: string }>;
 
@@ -34,14 +35,16 @@ export default async function ProductPage({ params }: { params: Params }) {
   const breadcrumbSchema = generateBreadcrumbSchemaForPath(`/products/${id}`);
 
   return (
-    <div className="max-w-4xl mx-auto py-8">
+    <div className="max-w-7xl mx-auto py-8 px-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <h1 className="text-3xl font-bold mb-8">{product.title}</h1>
-
-      <div className="bg-white p-6 rounded-lg shadow mb-8">
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Main Content Column */}
+        <div className="w-full lg:w-2/3">
+          <div className="bg-white p-6 rounded-lg shadow mb-8">
         <h2 className="text-xl font-semibold mb-4">Overview</h2>
         <div className="prose max-w-none mb-6" dangerouslySetInnerHTML={{ __html: product.contentHtml }} />
 
@@ -115,6 +118,30 @@ export default async function ProductPage({ params }: { params: Params }) {
             ))}
           </div>
         )}
+          </div>
+        </div>
+
+        {/* Right Rail */}
+        <div className="w-full lg:w-1/3">
+          <div className="bg-white p-6 rounded-lg shadow sticky top-8">
+            <h2 className="text-xl font-bold mb-4">Contact Us</h2>
+            <p className="text-gray-600 mb-4">
+              Interested in learning more about this product or service? Get in touch with us to discuss how we can help.
+            </p>
+            <Link
+              href="/contact/"
+              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full mb-4"
+            >
+              Contact Us
+            </Link>
+            <Link
+              href="/products/"
+              className="inline-block border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 transition text-center font-semibold w-full"
+            >
+              See All Products
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

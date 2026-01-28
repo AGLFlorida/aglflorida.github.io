@@ -28,18 +28,21 @@ export default async function ProductsPage() {
   const consultingPackages = products.filter(p => p.type === 'consulting');
 
   return (
-    <div className="max-w-4xl mx-auto py-8">
+    <div className="max-w-7xl mx-auto py-8 px-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <h1 className="text-3xl font-bold mb-8">Products & Services</h1>
-      <p className="mb-8">
-        Discover our mobile applications and consulting packages designed to deliver practical solutions with real-world impact.
-      </p>
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Main Content Column */}
+        <div className="w-full lg:w-2/3">
+          <p className="mb-8">
+            Discover our mobile applications and consulting packages designed to deliver practical solutions with real-world impact.
+          </p>
 
-      {/* Mobile Apps Section */}
-      <section className="mb-12">
+          {/* Mobile Apps Section */}
+          <section className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Mobile Applications</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {mobileApps.map((product) => (
@@ -102,6 +105,24 @@ export default async function ProductsPage() {
           ))}
         </div>
       </section>
+        </div>
+
+        {/* Right Rail */}
+        <div className="w-full lg:w-1/3">
+          <div className="bg-white p-6 rounded-lg shadow sticky top-8">
+            <h2 className="text-xl font-bold mb-4">Contact Us</h2>
+            <p className="text-gray-600 mb-4">
+              Interested in learning more about our products or services? Get in touch with us to discuss how we can help.
+            </p>
+            <Link
+              href="/contact/"
+              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+            >
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

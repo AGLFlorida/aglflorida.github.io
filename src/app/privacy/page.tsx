@@ -34,7 +34,7 @@ export default function PrivacyPage() {
           <li>Operating system</li>
         </ul>
 
-        <h2>Usage of Information</h2>
+        <h3>Usage of Information</h3>
         <p>
           This analytics data is used solely to understand site usage patterns and improve the user experience. 
           We do not:
@@ -45,6 +45,11 @@ export default function PrivacyPage() {
           <li>Share or sell any data to third parties</li>
           <li>Use the data for marketing purposes</li>
         </ul>
+
+        <h3>Email Address Collection</h3>
+        <p>
+          The email address provided in our contact form may be used for future contact and marketing purposes.
+        </p>
 
         <h2>Third-Party Services</h2>
         <p>
@@ -65,7 +70,7 @@ export default function PrivacyPage() {
         </p>
 
         <p className="text-sm text-gray-500 mt-8">
-          Last updated: 3/18/2025 {/*new Date().toLocaleDateString()*/}
+          Last updated: 1/28/2026 {/*new Date().toLocaleDateString()*/}
         </p>
       </div>
     </div>

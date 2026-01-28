@@ -3,6 +3,7 @@ import { metadataFactory } from "@/lib/metadata";
 import { generateArticleSchema } from "@/lib/schema";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
 import type { ResolvingMetadata } from 'next';
+import Link from 'next/link';
 
 export async function generateStaticParams() {
   const posts = getSortedPosts();
@@ -45,7 +46,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   const breadcrumbSchema = generateBreadcrumbSchemaForPath(`/blog/${slug}`);
 
   return (
-    <div className="max-w-4xl mx-auto py-8">
+    <div className="max-w-7xl mx-auto py-8 px-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
@@ -54,14 +55,35 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-white p-6 rounded-lg shadow">
-        <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
-        <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
-          <p>{post.date}</p>
-          <span className="text-gray-300">•</span>
-          <p>By Brandon Shoop</p>
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Main Content Column */}
+        <div className="w-full lg:w-2/3">
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
+            <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
+              <p>{post.date}</p>
+              <span className="text-gray-300">•</span>
+              <p>By Brandon Shoop</p>
+            </div>
+            <article className="prose max-w-none" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+          </div>
         </div>
-        <article className="prose max-w-none" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+
+        {/* Right Rail */}
+        <div className="w-full lg:w-1/3">
+          <div className="bg-white p-6 rounded-lg shadow sticky top-8">
+            <h2 className="text-xl font-bold mb-4">All Blog Posts</h2>
+            <p className="text-gray-600 mb-4">
+              Explore all of our blog posts on technology, development, and technical product management.
+            </p>
+            <Link
+              href="/blog/page/1"
+              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+            >
+              View All Posts
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
