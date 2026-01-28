@@ -67,19 +67,33 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
         {/* Right Rail */}
         <div className="w-full lg:w-1/3">
-          <div className="bg-white p-6 rounded-lg shadow sticky top-8">
-            <h2 className="text-xl font-bold mb-4">Founder&apos;s Blog</h2>
-            <p className="text-gray-600 mb-4">
-              Check out Brandon Shoop&apos;s personal blog for more insights on technology, development, and leadership.
-            </p>
-            <a
-              href="https://brandonshoop.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
-            >
-              Visit Founder&apos;s Blog
-            </a>
+          <div className="sticky top-8 space-y-8">
+            <div className="bg-white p-6 rounded-lg shadow">
+              <h2 className="text-xl font-bold mb-4">Meet the Team</h2>
+              <p className="text-gray-600 mb-4">
+                Learn more about the people behind AGL Consulting and our human-centered approach to technology.
+              </p>
+              <Link
+                href="/people"
+                className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+              >
+                View Our People
+              </Link>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow">
+              <h2 className="text-xl font-bold mb-4">Founder&apos;s Blog</h2>
+              <p className="text-gray-600 mb-4">
+                Check out Brandon Shoop&apos;s personal blog for more insights on technology, development, and leadership.
+              </p>
+              <a
+                href="https://brandonshoop.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+              >
+                Visit Founder&apos;s Blog
+              </a>
+            </div>
           </div>
         </div>
       </div>
