@@ -33,13 +33,16 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   const breadcrumbSchema = generateBreadcrumbSchemaForPath(`/blog/page/${page}`);
 
   return (
-    <div className="max-w-4xl mx-auto py-8">
+    <div className="max-w-7xl mx-auto py-8 px-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <h1 className="text-3xl font-bold mb-8">Blog Posts</h1>
-      <div className="bg-white p-6 rounded-lg shadow">
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Main Content Column */}
+        <div className="w-full lg:w-2/3">
+          <div className="bg-white p-6 rounded-lg shadow">
         <PaginationControls currentPage={currentPage} totalPages={totalPages} />
         <div className="space-y-6">
           {currentPosts.map((post) => (
@@ -59,6 +62,26 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           ))}
         </div>
         <PaginationControls currentPage={currentPage} totalPages={totalPages} />
+          </div>
+        </div>
+
+        {/* Right Rail */}
+        <div className="w-full lg:w-1/3">
+          <div className="bg-white p-6 rounded-lg shadow sticky top-8">
+            <h2 className="text-xl font-bold mb-4">Founder's Blog</h2>
+            <p className="text-gray-600 mb-4">
+              Check out Brandon Shoop's personal blog for more insights on technology, development, and leadership.
+            </p>
+            <a
+              href="https://brandonshoop.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+            >
+              Visit Founder's Blog
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
