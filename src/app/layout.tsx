@@ -88,100 +88,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </Link>
             
               <div className="flex items-center space-x-4">
-                <a
-                  href="https://www.linkedin.com/company/agl-consulting-llc/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-2xl text-gray-100 hover:text-gray-300"
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-900 font-medium rounded-md"
                 >
-                  <i className="fab fa-linkedin"></i>
-                </a>
-                <a
-                  href="https://github.com/aglflorida/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-2xl text-gray-100 hover:text-gray-300"
-                >
-                  <i className="fab fa-github"></i>
-                </a>
-                <a
-                  href="https://play.google.com/store/apps/dev?id=5851403031328766349"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-2xl text-gray-100 hover:text-gray-300"
-                >
-                  <i className="fab fa-google-play text-lg"></i>
-                </a>
-                <a
-                  href="https://apps.apple.com/us/developer/agl-consulting-llc/id1801519023"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-2xl text-gray-100 hover:text-gray-300"
-                >
-                  <i className="fab fa-app-store text-lg"></i>
-                </a>
-                <div className="relative group">
-                  <button
-                    className="text-2xl text-gray-100 hover:text-gray-300 p-2"
-                    aria-label="Navigation Menu"
-                  >
-                    <i className="fas fa-bars"></i>
-                  </button>
-                  <div className="absolute right-0 top-[80%] pt-4 w-48 invisible group-hover:visible">
-                    <div className="bg-white rounded-lg shadow-lg py-2">
-                      <Link
-                        href="/"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                      >
-                        Home
-                      </Link>
-                      <Link
-                        href="/blog/page/1"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                      >
-                        Company Blog
-                      </Link>
-                      <Link
-                        href="/projects"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                      >
-                        Projects
-                      </Link>
-                      <Link
-                        href="/products"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                      >
-                        Products
-                      </Link>
-                      <Link
-                        href="/people"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                      >
-                        People
-                      </Link>
-                      <Link
-                        href="/policies"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                      >
-                        Policies
-                      </Link>
-                      <Link
-                        href="/releases"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                      >
-                        Releases
-                      </Link>
-                      <a
-                        href="https://coff.ee/aglflorida"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                      >
-                        Buy me a coffee
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                  Contact
+                </Link>
               </div>
             </div>
           </div>
@@ -190,20 +102,132 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Breadcrumbs />
           {children}
         </main>
-        <footer className="text-center py-4 text-gray-600">
-          <div>{'\u00A9'} {currentYear} AGL Consulting LLC</div>
-          <div className="mt-2">
-            <Link href="/privacy" className="text-blue-600 hover:text-blue-800">
-              Privacy Policy
-            </Link>
-            {" | "}
-            <Link href="/security" className="text-blue-600 hover:text-blue-800">
-              Security Policy
-            </Link>
-            {" | "}
-            <Link href="/contact" className="text-blue-600 hover:text-blue-800">
-              Contact Us
-            </Link >
+        <footer className="mt-16 bg-gray-800 text-gray-300">
+          <div className="max-w-7xl mx-auto px-4 py-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div>
+                <h3 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
+                  Site
+                </h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/" className="hover:text-white transition">
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/blog/page/1" className="hover:text-white transition">
+                      Company Blog
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/projects" className="hover:text-white transition">
+                      Projects
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/products" className="hover:text-white transition">
+                      Products
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/people" className="hover:text-white transition">
+                      People
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/policies" className="hover:text-white transition">
+                      Policies
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/releases" className="hover:text-white transition">
+                      Releases
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
+                  Legal
+                </h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/privacy" className="hover:text-white transition">
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/security" className="hover:text-white transition">
+                      Security Policy
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
+                  Connect
+                </h3>
+                <div className="flex gap-4 mb-4">
+                  <a
+                    href="https://www.linkedin.com/company/agl-consulting-llc/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xl text-gray-300 hover:text-white transition"
+                    aria-label="LinkedIn"
+                  >
+                    <i className="fab fa-linkedin"></i>
+                  </a>
+                  <a
+                    href="https://github.com/aglflorida/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xl text-gray-300 hover:text-white transition"
+                    aria-label="GitHub"
+                  >
+                    <i className="fab fa-github"></i>
+                  </a>
+                  <a
+                    href="https://play.google.com/store/apps/dev?id=5851403031328766349"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xl text-gray-300 hover:text-white transition"
+                    aria-label="Google Play"
+                  >
+                    <i className="fab fa-google-play"></i>
+                  </a>
+                  <a
+                    href="https://apps.apple.com/us/developer/agl-consulting-llc/id1801519023"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xl text-gray-300 hover:text-white transition"
+                    aria-label="App Store"
+                  >
+                    <i className="fab fa-app-store"></i>
+                  </a>
+                </div>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/contact" className="hover:text-white transition">
+                      Contact Us
+                    </Link>
+                  </li>
+                  <li>
+                    <a
+                      href="https://coff.ee/aglflorida"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white transition"
+                    >
+                      Buy me a coffee
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-12 pt-8 border-t border-gray-700 text-center text-sm text-gray-500">
+              {'\u00A9'} {currentYear} AGL Consulting LLC
+            </div>
           </div>
         </footer>
       </body>
