@@ -25,7 +25,7 @@ export default async function ProjectsPage() {
   const breadcrumbSchema = generateBreadcrumbSchemaForPath('/projects');
 
   return (
-    <div className="max-w-4xl mx-auto py-8">
+    <div className="py-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -34,39 +34,57 @@ export default async function ProjectsPage() {
       <p className="mb-4">
         The projects we have under development or found interesting. Practical Tech with Real-World Impact.
       </p>
-      <div className="space-y-6">
-        {projects.map((project) => (
-          <div key={project.id} className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold mb-2">
-              <Link href={`/projects/${project.id}`}>
-                {project.title} <i className="fa-solid fa-link text-lg"></i>
-              </Link>
-            </h2>
-            <p className="text-gray-600 mb-4">{project.description}</p>
-            <div className="flex space-x-4">
-              {project.links?.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800 flex items-center space-x-1"
-                >
-                  {link.text === "App Store" && <i className="fab fa-app-store text-lg"></i>}
-                  {link.text === "Play Store" && <i className="fab fa-google-play text-lg"></i>}
-                  {link.text === "Github" && <i className="fab fa-github text-lg"></i>}
-                  <span>{link.text}</span>
-                </a>
-              ))}
-              {/* <Link
-                href={`/projects/${project.id}`}
-                className="text-blue-600 hover:text-blue-800"
-              >
-                Details {'\u2192'}
-              </Link> */}
-            </div>
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="w-full lg:w-2/3">
+          <div className="space-y-6">
+            {projects.map((project) => (
+              <div key={project.id} className="bg-white p-6 rounded-lg shadow">
+                <h2 className="text-2xl font-semibold mb-2">
+                  <Link href={`/projects/${project.id}`}>
+                    {project.title} <i className="fa-solid fa-link text-lg"></i>
+                  </Link>
+                </h2>
+                <p className="text-gray-600 mb-4">{project.description}</p>
+                <div className="flex space-x-4">
+                  {project.links?.map((link, index) => (
+                    <a
+                      key={index}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 flex items-center space-x-1"
+                    >
+                      {link.text === "App Store" && <i className="fab fa-app-store text-lg"></i>}
+                      {link.text === "Play Store" && <i className="fab fa-google-play text-lg"></i>}
+                      {link.text === "Github" && <i className="fab fa-github text-lg"></i>}
+                      <span>{link.text}</span>
+                    </a>
+                  ))}
+                  {/* <Link
+                    href={`/projects/${project.id}`}
+                    className="text-blue-600 hover:text-blue-800"
+                  >
+                    Details {'\u2192'}
+                  </Link> */}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+        <aside className="w-full lg:w-1/3">
+          <div className="bg-white p-6 rounded-lg shadow sticky top-8">
+            <h2 className="text-xl font-bold mb-4">Company Blog</h2>
+            <p className="text-gray-600 mb-4">
+              Ideas, updates, and practical tech from the team.
+            </p>
+            <Link
+              href="/blog/page/1"
+              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+            >
+              Read the blog
+            </Link>
+          </div>
+        </aside>
       </div>
     </div>
   );

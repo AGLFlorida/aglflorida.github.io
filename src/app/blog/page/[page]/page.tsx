@@ -91,7 +91,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 rel="noopener noreferrer"
                 className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
               >
-                Visit Founder&apos;s Blog
+                Visit Founder&apos;s Blog <i className="fas fa-external-link-alt text-sm ml-1" aria-hidden="true"></i>
               </a>
             </div>
           </div>
