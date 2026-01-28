@@ -69,7 +69,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         <div className="w-full lg:w-1/3">
           <div className="sticky top-8 space-y-8">
             <div className="bg-white p-6 rounded-lg shadow">
-              <h2 className="text-xl font-bold mb-4">Meet the Team</h2>
+              <h2 className="text-xl font-bold mb-4">The Team</h2>
               <p className="text-gray-600 mb-4">
                 Learn more about the people behind AGL Consulting and our human-centered approach to technology.
               </p>
@@ -77,7 +77,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 href="/people"
                 className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
               >
-                View Our People
+                Meet Our People
               </Link>
             </div>
             <div className="bg-white p-6 rounded-lg shadow">

@@ -3,6 +3,7 @@ import { metadataFactory } from "@/lib/metadata";
 import { generateProjectSchema } from "@/lib/schema";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
 import type { ResolvingMetadata } from 'next';
+import Link from 'next/link';
 
 type Params = Promise<{ id: string }>;
 
@@ -44,7 +45,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
   const breadcrumbSchema = generateBreadcrumbSchemaForPath(`/projects/${id}`);
 
   return (
-    <div className="max-w-4xl mx-auto py-8">
+    <div className="max-w-7xl mx-auto py-8 px-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
@@ -54,8 +55,10 @@ export default async function ProjectPage({ params }: { params: Params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <h1 className="text-3xl font-bold mb-8">{project.title}</h1>
-
-      <div className="bg-white p-6 rounded-lg shadow mb-8">
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Main Content Column */}
+        <div className="w-full lg:w-2/3">
+          <div className="bg-white p-6 rounded-lg shadow mb-8">
         <h2 className="text-xl font-semibold mb-4">Overview</h2>
         <div className="prose max-w-none mb-6" dangerouslySetInnerHTML={{ __html: project.contentHtml }} />
 
@@ -104,6 +107,24 @@ export default async function ProjectPage({ params }: { params: Params }) {
             ))}
           </div>
         )}
+          </div>
+        </div>
+
+        {/* Right Rail */}
+        <div className="w-full lg:w-1/3">
+          <div className="bg-white p-6 rounded-lg shadow sticky top-8">
+            <h2 className="text-xl font-bold mb-4">All Projects</h2>
+            <p className="text-gray-600 mb-4">
+              Explore all of our projects and see the technology solutions we&apos;ve built.
+            </p>
+            <Link
+              href="/projects"
+              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+            >
+              View All Projects
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
