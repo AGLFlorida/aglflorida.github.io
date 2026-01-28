@@ -42,7 +42,7 @@ jobs:
     environment: github-pages
     steps:
       - name: Checkout Main
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: main
       - name: Detect package manager
