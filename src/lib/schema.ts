@@ -265,4 +265,3 @@ export function generateOrganizationSchema(baseUrl?: string): OrganizationSchema
     ],
   };
 }
-
