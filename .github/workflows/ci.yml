@@ -4,6 +4,12 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches: [main]
+    paths-ignore:
+      - '/*.md'
+      - 'src/content/releases/*.md'
+      - '*.yml'
 
 jobs:
   lint-test-build:

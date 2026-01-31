@@ -5,18 +5,12 @@
 name: Deploy Next.js site to Pages
 
 on:
-  # Old trigger - runs after summarize workflow completes
-  # workflow_run:
-  #   workflows: ["Summarize and Tag Release"]
-  #   types:
-  #     - completed
-
-  push:
-    branches: [main]
-    paths-ignore:
-      - '/*.md'
-      - 'src/content/releases/*.md'
-      - '*.yml'
+  # Run after Tag Release completes (order: tag → nextjs). When summarize is
+  # re-enabled: switch to workflow_run workflows: ["Summarize Release"],
+  # types: [completed], so deploy order is tag → summarize → nextjs.
+  workflow_run:
+    workflows: ['Tag Release']
+    types: [completed]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -36,8 +30,7 @@ concurrency:
 jobs:
   # Build job
   build:
-    # Old condition - only run if summarize workflow succeeded
-    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment: github-pages
     steps:
