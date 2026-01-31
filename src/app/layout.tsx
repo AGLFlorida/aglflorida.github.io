@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { Breadcrumbs } from '@/lib/Breadcrumbs';
-import { generatePersonSchema, generateWebsiteSchema } from '@/lib/schema';
+import { generateOrganizationSchema, generatePersonSchema, generateWebsiteSchema } from '@/lib/schema';
 import { generateOpenGraphMetadata, generateTwitterMetadata } from '@/lib/metadata';
 
 import type { Metadata } from 'next';
@@ -41,6 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const currentYear = new Date().getFullYear();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
+  const organizationSchema = generateOrganizationSchema(baseUrl);
   const personSchema = generatePersonSchema(baseUrl);
   const websiteSchema = generateWebsiteSchema(baseUrl);
 
@@ -54,15 +55,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
       </head>
       <body className="bg-gray-100 text-gray-900">
-        <header className="relative h-64 md:h-80">
+        <header className="relative h-36 md:h-44">
            <Image
             src="/header.jpg" // adjust this path as needed
             alt="Header Background"
@@ -116,11 +121,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </Link>
                   </li>
                   <li>
-                    <Link href="/blog/page/1" className="hover:text-white transition">
-                      Company Blog
-                    </Link>
-                  </li>
-                  <li>
                     <Link href="/projects" className="hover:text-white transition">
                       Projects
                     </Link>
@@ -143,6 +143,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li>
                     <Link href="/releases" className="hover:text-white transition">
                       Releases
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
+                  About
+                </h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/about" className="hover:text-white transition">
+                      About AGL
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/blog/page/1" className="hover:text-white transition">
+                      Company Blog
                     </Link>
                   </li>
                 </ul>
@@ -219,7 +236,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       rel="noopener noreferrer"
                       className="hover:text-white transition"
                     >
-                      Buy me a coffee
+                      Support Us
                     </a>
                   </li>
                 </ul>

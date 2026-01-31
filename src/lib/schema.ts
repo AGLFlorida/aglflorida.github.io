@@ -89,6 +89,19 @@ export interface WebsiteSchema {
   };
 }
 
+export interface OrganizationSchema {
+  '@context': string;
+  '@type': ['Organization', 'ProfessionalService'];
+  name: string;
+  url: string;
+  logo?: {
+    '@type': 'ImageObject';
+    url: string;
+  };
+  description?: string;
+  sameAs?: string[];
+}
+
 /**
  * Generate Person schema for the site author
  */
@@ -226,3 +239,29 @@ export function generateWebsiteSchema(baseUrl?: string): WebsiteSchema {
   };
 }
 
+/**
+ * Generate Organization + ProfessionalService schema for the company
+ */
+export function generateOrganizationSchema(baseUrl?: string): OrganizationSchema {
+  const url = baseUrl || process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
+  const logoUrl = `${url}/siteicon.png`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['Organization', 'ProfessionalService'],
+    name: 'AGL Consulting LLC',
+    url,
+    logo: {
+      '@type': 'ImageObject',
+      url: logoUrl,
+    },
+    description:
+      'Fractional technical leadership and software development for small and mid-sized businesses. We help organizations modernize technology—infrastructure, developer workflows, and platform migrations—without the overhead of a full-time executive.',
+    sameAs: [
+      'https://www.linkedin.com/company/agl-consulting-llc/',
+      'https://github.com/aglflorida/',
+      'https://play.google.com/store/apps/dev?id=5851403031328766349',
+      'https://apps.apple.com/us/developer/agl-consulting-llc/id1801519023',
+    ],
+  };
+}

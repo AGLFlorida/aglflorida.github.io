@@ -259,6 +259,59 @@ export const breadcrumbListSchema = {
   additionalProperties: false,
 };
 
+export const organizationSchemaDef = {
+  type: 'object',
+  required: ['@context', '@type', 'name', 'url'],
+  properties: {
+    '@context': {
+      type: 'string',
+      const: 'https://schema.org',
+    },
+    '@type': {
+      type: 'array',
+      items: {
+        type: 'string',
+        enum: ['Organization', 'ProfessionalService'],
+      },
+      minItems: 1,
+    },
+    name: {
+      type: 'string',
+      minLength: 1,
+    },
+    url: {
+      type: 'string',
+      format: 'uri',
+    },
+    logo: {
+      type: 'object',
+      required: ['@type', 'url'],
+      properties: {
+        '@type': {
+          type: 'string',
+          const: 'ImageObject',
+        },
+        url: {
+          type: 'string',
+          format: 'uri',
+        },
+      },
+      additionalProperties: false,
+    },
+    description: {
+      type: 'string',
+    },
+    sameAs: {
+      type: 'array',
+      items: {
+        type: 'string',
+        format: 'uri',
+      },
+    },
+  },
+  additionalProperties: false,
+};
+
 export const webSiteSchema = {
   type: 'object',
   required: ['@context', '@type', 'name', 'url'],

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { SiteInfoNav } from '@/lib/SiteInfoNav';
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -11,11 +12,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function PrivacyPage() {
+export default function SecurityPage() {
   return (
-    <div className="max-w-4xl mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8">Security Policy</h1>
-      <div className="bg-white p-6 rounded-lg shadow prose">
+    <div className="max-w-6xl mx-auto py-8">
+      <div className="grid grid-cols-1 md:grid-cols-[minmax(0,11rem)_1fr] gap-8">
+        <aside className="md:sticky md:top-4 md:self-start">
+          <SiteInfoNav currentPath="/security" />
+        </aside>
+        <div className="min-w-0">
+          <h1 className="text-3xl font-bold mb-8">Security Policy</h1>
+          <div className="bg-white p-6 rounded-lg shadow prose max-w-none">
         <h2>Reporting a Vulnerability</h2>
         <p>
           At AGL Consulting, we take security seriously and welcome reports from the security community to help keep our users and systems
@@ -76,6 +82,8 @@ export default function PrivacyPage() {
         <p className="text-sm text-gray-500 mt-8">
           Last updated: 6/27/2025 {/*new Date().toLocaleDateString()*/}
         </p>
+          </div>
+        </div>
       </div>
     </div>
   );
