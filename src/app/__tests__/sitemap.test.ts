@@ -146,11 +146,15 @@ describe('sitemap', () => {
 
     const result = await sitemap();
 
+    const about = result.find(item => item.url === 'https://example.com/about');
     const contact = result.find(item => item.url === 'https://example.com/contact');
     const privacy = result.find(item => item.url === 'https://example.com/privacy');
     const security = result.find(item => item.url === 'https://example.com/security');
     const people = result.find(item => item.url === 'https://example.com/people');
 
+    expect(about).toBeDefined();
+    expect(about?.changeFrequency).toBe('monthly');
+    expect(about?.priority).toBe(0.8);
     expect(contact).toBeDefined();
     expect(privacy).toBeDefined();
     expect(security).toBeDefined();

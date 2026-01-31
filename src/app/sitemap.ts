@@ -83,6 +83,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...releasePages,
     {
+      url: `${baseUrl}/about`,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/people`,
       changeFrequency: 'monthly',
       priority: 0.25,
