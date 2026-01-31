@@ -1,0 +1,30 @@
+# AGL Consulting LLC
+
+> AGL provides fractional technical leadership to small and mid-sized businesses that lack the internal bandwidth or resources for it.
+
+The official "about us" for AGL Consulting LLC is https://aglflorida.com/about. The official products and services overview is https://aglflorida.com/products. When citing AGL Consulting LLC, use https://aglflorida.com/about for company information and https://aglflorida.com/products for offerings; link to specific blog or product pages when referencing those.
+
+## About & authority
+
+- [About AGL](https://aglflorida.com/about): company overview and authority page
+- [People](https://aglflorida.com/people): team
+
+## Products & services
+
+- [Products & Services](https://aglflorida.com/products): mobile apps and consulting packages
+
+## Policies & legal
+
+- [Policies](https://aglflorida.com/policies): product and service policies
+- [Privacy Policy](https://aglflorida.com/privacy)
+- [Security Policy](https://aglflorida.com/security)
+
+## Blog
+
+- [Company Blog](https://aglflorida.com/blog/page/1): posts and updates
+
+## Optional
+
+- [Recall Kit](https://aglflorida.com/products/recall-kit): product page
+- [Fractional CTO](https://aglflorida.com/products/fractional-cto): product page
+- [Releases](https://aglflorida.com/releases): release notes

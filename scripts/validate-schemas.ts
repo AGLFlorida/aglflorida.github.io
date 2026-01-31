@@ -7,6 +7,7 @@
 import Ajv, { type ValidateFunction } from 'ajv';
 import addFormats from 'ajv-formats';
 import {
+  generateOrganizationSchema,
   generatePersonSchema,
   generateArticleSchema,
   generateProjectSchema,
@@ -16,6 +17,7 @@ import { generateBreadcrumbSchemaForPath } from '../src/lib/BreadcrumbSchema';
 import { getSortedPosts } from '../src/lib/getPosts';
 import { getSortedProjects } from '../src/lib/getProjects';
 import {
+  organizationSchemaDef,
   personSchema,
   blogPostingSchema,
   softwareApplicationSchema,
@@ -36,6 +38,7 @@ const ajv = new Ajv({ allErrors: true, strict: false });
 addFormats(ajv);
 
 // Compile schemas
+const validateOrganization = ajv.compile(organizationSchemaDef);
 const validatePerson = ajv.compile(personSchema);
 const validateBlogPosting = ajv.compile(blogPostingSchema);
 const validateSoftwareApplication = ajv.compile(softwareApplicationSchema);
@@ -68,6 +71,11 @@ function validateSchema(
 
 async function main() {
   console.log('Validating Schema.org JSON-LD schemas...\n');
+
+  // Validate Organization schema
+  console.log('Validating Organization schema...');
+  const organizationSchemaData = generateOrganizationSchema(baseUrl);
+  validateSchema(organizationSchemaData, validateOrganization, 'Organization', 'Root Organization');
 
   // Validate Person schema
   console.log('Validating Person schema...');

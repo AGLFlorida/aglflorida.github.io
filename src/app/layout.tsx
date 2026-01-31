@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { Breadcrumbs } from '@/lib/Breadcrumbs';
-import { generatePersonSchema, generateWebsiteSchema } from '@/lib/schema';
+import { generateOrganizationSchema, generatePersonSchema, generateWebsiteSchema } from '@/lib/schema';
 import { generateOpenGraphMetadata, generateTwitterMetadata } from '@/lib/metadata';
 
 import type { Metadata } from 'next';
@@ -41,6 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const currentYear = new Date().getFullYear();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
+  const organizationSchema = generateOrganizationSchema(baseUrl);
   const personSchema = generatePersonSchema(baseUrl);
   const websiteSchema = generateWebsiteSchema(baseUrl);
 
@@ -54,11 +55,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
       </head>
       <body className="bg-gray-100 text-gray-900">

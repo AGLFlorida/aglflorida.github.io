@@ -1,14 +1,21 @@
 import { Metadata } from 'next';
 import { SiteInfoNav } from '@/lib/SiteInfoNav';
+import { generateOpenGraphMetadata, generateTwitterMetadata } from '@/lib/metadata';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
+  const title = 'About Us | AGL Consulting LLC';
+  const description =
+    'AGL provides fractional technical leadership to small and mid-sized businesses. We help organizations modernize technology—infrastructure, developer workflows, and platform migrations—without the overhead of a full-time executive.';
 
   return {
-    title: 'About Us | AGL Consulting LLC',
+    title,
+    description,
     alternates: {
       canonical: `${baseUrl}/about`,
     },
+    openGraph: generateOpenGraphMetadata(title, description, `${baseUrl}/about`),
+    twitter: generateTwitterMetadata(title, description),
   };
 }
 
