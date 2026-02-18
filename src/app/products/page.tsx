@@ -98,7 +98,7 @@ export default async function ProductsPage() {
               )}
               <Link
                 href={`/products/${product.id}`}
-                className="text-blue-900 hover:text-blue-800 hover:underline"
+                className="text-blue-700 hover:text-blue-800"
               >
                 View Details {'\u2192'}
               </Link>
