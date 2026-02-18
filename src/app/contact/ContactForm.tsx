@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
 interface FormData {
@@ -48,12 +48,12 @@ export default function ContactForm() {
 
   const [status, setStatus] = useState<Status>(null);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
-  const [isLocalhost] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return LOCALHOST_HOSTNAMES.includes(window.location.hostname);
-    }
-    return false;
-  });
+  const isLocalhost = useSyncExternalStore(
+    () => () => {},
+    () => LOCALHOST_HOSTNAMES.includes(window.location.hostname),
+    () => false
+  );
+
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
 
   const validateForm = (): boolean => {
@@ -245,7 +245,7 @@ export default function ContactForm() {
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-blue-800 text-white p-2 rounded-md hover:bg-blue-900 transition disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={status === "sending" || (!isLocalhost && !captchaToken)}
           aria-busy={status === "sending"}
         >

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
+import { IconLinkedIn } from '@/lib/icons';
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -34,7 +35,7 @@ export default async function PeoplePage() {
                     rel="noopener noreferrer"
                     className="hover:text-gray-300"
                   >
-                    Aliza Shoop <i className="fab fa-linkedin"></i>
+                    Aliza Shoop <IconLinkedIn className="inline h-4 w-4" aria-hidden />
                   </a>
                 </h2>
                 <p className="text-gray-600">Vice President</p>
@@ -50,17 +51,10 @@ export default async function PeoplePage() {
                     rel="noopener noreferrer"
                     className="hover:text-gray-300"
                   >
-                    Brandon Shoop <i className="fab fa-linkedin"></i>
+                    Brandon Shoop <IconLinkedIn className="inline h-4 w-4" aria-hidden />
                   </a>
                 </h2>
-                <p className="text-gray-600">Managing Partner&nbsp;
-                  <a
-                    href="https://brandonshoop.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-gray-300"
-                  ><i className="fa fa-book"></i></a>
-                </p>
+                <p className="text-gray-600">Managing Partner</p>
               </div>
             </li>
           </ul>
@@ -74,7 +68,7 @@ export default async function PeoplePage() {
             </p>
             <Link
               href="/blog/page/1"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+              className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
             >
               Read the blog
             </Link>

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { SiteInfoNav } from '@/lib/SiteInfoNav';
+import { IconLinkedIn } from '@/lib/icons';
 import { generateOpenGraphMetadata, generateTwitterMetadata } from '@/lib/metadata';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -23,10 +24,8 @@ export default function AboutPage() {
   return (
     <div className="max-w-6xl mx-auto py-8">
       <div className="grid grid-cols-1 md:grid-cols-[minmax(0,11rem)_1fr] gap-8">
-        <aside className="md:sticky md:top-4 md:self-start">
-          <SiteInfoNav currentPath="/about" />
-        </aside>
-        <div className="min-w-0">
+        {/* Main content first in DOM for correct heading order (h1 before h2); order on md puts sidebar left (narrow column). */}
+        <div className="min-w-0 md:order-2">
           <h1 className="text-3xl font-bold mb-8">About AGL Consulting</h1>
           <div className="bg-white p-6 rounded-lg shadow prose max-w-none">
             <p>
@@ -47,14 +46,16 @@ export default function AboutPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2"
-                aria-label="AGL on LinkedIn"
               >
                 Connect with us on LinkedIn
-                <i className="fab fa-linkedin" aria-hidden="true" />
+                <IconLinkedIn className="h-4 w-4 shrink-0" aria-hidden />
               </a>
             </p>
           </div>
         </div>
+        <aside className="md:sticky md:top-4 md:self-start md:order-1">
+          <SiteInfoNav currentPath="/about" />
+        </aside>
       </div>
     </div>
   );

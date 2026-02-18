@@ -3,6 +3,7 @@ import { getSortedProducts } from '@/lib/getProducts';
 import { Metadata } from 'next';
 import { generateOpenGraphMetadata, generateTwitterMetadata } from '@/lib/metadata';
 import { generateBreadcrumbSchemaForPath } from '@/lib/BreadcrumbSchema';
+import { IconLink, IconAppStore, IconGooglePlay, IconGithub } from '@/lib/icons';
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
@@ -49,12 +50,12 @@ export default async function ProductsPage() {
             <div key={product.id} className="bg-white p-6 rounded-lg shadow">
               <h3 className="text-2xl font-semibold mb-2">
                 <Link href={`/products/${product.id}`}>
-                  {product.title} <i className="fa-solid fa-link text-lg"></i>
+                  {product.title} <IconLink className="h-5 w-5 inline" aria-hidden />
                 </Link>
               </h3>
               <p className="text-gray-600 mb-4">{product.description}</p>
               {product.price && (
-                <p className="text-lg font-semibold text-blue-600 mb-4">{product.price}</p>
+                <p className="text-lg font-semibold text-blue-800 mb-4">{product.price}</p>
               )}
               <div className="flex space-x-4">
                 {product.links?.map((link, index) => (
@@ -63,11 +64,11 @@ export default async function ProductsPage() {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 flex items-center space-x-1"
+                    className="text-blue-800 hover:text-blue-900 flex items-center space-x-1"
                   >
-                    {link.text === 'App Store' && <i className="fab fa-app-store text-lg"></i>}
-                    {link.text === 'Play Store' && <i className="fab fa-google-play text-lg"></i>}
-                    {link.text === 'Github' && <i className="fab fa-github text-lg"></i>}
+                    {link.text === 'App Store' && <IconAppStore className="h-5 w-5" aria-hidden />}
+                    {link.text === 'Play Store' && <IconGooglePlay className="h-5 w-5" aria-hidden />}
+                    {link.text === 'Github' && <IconGithub className="h-5 w-5" aria-hidden />}
                     <span>{link.text}</span>
                   </a>
                 ))}
@@ -85,19 +86,19 @@ export default async function ProductsPage() {
             <div key={product.id} className="bg-white p-6 rounded-lg shadow">
               <h3 className="text-2xl font-semibold mb-2">
                 <Link href={`/products/${product.id}`}>
-                  {product.title} <i className="fa-solid fa-link text-lg"></i>
+                  {product.title} <IconLink className="h-5 w-5 inline" aria-hidden />
                 </Link>
               </h3>
               <p className="text-gray-600 mb-4">{product.description}</p>
               {product.price && (
-                <p className="text-lg font-semibold text-blue-600 mb-2">{product.price}</p>
+                <p className="text-lg font-semibold text-blue-800 mb-2">{product.price}</p>
               )}
               {product.duration && (
-                <p className="text-sm text-gray-500 mb-4">Duration: {product.duration}</p>
+                <p className="text-sm text-gray-700 mb-4">Duration: {product.duration}</p>
               )}
               <Link
                 href={`/products/${product.id}`}
-                className="text-blue-600 hover:text-blue-800"
+                className="text-blue-700 hover:text-blue-800"
               >
                 View Details {'\u2192'}
               </Link>
@@ -116,7 +117,7 @@ export default async function ProductsPage() {
             </p>
             <Link
               href="/contact/"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+              className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
             >
               Contact Us
             </Link>

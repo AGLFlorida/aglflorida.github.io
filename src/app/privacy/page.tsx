@@ -60,7 +60,7 @@ export default function PrivacyPage() {
         <h2>Third-Party Services</h2>
         <p>
           The Site is hosted on GitHub Pages and uses their standard hosting services. 
-          Please refer to <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" className="text-blue-600 hover:text-blue-800">GitHub&apos;s Privacy Statement</a> for 
+          Please refer to <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" className="text-blue-800 hover:text-blue-900">GitHub&apos;s Privacy Statement</a> for 
           information about their data practices.
         </p>
 
@@ -75,7 +75,7 @@ export default function PrivacyPage() {
           If you have questions about this privacy policy, please use the contact form linked in the footer.
         </p>
 
-        <p className="text-sm text-gray-500 mt-8">
+        <p className="text-sm text-gray-700 mt-8">
           Last updated: 1/28/2026 {/*new Date().toLocaleDateString()*/}
         </p>
           </div>

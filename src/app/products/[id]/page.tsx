@@ -3,6 +3,7 @@ import { metadataFactory } from '@/lib/metadata';
 import { generateBreadcrumbSchemaForPath } from '@/lib/BreadcrumbSchema';
 import type { ResolvingMetadata } from 'next';
 import Link from 'next/link';
+import { IconAppStore, IconGooglePlay, IconGithub } from '@/lib/icons';
 
 type Params = Promise<{ id: string }>;
 
@@ -51,7 +52,7 @@ export default async function ProductPage({ params }: { params: Params }) {
         {product.price && (
           <div className="mb-6">
             <h2 className="text-xl font-semibold mb-2">Pricing</h2>
-            <p className="text-2xl font-bold text-blue-600">{product.price}</p>
+            <p className="text-2xl font-bold text-blue-800">{product.price}</p>
           </div>
         )}
 
@@ -108,11 +109,11 @@ export default async function ProductPage({ params }: { params: Params }) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 flex items-center space-x-1"
+                className="text-blue-800 hover:text-blue-900 flex items-center space-x-1"
               >
-                {link.text === 'App Store' && <i className="fab fa-app-store text-lg"></i>}
-                {link.text === 'Play Store' && <i className="fab fa-google-play text-lg"></i>}
-                {link.text === 'Github' && <i className="fab fa-github text-lg"></i>}
+                {link.text === 'App Store' && <IconAppStore className="h-5 w-5" aria-hidden />}
+                {link.text === 'Play Store' && <IconGooglePlay className="h-5 w-5" aria-hidden />}
+                {link.text === 'Github' && <IconGithub className="h-5 w-5" aria-hidden />}
                 <span>{link.text}</span>
               </a>
             ))}
@@ -130,13 +131,13 @@ export default async function ProductPage({ params }: { params: Params }) {
             </p>
             <Link
               href="/contact/"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full mb-4"
+              className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full mb-4"
             >
               Contact Us
             </Link>
             <Link
               href="/products/"
-              className="inline-block border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 transition text-center font-semibold w-full"
+              className="inline-block border-2 border-blue-800 text-blue-800 px-6 py-3 rounded-lg hover:bg-blue-50 transition text-center font-semibold w-full"
             >
               See All Products
             </Link>

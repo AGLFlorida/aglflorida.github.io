@@ -2,6 +2,7 @@
   "name": "aglflorida.github.io",
   "version": "0.29.4",
   "private": true,
+  "browserslist": ["defaults and fully supports es6-module"],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -9,7 +10,8 @@
     "lint": "eslint .",
     "test": "jest",
     "compile": "npx tsc --noEmit",
-    "validate:schemas": "tsx scripts/validate-schemas.ts"
+    "validate:schemas": "tsx scripts/validate-schemas.ts",
+    "lighthouse": "lhci autorun"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -22,6 +24,7 @@
   },
   "devDependencies": {
     "@jest/transform": "^30.2.0",
+    "@lhci/cli": "^0.15.1",
     "@tailwindcss/typography": "^0.5.16",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
