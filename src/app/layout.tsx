@@ -160,6 +160,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       Releases
                     </Link>
                   </li>
+                  <li>
+                    <Link href="/partners" className="hover:text-white transition">
+                      Partners
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <div>
