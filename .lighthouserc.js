@@ -4,14 +4,13 @@ module.exports = {
       staticDistDir: './out',
       url: [
         '/',
-        '/about',
-        '/blog/page/1',
-        '/contact',
-        '/people',
-        '/policies',
-        '/products',
-        '/projects',
-        '/404'
+        '/about/',
+        '/blog/page/1/',
+        '/contact/',
+        '/people/',
+        '/policies/',
+        '/products/',
+        '/projects/',
       ],
     },
     assert: {
