@@ -60,7 +60,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         <div className="w-full lg:w-2/3">
           <div className="bg-white p-6 rounded-lg shadow">
             <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
-            <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
+            <div className="flex items-center gap-4 text-sm text-gray-700 mb-6">
               <p>{post.date}</p>
               <span className="text-gray-300">•</span>
               <p>By Brandon Shoop</p>
@@ -78,7 +78,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             </p>
             <Link
               href="/blog/page/1"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+              className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
             >
               View All Posts
             </Link>

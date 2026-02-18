@@ -20,7 +20,7 @@ export default function ContactPage() {
   const featuredPosts = posts.slice(0, 4); // Show only first 4 posts
 
   return (
-    <main className="max-w-7xl mx-auto py-8 px-4">
+    <div className="max-w-7xl mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-8">Get in Touch</h1>
       <p className="mb-8">
         Talk Tech Strategy with AGL Consulting.
@@ -41,22 +41,22 @@ export default function ContactPage() {
               {featuredPosts.map((post) => (
                 <div key={post.slug}>
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                    <Link href={`/blog/${post.slug}`} className="text-blue-600 hover:text-blue-800">
+                    <Link href={`/blog/${post.slug}`} className="text-blue-800 hover:text-blue-900">
                       {post.title}
                     </Link>
                   </h3>
                   <p className="text-sm text-gray-600 mb-2">{post.excerpt || post.date}</p>
-                  <p className="text-xs text-gray-500">{post.date}</p>
+                  <p className="text-xs text-gray-700">{post.date}</p>
                 </div>
               ))}
               <hr />
-              <Link href="/blog/page/1" className="text-blue-600 hover:text-blue-800">
+              <Link href="/blog/page/1" className="text-blue-800 hover:text-blue-900">
                 More...
               </Link>
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

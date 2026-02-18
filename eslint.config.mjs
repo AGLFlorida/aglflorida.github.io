@@ -1,5 +1,6 @@
 import nextConfig from "eslint-config-next/core-web-vitals";
 import nextTypeScript from "eslint-config-next/typescript";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 
 const eslintConfig = [
   ...nextConfig,
@@ -12,6 +13,13 @@ const eslintConfig = [
   },
   {
     rules: {
+      // eslint-config-next already registers the jsx-a11y plugin; just enable all recommended rules
+      ...Object.fromEntries(
+        Object.entries(jsxA11y.configs.recommended.rules).map(([rule, value]) => [
+          `jsx-a11y/${rule.replace(/^jsx-a11y\//, "")}`,
+          value,
+        ])
+      ),
       "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     },
   },

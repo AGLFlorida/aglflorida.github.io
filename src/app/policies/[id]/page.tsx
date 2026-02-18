@@ -21,5 +21,10 @@ export default async function PolicyPage({ params }: { params: Params }) {
     return <div style={{ whiteSpace: 'pre' }}>Policy Not Found</div>;
   }
 
-  return <div style={{ whiteSpace: 'pre', fontFamily: 'monospace' }}>{policy.content}</div>;
+  return (
+    <div className="max-w-4xl mx-auto py-8">
+      <h1 className="text-3xl font-bold mb-8">{policy.title}</h1>
+      <div style={{ whiteSpace: 'pre', fontFamily: 'monospace' }}>{policy.content}</div>
+    </div>
+  );
 } 

@@ -59,7 +59,8 @@ export default async function PeoplePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-gray-300"
-                  ><i className="fa fa-book"></i></a>
+                    aria-label="Brandon Shoop's personal blog"
+                  ><i className="fa fa-book" aria-hidden="true"></i></a>
                 </p>
               </div>
             </li>
@@ -74,7 +75,7 @@ export default async function PeoplePage() {
             </p>
             <Link
               href="/blog/page/1"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+              className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
             >
               Read the blog
             </Link>

@@ -75,7 +75,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
               </p>
               <Link
                 href="/people"
-                className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+                className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
               >
                 Meet Our People
               </Link>
@@ -89,7 +89,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 href="https://brandonshoop.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+                className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
               >
                 Visit Founder&apos;s Blog <i className="fas fa-external-link-alt text-sm ml-1" aria-hidden="true"></i>
               </a>
@@ -117,7 +117,7 @@ function PaginationControls({ currentPage, totalPages }: { currentPage: number, 
             key={pageNum}
             href={`/blog/page/${pageNum}`}
             className={`px-3 py-1 rounded ${
-              pageNum === currentPage ? "bg-blue-600 text-white" : "text-blue-800 hover:bg-blue-100"
+              pageNum === currentPage ? "bg-blue-800 text-white" : "text-blue-800 hover:bg-blue-100"
             }`}
           >
             {pageNum}

@@ -111,9 +111,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="max-w-7xl mx-auto px-4 py-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
-                <h3 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
+                <h2 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
                   Site
-                </h3>
+                </h2>
                 <ul className="space-y-2">
                   <li>
                     <Link href="/" className="hover:text-white transition">
@@ -148,9 +148,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
+                <h2 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
                   About
-                </h3>
+                </h2>
                 <ul className="space-y-2">
                   <li>
                     <Link href="/about" className="hover:text-white transition">
@@ -165,9 +165,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
+                <h2 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
                   Legal
-                </h3>
+                </h2>
                 <ul className="space-y-2">
                   <li>
                     <Link href="/privacy" className="hover:text-white transition">
@@ -182,9 +182,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
+                <h2 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
                   Connect
-                </h3>
+                </h2>
                 <div className="flex gap-4 mb-4">
                   <a
                     href="https://www.linkedin.com/company/agl-consulting-llc/"

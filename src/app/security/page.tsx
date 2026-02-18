@@ -79,7 +79,7 @@ export default function SecurityPage() {
           If you have questions about this policy, please use the contact form linked in the footer.
         </p>
 
-        <p className="text-sm text-gray-500 mt-8">
+        <p className="text-sm text-gray-700 mt-8">
           Last updated: 6/27/2025 {/*new Date().toLocaleDateString()*/}
         </p>
           </div>

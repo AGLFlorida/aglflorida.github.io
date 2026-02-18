@@ -79,7 +79,7 @@ export default async function ProjectsPage() {
             </p>
             <Link
               href="/blog/page/1"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+              className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
             >
               Read the blog
             </Link>

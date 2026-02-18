@@ -245,7 +245,7 @@ export default function ContactForm() {
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-blue-800 text-white p-2 rounded-md hover:bg-blue-900 transition disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={status === "sending" || (!isLocalhost && !captchaToken)}
           aria-busy={status === "sending"}
         >

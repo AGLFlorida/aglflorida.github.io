@@ -97,7 +97,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 flex items-center space-x-1"
+                className="text-blue-800 hover:text-blue-900 flex items-center space-x-1"
               >
                 {link.text === "App Store" && <i className="fab fa-app-store text-lg"></i>}
                 {link.text === "Play Store" && <i className="fab fa-google-play text-lg"></i>}
@@ -119,7 +119,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
             </p>
             <Link
               href="/projects"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-center font-semibold w-full"
+              className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
             >
               View All Projects
             </Link>

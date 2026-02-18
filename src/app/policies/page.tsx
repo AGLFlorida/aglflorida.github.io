@@ -30,7 +30,7 @@ export default async function PoliciesPage() {
                 href={`/policies/${policy.id}`}
                 className="block hover:bg-gray-50 p-2 -mx-2 rounded transition"
               >
-                <h2 className="font-medium text-blue-600 hover:text-blue-800">
+                <h2 className="font-medium text-blue-800 hover:text-blue-900">
                   {policy.title}
                 </h2>
               </Link>

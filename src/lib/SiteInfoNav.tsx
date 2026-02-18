@@ -22,7 +22,7 @@ export function SiteInfoNav({ currentPath }: SiteInfoNavProps) {
       className="bg-white border border-gray-200 rounded-lg shadow p-2 w-full"
       aria-label="Site information"
     >
-      <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+      <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-3">
         Site information
       </h2>
       <ul className="space-y-2">
@@ -40,7 +40,7 @@ export function SiteInfoNav({ currentPath }: SiteInfoNavProps) {
               ) : (
                 <Link
                   href={href}
-                  className="text-blue-600 hover:text-blue-800 hover:underline block"
+                  className="text-blue-800 hover:text-blue-900 hover:underline block"
                 >
                   {label}
                 </Link>
