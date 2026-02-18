@@ -19,3 +19,11 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Blog and project prose: captions and callouts */
+.prose .linkedin-callout,
+.prose .photo-credit {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  font-style: italic;
+}

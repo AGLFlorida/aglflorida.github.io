@@ -17,3 +17,17 @@ After adding or changing `public/header.jpg` or `public/siteicon.png`, run the i
 ```
 
 Commit the generated `public/*.webp` and `public/*.avif` files so the site stays self-contained.
+
+## Blog post images
+
+Put image files in `public/assets/` (or `public/blog/` for post-specific assets). In markdown use:
+
+```markdown
+![Alt text](/assets/your-image.png)
+```
+
+Optional caption/credit (styled smaller and italic):
+
+```markdown
+<p class="photo-credit">Photo credit: Your source or prompt.</p>
+```
