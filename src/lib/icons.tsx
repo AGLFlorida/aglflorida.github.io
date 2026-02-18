@@ -3,21 +3,52 @@
  * Icons use currentColor so they inherit text color. Use className for size (e.g. text-lg, w-5 h-5).
  */
 
+import { useId } from 'react';
+
 export interface IconProps {
   className?: string;
   'aria-hidden'?: boolean;
 }
 
+/**
+ * LinkedIn logo: rounded box with "in" as cut-out (negative space).
+ * Uses currentColor so it inherits text color.
+ */
 export function IconLinkedIn({ className, 'aria-hidden': ariaHidden }: IconProps) {
+  const maskId = `linkedin-in-${useId().replace(/:/g, '-')}`;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 448 512"
+      viewBox="0 0 24 24"
       fill="currentColor"
       className={className}
       aria-hidden={ariaHidden}
     >
-      <path d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
+      <defs>
+        <mask id={maskId}>
+          <rect width="24" height="24" fill="white" />
+          <text
+            x="12"
+            y="19"
+            textAnchor="middle"
+            fontSize="21"
+            fontWeight="700"
+            fill="black"
+            fontFamily="var(--font-source-sans), 'Source Sans 3', 'Source Sans', Arial, Helvetica, sans-serif"
+          >
+            in
+          </text>
+        </mask>
+      </defs>
+      <rect
+        x="0"
+        y="0"
+        width="24"
+        height="24"
+        rx="3"
+        fill="currentColor"
+        mask={`url(#${maskId})`}
+      />
     </svg>
   );
 }
@@ -93,16 +124,3 @@ export function IconExternalLink({ className, 'aria-hidden': ariaHidden }: IconP
   );
 }
 
-export function IconBook({ className, 'aria-hidden': ariaHidden }: IconProps) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 448 512"
-      fill="currentColor"
-      className={className}
-      aria-hidden={ariaHidden}
-    >
-      <path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96 0 0 0-96-96H96zM384 384H96c-17.7 0-32-14.3-32-32s14.3-32 32-32H384V384zM96 128H384V320H96c-17.7 0-32-14.3-32-32s14.3-32 32-32z" />
-    </svg>
-  );
-}

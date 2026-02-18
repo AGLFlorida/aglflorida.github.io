@@ -1,5 +1,6 @@
 import './globals.css';
 import Link from 'next/link';
+import { Source_Sans_3 } from 'next/font/google';
 
 import { Breadcrumbs } from '@/lib/Breadcrumbs';
 import {
@@ -43,6 +44,12 @@ export async function generateMetadata(): Promise<Metadata> {
 //   },
 // };
 
+const sourceSans = Source_Sans_3({
+  subsets: ['latin'],
+  variable: '--font-source-sans',
+  weight: ['400', '600', '700'],
+});
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const currentYear = new Date().getFullYear();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
@@ -51,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const websiteSchema = generateWebsiteSchema(baseUrl);
 
   return (
-    <html lang="en">
+    <html lang="en" className={sourceSans.variable}>
       <head>
         <link rel="preload" as="image" href="/header.avif" type="image/avif" />
         <link rel="preload" as="image" href="/header.webp" type="image/webp" />
