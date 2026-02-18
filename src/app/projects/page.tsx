@@ -52,7 +52,7 @@ export default async function ProjectsPage() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 flex items-center space-x-1"
+                      className="text-blue-800 hover:text-blue-900 flex items-center space-x-1"
                     >
                       {link.text === "App Store" && <i className="fab fa-app-store text-lg"></i>}
                       {link.text === "Play Store" && <i className="fab fa-google-play text-lg"></i>}

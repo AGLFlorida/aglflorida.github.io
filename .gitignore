@@ -45,3 +45,4 @@ next-env.d.ts
 
 dry-run.sh
 change-summary.md
+specs/*

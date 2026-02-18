@@ -36,17 +36,17 @@ export default async function Home() {
                   href={`/products/${product.id}`}
                   className="block hover:bg-gray-50 p-2 -mx-2 rounded transition"
                 >
-                  <h3 className="font-medium text-blue-600 hover:text-blue-800">
+                  <h3 className="font-medium text-blue-800 hover:text-blue-900">
                     {product.title}
                   </h3>
-                  <p className="text-sm text-gray-500">{product.description}</p>
+                  <p className="text-sm text-gray-700">{product.description}</p>
                 </Link>
               </li>
             ))}
           </ul>
           <br />
           <hr />
-          <Link href="/products" className="text-blue-600 hover:text-blue-800">
+          <Link href="/products" className="text-blue-800 hover:text-blue-900">
             More...
           </Link>
         </div>
@@ -65,17 +65,17 @@ export default async function Home() {
                   href={`/blog/${post.slug}`}
                   className="block hover:bg-gray-50 p-2 -mx-2 rounded transition"
                 >
-                  <h3 className="font-medium text-blue-600 hover:text-blue-800">
+                  <h3 className="font-medium text-blue-800 hover:text-blue-900">
                     {post.title}
                   </h3>
-                  <p className="text-sm text-gray-500">{post.excerpt || post.date}</p>
+                  <p className="text-sm text-gray-700">{post.excerpt || post.date}</p>
                 </Link>
               </li>
             ))}
           </ul>
           <br />
           <hr />
-          <Link href="/blog/page/1" className="text-blue-600 hover:text-blue-800">
+          <Link href="/blog/page/1" className="text-blue-800 hover:text-blue-900">
             More...
           </Link>
         </div>
@@ -91,17 +91,17 @@ export default async function Home() {
                   href={`/projects/${project.id}`}
                   className="block hover:bg-gray-50 p-2 -mx-2 rounded transition"
                 >
-                  <h3 className="font-medium text-blue-600 hover:text-blue-800">
+                  <h3 className="font-medium text-blue-800 hover:text-blue-900">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-gray-500">{project.description}</p>
+                  <p className="text-sm text-gray-700">{project.description}</p>
                 </Link>
               </li>
             ))}
           </ul>
           <br />
           <hr />
-          <Link href="/projects/" className="text-blue-600 hover:text-blue-800">
+          <Link href="/projects/" className="text-blue-800 hover:text-blue-900">
             More...
           </Link>
         </div>

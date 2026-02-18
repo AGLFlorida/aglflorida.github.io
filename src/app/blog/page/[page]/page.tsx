@@ -48,10 +48,10 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           {currentPosts.map((post) => (
             <div key={post.slug} className="border-b last:border-0 pb-6 last:pb-0">
               <Link href={`/blog/${post.slug}`} className="block group">
-                <h2 className="text-2xl font-semibold text-blue-600 group-hover:text-blue-800 mb-2">
+                <h2 className="text-2xl font-semibold text-blue-800 group-hover:text-blue-900 mb-2">
                   {post.title}
                 </h2>
-                <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                <div className="flex items-center gap-4 text-sm text-gray-700 mb-3">
                   <p>{post.date}</p>
                   <span className="text-gray-300">•</span>
                   <p>By Brandon Shoop</p>
@@ -106,7 +106,7 @@ function PaginationControls({ currentPage, totalPages }: { currentPage: number, 
     <div className="flex justify-between items-center py-4">
       <div>
         {currentPage > 1 && (
-          <Link href={`/blog/page/${currentPage - 1}`} className="text-blue-600 hover:text-blue-800">
+          <Link href={`/blog/page/${currentPage - 1}`} className="text-blue-800 hover:text-blue-900">
             ← Previous
           </Link>
         )}
@@ -117,7 +117,7 @@ function PaginationControls({ currentPage, totalPages }: { currentPage: number, 
             key={pageNum}
             href={`/blog/page/${pageNum}`}
             className={`px-3 py-1 rounded ${
-              pageNum === currentPage ? "bg-blue-600 text-white" : "text-blue-600 hover:bg-blue-100"
+              pageNum === currentPage ? "bg-blue-600 text-white" : "text-blue-800 hover:bg-blue-100"
             }`}
           >
             {pageNum}
@@ -126,7 +126,7 @@ function PaginationControls({ currentPage, totalPages }: { currentPage: number, 
       </div>
       <div>
         {currentPage < totalPages && (
-          <Link href={`/blog/page/${currentPage + 1}`} className="text-blue-600 hover:text-blue-800">
+          <Link href={`/blog/page/${currentPage + 1}`} className="text-blue-800 hover:text-blue-900">
             Next →
           </Link>
         )}

@@ -14,7 +14,7 @@ export const Breadcrumbs = () => {
     return (
       <span key={href} className="text-sm">
         {index > 0 && ' / '}
-        <Link href={href} className="text-blue-600 hover:underline">
+        <Link href={href} className="text-blue-800 hover:underline">
           {label}
         </Link>
       </span>
@@ -23,7 +23,7 @@ export const Breadcrumbs = () => {
 
   return <nav aria-label="Breadcrumbs">
     {(segments.length > 0) && <span key={'/'} className="text-sm">
-      <Link href={'/'} className="text-blue-600 hover:underline">{"Home / "}</Link>
+      <Link href={'/'} className="text-blue-800 hover:underline">{"Home / "}</Link>
     </span>}
     {crumbs}
   </nav>;

@@ -242,7 +242,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
             </div>
-            <div className="mt-12 pt-8 border-t border-gray-700 text-center text-sm text-gray-500">
+            <div className="mt-12 pt-8 border-t border-gray-700 text-center text-sm text-gray-300">
               {'\u00A9'} {currentYear} AGL Consulting LLC
             </div>
           </div>
