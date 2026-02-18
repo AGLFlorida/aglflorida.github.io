@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getSortedPosts } from "@/lib/getPosts";
 import { getSortedProjects } from "@/lib/getProjects";
 import { getSortedProducts } from "@/lib/getProducts";
+import { IconLink } from "@/lib/icons";
 
 export default async function Home() {
   const posts = getSortedPosts();
@@ -56,7 +57,7 @@ export default async function Home() {
       <div className="w-full lg:w-1/3 space-y-8">
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-xl font-bold mb-4">
-            <Link href="/blog/page/1">Company Blog <i className="fa-solid fa-link text-lg"></i></Link>
+            <Link href="/blog/page/1" className="inline-flex items-center gap-1">Company Blog <IconLink className="h-5 w-5" aria-hidden /></Link>
           </h2>
           <ul className="space-y-3">
             {featuredPosts.map((post) => (
@@ -82,7 +83,7 @@ export default async function Home() {
 
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-xl font-bold mb-4">
-            <Link href="/projects/">Projects <i className="fa-solid fa-link text-lg"></i></Link>
+            <Link href="/projects/" className="inline-flex items-center gap-1">Projects <IconLink className="h-5 w-5" aria-hidden /></Link>
           </h2>
           <ul className="space-y-3">
             {featuredProjects.map((project) => (

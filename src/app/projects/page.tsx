@@ -3,6 +3,7 @@ import { getSortedProjects } from "@/lib/getProjects";
 import { Metadata } from 'next';
 import { generateOpenGraphMetadata, generateTwitterMetadata } from "@/lib/metadata";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
+import { IconLink, IconAppStore, IconGooglePlay, IconGithub } from "@/lib/icons";
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
@@ -41,7 +42,7 @@ export default async function ProjectsPage() {
               <div key={project.id} className="bg-white p-6 rounded-lg shadow">
                 <h2 className="text-2xl font-semibold mb-2">
                   <Link href={`/projects/${project.id}`}>
-                    {project.title} <i className="fa-solid fa-link text-lg"></i>
+                    {project.title} <IconLink className="h-5 w-5 inline" aria-hidden />
                   </Link>
                 </h2>
                 <p className="text-gray-600 mb-4">{project.description}</p>
@@ -54,9 +55,9 @@ export default async function ProjectsPage() {
                       rel="noopener noreferrer"
                       className="text-blue-800 hover:text-blue-900 flex items-center space-x-1"
                     >
-                      {link.text === "App Store" && <i className="fab fa-app-store text-lg"></i>}
-                      {link.text === "Play Store" && <i className="fab fa-google-play text-lg"></i>}
-                      {link.text === "Github" && <i className="fab fa-github text-lg"></i>}
+                      {link.text === "App Store" && <IconAppStore className="h-5 w-5" aria-hidden />}
+                      {link.text === "Play Store" && <IconGooglePlay className="h-5 w-5" aria-hidden />}
+                      {link.text === "Github" && <IconGithub className="h-5 w-5" aria-hidden />}
                       <span>{link.text}</span>
                     </a>
                   ))}

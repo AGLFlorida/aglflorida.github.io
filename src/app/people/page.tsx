@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
+import { IconLinkedIn, IconBook } from '@/lib/icons';
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -34,7 +35,7 @@ export default async function PeoplePage() {
                     rel="noopener noreferrer"
                     className="hover:text-gray-300"
                   >
-                    Aliza Shoop <i className="fab fa-linkedin"></i>
+                    Aliza Shoop <IconLinkedIn className="inline h-4 w-4" aria-hidden />
                   </a>
                 </h2>
                 <p className="text-gray-600">Vice President</p>
@@ -50,7 +51,7 @@ export default async function PeoplePage() {
                     rel="noopener noreferrer"
                     className="hover:text-gray-300"
                   >
-                    Brandon Shoop <i className="fab fa-linkedin"></i>
+                    Brandon Shoop <IconLinkedIn className="inline h-4 w-4" aria-hidden />
                   </a>
                 </h2>
                 <p className="text-gray-600">Managing Partner&nbsp;
@@ -60,7 +61,7 @@ export default async function PeoplePage() {
                     rel="noopener noreferrer"
                     className="hover:text-gray-300"
                     aria-label="Brandon Shoop's personal blog"
-                  ><i className="fa fa-book" aria-hidden="true"></i></a>
+                  ><IconBook className="inline h-4 w-4" aria-hidden /></a>
                 </p>
               </div>
             </li>

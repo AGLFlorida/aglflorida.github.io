@@ -1,6 +1,7 @@
 import ContactForm from './ContactForm';
 import type { Metadata } from 'next';
 import { getSortedPosts } from '@/lib/getPosts';
+import { IconLink } from '@/lib/icons';
 import Link from 'next/link';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -35,7 +36,7 @@ export default function ContactPage() {
         <div className="w-full lg:w-1/3">
           <div className="bg-white p-6 rounded-lg shadow sticky top-8">
             <h2 className="text-xl font-bold mb-4">
-              <Link href="/blog/page/1">Company Blog <i className="fa-solid fa-link text-lg"></i></Link>
+              <Link href="/blog/page/1" className="inline-flex items-center gap-1">Company Blog <IconLink className="h-5 w-5" aria-hidden /></Link>
             </h2>
             <div className="space-y-6">
               {featuredPosts.map((post) => (

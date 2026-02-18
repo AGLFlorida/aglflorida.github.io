@@ -2,6 +2,7 @@
   "name": "aglflorida.github.io",
   "version": "0.29.3",
   "private": true,
+  "browserslist": ["defaults and fully supports es6-module"],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

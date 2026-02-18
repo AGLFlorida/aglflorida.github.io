@@ -4,6 +4,7 @@ import { generateProjectSchema } from "@/lib/schema";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
 import type { ResolvingMetadata } from 'next';
 import Link from 'next/link';
+import { IconAppStore, IconGooglePlay, IconGithub } from "@/lib/icons";
 
 type Params = Promise<{ id: string }>;
 
@@ -99,9 +100,9 @@ export default async function ProjectPage({ params }: { params: Params }) {
                 rel="noopener noreferrer"
                 className="text-blue-800 hover:text-blue-900 flex items-center space-x-1"
               >
-                {link.text === "App Store" && <i className="fab fa-app-store text-lg"></i>}
-                {link.text === "Play Store" && <i className="fab fa-google-play text-lg"></i>}
-                {link.text === "Github" && <i className="fab fa-github text-lg"></i>}
+                {link.text === "App Store" && <IconAppStore className="h-5 w-5" aria-hidden />}
+                {link.text === "Play Store" && <IconGooglePlay className="h-5 w-5" aria-hidden />}
+                {link.text === "Github" && <IconGithub className="h-5 w-5" aria-hidden />}
                 <span>{link.text}</span>
               </a>
             ))}

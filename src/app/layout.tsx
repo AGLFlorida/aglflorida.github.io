@@ -1,8 +1,13 @@
 import './globals.css';
 import Link from 'next/link';
-import Image from 'next/image';
 
 import { Breadcrumbs } from '@/lib/Breadcrumbs';
+import {
+  IconLinkedIn,
+  IconGithub,
+  IconGooglePlay,
+  IconAppStore,
+} from '@/lib/icons';
 import { generateOrganizationSchema, generatePersonSchema, generateWebsiteSchema } from '@/lib/schema';
 import { generateOpenGraphMetadata, generateTwitterMetadata } from '@/lib/metadata';
 
@@ -48,11 +53,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <link rel="preload" as="image" href="/header.avif" type="image/avif" />
+        <link rel="preload" as="image" href="/header.webp" type="image/webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -68,25 +70,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-gray-100 text-gray-900">
         <header className="relative h-36 md:h-44">
-           <Image
-            src="/header.jpg" // adjust this path as needed
-            alt="Header Background"
-            fill
-            className="object-cover z-0"
-            priority
-          />
+          <picture className="absolute inset-0 z-0 block h-full w-full">
+            <source srcSet="/header.avif" type="image/avif" />
+            <source srcSet="/header.webp" type="image/webp" />
+            <img
+              src="/header.jpg"
+              alt="Header Background"
+              className="h-full w-full object-cover"
+              fetchPriority="high"
+            />
+          </picture>
 
           <div className="absolute inset-0 bg-gray-900/70 shadow-sm z-10">
             <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center h-full">
               <Link href="/" className="flex items-center space-x-3 hover:text-gray-300 transition">
-                <Image
-                  src="/siteicon.png"
-                  alt="Site Icon"
-                  width={40}
-                  height={40}
-                  style={{ width: '40px', height: '40px' }}
-                  className="rounded-full"
-                />
+                <picture className="h-10 w-10 shrink-0">
+                  <source srcSet="/siteicon.avif" type="image/avif" />
+                  <source srcSet="/siteicon.webp" type="image/webp" />
+                  <img
+                    src="/siteicon.png"
+                    alt="Site Icon"
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 rounded-full"
+                  />
+                </picture>
                 <span className="text-4xl font-bold text-gray-100">
                   AGL <span className="hidden md:inline">Consulting</span>
                 </span>
@@ -190,37 +198,37 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     href="https://www.linkedin.com/company/agl-consulting-llc/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xl text-gray-300 hover:text-white transition"
+                    className="text-xl text-gray-300 hover:text-white transition inline-flex"
                     aria-label="LinkedIn"
                   >
-                    <i className="fab fa-linkedin"></i>
+                    <IconLinkedIn className="h-5 w-5" aria-hidden />
                   </a>
                   <a
                     href="https://github.com/aglflorida/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xl text-gray-300 hover:text-white transition"
+                    className="text-xl text-gray-300 hover:text-white transition inline-flex"
                     aria-label="GitHub"
                   >
-                    <i className="fab fa-github"></i>
+                    <IconGithub className="h-5 w-5" aria-hidden />
                   </a>
                   <a
                     href="https://play.google.com/store/apps/dev?id=5851403031328766349"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xl text-gray-300 hover:text-white transition"
+                    className="text-xl text-gray-300 hover:text-white transition inline-flex"
                     aria-label="Google Play"
                   >
-                    <i className="fab fa-google-play"></i>
+                    <IconGooglePlay className="h-5 w-5" aria-hidden />
                   </a>
                   <a
                     href="https://apps.apple.com/us/developer/agl-consulting-llc/id1801519023"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xl text-gray-300 hover:text-white transition"
+                    className="text-xl text-gray-300 hover:text-white transition inline-flex"
                     aria-label="App Store"
                   >
-                    <i className="fab fa-app-store"></i>
+                    <IconAppStore className="h-5 w-5" aria-hidden />
                   </a>
                 </div>
                 <ul className="space-y-2">
@@ -242,7 +250,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
             </div>
-            <div className="mt-12 pt-8 border-t border-gray-700 text-center text-sm text-gray-300">
+            <div className="mt-12 pt-8 border-t border-gray-700 text-center text-sm text-gray-200">
               {'\u00A9'} {currentYear} AGL Consulting LLC
             </div>
           </div>

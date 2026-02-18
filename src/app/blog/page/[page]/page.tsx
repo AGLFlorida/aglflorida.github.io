@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getSortedPosts } from "@/lib/getPosts";
 import { metadataFactory } from "@/lib/metadata";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
+import { IconExternalLink } from "@/lib/icons";
 
 const POSTS_PER_PAGE = 5;
 
@@ -91,7 +92,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 rel="noopener noreferrer"
                 className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
               >
-                Visit Founder&apos;s Blog <i className="fas fa-external-link-alt text-sm ml-1" aria-hidden="true"></i>
+                Visit Founder&apos;s Blog <IconExternalLink className="text-sm ml-1 h-4 w-4 inline" aria-hidden />
               </a>
             </div>
           </div>
