@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
 interface FormData {
@@ -48,11 +48,11 @@ export default function ContactForm() {
 
   const [status, setStatus] = useState<Status>(null);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
-  const [isLocalhost, setIsLocalhost] = useState(false);
-
-  useEffect(() => {
-    setIsLocalhost(LOCALHOST_HOSTNAMES.includes(window.location.hostname));
-  }, []);
+  const isLocalhost = useSyncExternalStore(
+    () => () => {},
+    () => LOCALHOST_HOSTNAMES.includes(window.location.hostname),
+    () => false
+  );
 
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
 
