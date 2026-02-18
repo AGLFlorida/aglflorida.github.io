@@ -4,16 +4,17 @@ const SITE_INFO_LINKS = [
   { href: '/about', label: 'About AGL' },
   { href: '/privacy', label: 'Privacy Policy' },
   { href: '/security', label: 'Security Policy' },
+  { href: '/accessibility', label: 'Accessibility' },
 ] as const;
 
-type SiteInfoPath = '/about' | '/privacy' | '/security';
+type SiteInfoPath = '/about' | '/privacy' | '/security' | '/accessibility';
 
 interface SiteInfoNavProps {
   currentPath: SiteInfoPath;
 }
 
 /**
- * Navigation box linking About Us, Privacy Policy, and Security Policy.
+ * Navigation box linking About Us, Privacy Policy, Security Policy, and Accessibility.
  * Renders on each of those pages so users can move between them.
  */
 export function SiteInfoNav({ currentPath }: SiteInfoNavProps) {

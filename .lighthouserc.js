@@ -5,6 +5,7 @@ module.exports = {
       url: [
         '/',
         '/about/',
+        '/accessibility/',
         '/blog/page/1/',
         '/contact/',
         '/people/',

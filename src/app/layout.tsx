@@ -187,6 +187,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       Security Policy
                     </Link>
                   </li>
+                  <li>
+                    <Link href="/accessibility" className="hover:text-white transition">
+                      Accessibility Statement
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <div>

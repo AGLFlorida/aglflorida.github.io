@@ -23,8 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function AboutPage() {
   return (
     <div className="max-w-6xl mx-auto py-8">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_minmax(0,11rem)] gap-8">
-        {/* Main content first in DOM for correct heading order (h1 before h2); order on md puts sidebar left. */}
+      <div className="grid grid-cols-1 md:grid-cols-[minmax(0,11rem)_1fr] gap-8">
+        {/* Main content first in DOM for correct heading order (h1 before h2); order on md puts sidebar left (narrow column). */}
         <div className="min-w-0 md:order-2">
           <h1 className="text-3xl font-bold mb-8">About AGL Consulting</h1>
           <div className="bg-white p-6 rounded-lg shadow prose max-w-none">
