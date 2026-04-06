@@ -39,7 +39,7 @@
     "ajv-formats": "^3.0.1",
     "baseline-browser-mapping": "^2.10.9",
     "eslint": "^9",
-    "eslint-config-next": "16.2.0",
+    "eslint-config-next": "16.2.2",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
     "postcss": "^8",
