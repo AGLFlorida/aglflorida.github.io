@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "jest",
+    "test": "jest --no-watchman",
     "compile": "npx tsc --noEmit",
     "validate:schemas": "tsx scripts/validate-schemas.ts",
     "lighthouse": "lhci autorun"
