@@ -1,6 +1,6 @@
 ---
 title: "Fractional CTO"
-date: "2026-01-23"
+date: "2026-04-09"
 description: "Executive technology leadership for companies that need CTO-level strategy, architecture, and organizational design—without the full-time cost."
 type: "consulting"
 price: "Pricing Varies"
@@ -18,224 +18,75 @@ deliverables:
   - "Strategic technology partnerships and vendor evaluation"
 ---
 
-Your company needs executive technology leadership, but you're not ready for a full-time CTO. You need someone who can set technical strategy, make architecture decisions, design organizations, and align technology with business goals—without the overhead of a full-time executive hire.
+At some point, "we'll figure it out as we go" stops working. The codebase that was a scrappy MVP is now a liability. The team that shipped fast at five people is struggling at twenty. The board is asking questions about your technology strategy and you're not sure you have a real answer.
 
-Fractional CTO at AGL provides the strategic technology leadership your company needs. We're the next tier up from team management—we handle technology strategy, architecture, organizational design, and executive leadership while your team focuses on execution.
+You need a CTO. You're not ready to hire one full-time.
 
-## Why Fractional CTO?
+That's the gap we fill.
 
-Many companies find themselves in a gap: they've outgrown ad-hoc technical decisions but aren't ready for a full-time CTO. You might have:
-- **No technical strategy** — Technology decisions are reactive, not strategic
-- **Architecture debt** — Systems that worked at scale are now limiting growth
-- **Organizational confusion** — Unclear team structure, roles, and responsibilities
-- **Executive misalignment** — Technology and business goals aren't connected
-- **Resource uncertainty** — Unclear how to invest in technology for growth
-- **Risk exposure** — Technical decisions made without understanding long-term implications
-- **Scaling challenges** — What worked for 5 people doesn't work for 50
+## What a Fractional CTO Actually Does
 
-A fractional CTO provides executive-level technology leadership on a part-time basis, giving you strategic direction, architectural guidance, and organizational design without the full-time cost.
+This isn't an advisory retainer where someone reviews your architecture once a quarter and sends a slide deck. A fractional CTO is embedded, opinionated, and accountable. We take on the strategic and executive technology functions your organization needs to scale:
 
-## What We Provide
+**Technology strategy and roadmap** — Where is your technology going, why, and in what order? We help you make those decisions deliberately instead of reactively.
 
-Our fractional CTO engagement provides the strategic and executive functions your technology organization needs:
+**Architecture guidance** — Evaluating the big calls: when to build vs. buy, how to manage technical debt, what your system needs to look like at 10x your current scale.
 
-### Technology Strategy & Vision
+**Organizational design** — How teams are structured, how they communicate, how work flows through them. Getting this right early saves enormous pain later.
 
-We help you define where technology is going and why:
+**Executive communication** — Translating technology decisions into language your board, investors, and business stakeholders can act on. And advocating for the right investments before the wrong ones become urgent.
 
-**Strategic Planning**
-- Technology roadmap aligned with business goals
-- Long-term technical vision and direction
-- Technology investment priorities and trade-offs
-- Risk assessment and mitigation strategies
-- Competitive technology analysis
+**Hiring and talent strategy** — Helping you hire the right people, at the right levels, for where you're actually going—not just where you are today.
 
-**Business Alignment**
-- Translating business goals into technical strategy
-- Communicating technical strategy to executive leadership
-- Aligning technology investments with business outcomes
-- Building technology-business partnerships
-- Managing stakeholder expectations
+**Risk and decision support** — Technical due diligence for M&A, vendor evaluations, security posture reviews, and the decisions that have long tails.
 
-### Architecture & Technical Leadership
+## Why Fractional?
 
-We guide you in making the right technical decisions:
+Many companies hit a growth stage where they've clearly outgrown ad-hoc technical decision-making but aren't ready—financially or organizationally—for a full-time executive hire. A full-time CTO at the right level is expensive, takes months to recruit, and may be more capacity than you need right now.
 
-**Architecture Strategy**
-- System architecture review and recommendations
-- Scalability and performance planning
-- Technology stack evaluation and selection
-- Integration strategy and API design
-- Data architecture and infrastructure planning
-
-**Technical Decision-Making**
-- Evaluating build vs. buy decisions
-- Technology selection and vendor evaluation
-- Technical risk assessment and mitigation
-- Code quality and technical debt management
-- Security and compliance strategy
-
-**Technical Standards**
-- Establishing engineering standards and practices
-- Code review and quality frameworks
-- Testing and deployment strategies
-- Documentation and knowledge management
-- Technical governance and oversight
-
-### Organizational Design & Team Structure
-
-We help you design an organization that scales:
-
-**Team Structure**
-- Organizational design recommendations
-- Team composition and role definition
-- Reporting structure and accountability
-- Cross-functional team design
-- Scaling strategies for growth
-
-**Hiring & Talent Strategy**
-- Technical hiring strategy and job design
-- Interview process and evaluation criteria
-- Compensation and leveling frameworks
-- Retention and culture building
-- Succession planning and leadership development
-
-**Process & Operations**
-- Engineering process design and optimization
-- Development workflow and tooling strategy
-- Release and deployment processes
-- Incident response and on-call strategies
-- Metrics and measurement frameworks
-
-### Executive Communication & Leadership
-
-We provide the executive presence your technology organization needs:
-
-**Stakeholder Management**
-- Executive communication and reporting
-- Board and investor presentations
-- Cross-functional leadership and coordination
-- Managing up, down, and across the organization
-- Building credibility and trust with leadership
-
-**Decision-Making Support**
-- Technical due diligence for M&A or partnerships
-- Technology investment recommendations
-- Resource allocation and budget planning
-- Risk assessment and mitigation
-- Crisis management and incident response
-
-**Strategic Partnerships**
-- Vendor and technology partner evaluation
-- Contract negotiation support
-- Technology partnership strategy
-- Open source and community engagement
-- Industry relationships and networking
-
-### Budget & Resource Planning
-
-We help you invest technology resources wisely:
-
-**Financial Planning**
-- Technology budget planning and allocation
-- Cost optimization and efficiency recommendations
-- ROI analysis for technology investments
-- Infrastructure and tooling cost management
-- Resource planning and capacity modeling
-
-**Investment Strategy**
-- Prioritizing technology investments
-- Build vs. buy decision frameworks
-- Technology debt vs. feature development trade-offs
-- Long-term vs. short-term investment balance
-- Risk-adjusted investment planning
-
-## How It Works
-
-Fractional CTO engagements are flexible and tailored to your needs:
-
-### Engagement Models
-
-**Strategic Advisory**
-- Regular strategy sessions (weekly or bi-weekly)
-- Architecture reviews and technical guidance
-- Executive communication and stakeholder management
-- Decision-making support and risk assessment
-- Typically 8-16 hours per month
-
-**Active Leadership**
-- More hands-on involvement in day-to-day decisions
-- Direct team leadership and organizational design
-- Active participation in planning and execution
-- Regular team meetings and 1-on-1s with key leaders
-- Typically 20-40 hours per month
-
-**Project-Based**
-- Focused engagement for specific initiatives
-- M&A due diligence, architecture redesign, organizational restructuring
-- Time-bound with clear deliverables
-- Custom scope and duration
-
-### Typical Activities
-
-In a typical month, a fractional CTO might:
-- **Strategy & Planning** — Review progress, update roadmap, align with business goals
-- **Architecture Review** — Evaluate technical decisions, review system design, assess risks
-- **Organizational Design** — Design team structure, define roles, plan hiring
-- **Executive Communication** — Present to leadership, align with stakeholders, report on progress
-- **Technical Leadership** — Guide technical decisions, review code and architecture, set standards
-- **Team Development** — Coach engineering leaders, develop talent, build culture
-- **Crisis Management** — Handle incidents, manage risks, make critical decisions
+A fractional engagement gives you access to that same experience, calibrated to what you actually need:
+- **Strategic Advisory** (8–16 hours/month) — Regular strategy sessions, architecture reviews, and decision support. Right for companies that need a trusted technical voice at the leadership table.
+- **Active Leadership** (20–40 hours/month) — Hands-on involvement in planning, team leadership, and execution. Right for companies in a period of significant change or growth.
+- **Project-Based** — Focused, time-bound engagements for specific initiatives: an architecture overhaul, an M&A diligence process, an organizational restructure.
 
 ## Who This Is For
 
-Fractional CTO works best for companies that:
-- **Need strategic technology leadership** but aren't ready for a full-time CTO
-- **Are scaling** and need to design organizations and processes for growth
-- **Have technical debt** and need architecture strategy and planning
-- **Are making major technology decisions** and need executive guidance
-- **Need executive presence** for stakeholders, investors, or board
-- **Are evaluating M&A or partnerships** and need technical due diligence
-- **Have engineering teams** but lack strategic technology leadership
-- **Are transitioning** from startup to scale-up and need organizational design
+Fractional CTO works best when:
+- You have an engineering team but no one setting technical strategy
+- Technology and business goals feel disconnected from each other
+- You're making major technology decisions without a clear framework for making them
+- You're scaling and the org design that worked at your previous size is starting to break
+- You need technical credibility with investors, a board, or enterprise customers
+- You're evaluating a significant build vs. buy decision or a technology partnership
 
-If you need team-level management (1-on-1s, career planning, Agile coaching), that's our Team Coaching offering. Fractional CTO is the strategic tier above that—focused on organization, strategy, and executive leadership.
+If what you need is team-level management—1-on-1s, career planning, delivery coaching—that's a different engagement. Fractional CTO is the strategic tier: technology vision, organizational design, and executive leadership.
+
+## How We Work
+
+We integrate into your leadership team, not just your engineering org. That means regular strategy sessions, architecture reviews, participation in planning and decision-making, and being available when something important comes up.
+
+We're direct. We'll tell you when we think a decision is the wrong one, when technical debt is becoming a business risk, and when you're solving the wrong problem. That's the job.
 
 ## The AGL Difference
 
-We're not consultants who drop in, write a report, and leave. We're engineering executives who've built and led technology organizations at scale. We understand:
-- The realities of making strategic decisions with limited information
-- The balance between technical excellence and business pragmatism
-- How to design organizations that scale
-- The importance of executive communication and stakeholder management
-- The day-to-day challenges of leading technology teams
+We're not management consultants who've read about engineering teams. We're engineering executives who've built and led technology organizations—made the decisions, hired the people, dealt with the incidents, and lived with the consequences. That's the perspective we bring.
 
 Our approach is:
-- **Strategic, not tactical** — We focus on the big picture, not just immediate problems
-- **Business-aligned** — We connect technology strategy to business outcomes
-- **Practical** — We make recommendations that work in real organizations
-- **Scalable** — We design for growth, not just current needs
-- **Executive-level** — We provide the leadership presence your organization needs
+- **Strategic, not tactical** — We focus on the decisions that matter at the organizational level, not just the technical ones
+- **Business-aligned** — Technology strategy that doesn't connect to business outcomes isn't strategy, it's overhead
+- **Practical** — Recommendations that work in real organizations with real constraints
+- **Opinionated** — You're not paying for a list of options. You're paying for a point of view.
 
-## Investment & Timeline
+## Investment
 
-Fractional CTO engagements are ongoing, typically starting at $25,000 per month. Pricing scales based on:
-- Scope of engagement (advisory vs. active leadership)
-- Number of hours per month
-- Complexity of organization and technology
-- Strategic initiatives and special projects
-- Team size and organizational complexity
-
-The investment pays for itself through:
-- Better technology decisions that avoid costly mistakes
-- Strategic alignment that accelerates business outcomes
-- Organizational design that enables scaling
-- Executive presence that builds credibility
-- Risk mitigation that prevents costly incidents
-- Long-term vision that guides sustainable growth
+Fractional CTO engagements are ongoing, typically starting at $25,000 per month. Scope and pricing scale with:
+- Hours per month and depth of involvement
+- Complexity of the organization and technology
+- Active strategic initiatives and special projects
+- Team size and organizational stage
 
 ## Getting Started
 
-Ready for executive technology leadership? Let's start with a conversation about your technology challenges, business goals, and what success looks like for you. We'll assess your needs and design a fractional CTO engagement that provides the strategic leadership your technology organization needs.
+The right way to start is a conversation—about your technology challenges, your business goals, and what's actually keeping you up at night. We'll be honest about whether this is the right fit and what a useful engagement would look like.
 
-You don't need a full-time CTO to get world-class technology leadership. Let's provide the strategic direction your company needs to scale.
+You don't need a full-time CTO to get world-class technology leadership. Let's talk about what you do need.
