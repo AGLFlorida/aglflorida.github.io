@@ -1,9 +1,9 @@
 name: Dependabot Auto-merge
 
 on:
-  pull_request_target:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
 
 permissions:
   contents: write
@@ -12,20 +12,44 @@ permissions:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request'
     steps:
-      - name: Fetch Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v3
+      - name: Find PR for this workflow run
+        id: pr
+        run: |
+          PR_NUMBER=$(gh api "repos/$REPO/pulls" \
+            --jq ".[] | select(.head.sha == \"$SHA\") | .number" | head -1)
+          if [ -z "$PR_NUMBER" ]; then
+            echo "No open PR found for sha $SHA, skipping."
+            exit 0
+          fi
+          echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Check PR is from Dependabot
+        id: check
+        if: steps.pr.outputs.number != ''
+        run: |
+          ACTOR=$(gh api "repos/$REPO/pulls/$PR_NUMBER" --jq '.user.login')
+          echo "actor=$ACTOR" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
 
       - name: Auto-approve
+        if: steps.check.outputs.actor == 'dependabot[bot]'
         run: gh pr review --approve "$PR_URL"
         env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_URL: https://github.com/${{ github.repository }}/pull/${{ steps.pr.outputs.number }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Enable auto-merge
-        run: gh pr merge --auto --squash "$PR_URL"
+      - name: Merge
+        if: steps.check.outputs.actor == 'dependabot[bot]'
+        run: gh pr merge --squash "$PR_URL"
         env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_URL: https://github.com/${{ github.repository }}/pull/${{ steps.pr.outputs.number }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
