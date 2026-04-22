@@ -50,3 +50,6 @@ specs/*
 # lighthouse
 /reports/
 .lighthouseci/
+
+
+SPEC.md

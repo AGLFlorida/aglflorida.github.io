@@ -1,5 +1,5 @@
 ---
-title: "Workflow Automation"
+title: "Workflow Automation Audit and Roadmap"
 date: "2026-04-09"
 description: "Find and eliminate the bottlenecks slowing your software delivery—whether the answer is AI, better tooling, or a smarter pipeline."
 type: "consulting"
