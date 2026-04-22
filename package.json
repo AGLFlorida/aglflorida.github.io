@@ -40,6 +40,7 @@
     "baseline-browser-mapping": "^2.10.9",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
     "postcss": "^8.5.8",
@@ -47,5 +48,9 @@
     "ts-jest": "^29.4.5",
     "tsx": "^4.7.0",
     "typescript": "^5"
+  },
+  "overrides": {
+    "glob": "^13.0.6",
+    "rimraf": "^4"
   }
 }
