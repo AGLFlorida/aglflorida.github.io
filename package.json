@@ -40,7 +40,7 @@
     "baseline-browser-mapping": "^2.10.21",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
-    "jest": "^30.3.0",
+    "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.3.0",
     "postcss": "^8.5.13",
     "tailwindcss": "^3.4.1",
