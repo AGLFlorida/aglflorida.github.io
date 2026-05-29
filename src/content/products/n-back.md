@@ -17,8 +17,8 @@ technologies:
 links:
   # - text: "App Store"
   #   url: "https://apps.apple.com"
-  # - text: "Play Store"
-  #   url: "https://play.google.com"
+  - text: "Play Store"
+    url: "https://play.google.com/store/apps/details?id=com.agl.nback"
 ---
 
 Dual N-Back is a cognitive training game based on the classic N-Back task—a research-backed method for improving working memory and fluid intelligence. The game challenges you to track a sequence of spoken letters and grid positions, identifying when each matches what appeared N steps earlier.
