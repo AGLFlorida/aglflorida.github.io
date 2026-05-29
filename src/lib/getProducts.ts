@@ -14,6 +14,7 @@ export type Product = {
   contentHtml: string;
   type: 'mobile-app' | 'consulting';
   price?: string;
+  image?: string;
   features?: string[];
   technologies?: string[];
   links?: Array<{

@@ -4,6 +4,7 @@ date: "2025-07-25"
 description: "A beautifully designed flashcard app built for simplicity and ease of use."
 type: "mobile-app"
 price: "Free with in-app purchases, ad supported"
+image: "/assets/recallkit.png"
 features:
   - "Create and customize flashcard decks"
   - "Support for hundreds of cards per set"

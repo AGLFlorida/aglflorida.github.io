@@ -4,6 +4,7 @@ date: "2026-05-28"
 description: "A cognitive training game designed to improve working memory and fluid intelligence."
 type: "mobile-app"
 price: "Free"
+image: "/assets/nback.png"
 features:
   - "Dual N-Back mode combining auditory and visual stimuli"
   - "Single N-Back mode for focused auditory or visual training"

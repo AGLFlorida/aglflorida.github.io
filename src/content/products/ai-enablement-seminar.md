@@ -3,7 +3,7 @@ title: "AI Enablement Seminar"
 date: "2026-04-21"
 description: "A five-day in-person workshop that equips developer and product teams with practical AI skills, bespoke tooling, and a partial roadmap for integrating AI into their work."
 type: "consulting"
-price: "Starting at $18,500 + expenses"
+price: "Contact for Pricing"
 duration: "5 days on-site"
 deliverables:
   - "Trained development and product team"

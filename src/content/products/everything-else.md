@@ -3,7 +3,7 @@ title: "Everything Else"
 date: "2026-01-23"
 description: "Have an interesting problem that doesn't fit into one of our standard packages? Let's have a conversation."
 type: "consulting"
-price: "Custom Pricing"
+price: "Contact for Pricing"
 duration: "Variable"
 ---
 
