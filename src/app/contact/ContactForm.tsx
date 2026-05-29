@@ -18,7 +18,7 @@ interface ValidationErrors {
 
 type Status = "sending" | "success" | "error" | null;
 
-const success = "Thank you for contacting AGL Consulting of Florida.";
+const success = "Got it. We'll be in touch within a few business days.";
 
 // Constants moved outside component
 const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/1oY3nolFTHpH34NNbIi1DZfJwZYx5-y9Mcyv9bi5KiuQ/formResponse";

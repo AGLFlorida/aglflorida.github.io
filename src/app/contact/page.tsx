@@ -8,8 +8,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   return {
-    title: 'Get in Touch | Talk Tech Strategy with AGL Consulting',
-    description: 'Get in touch with AGL Consulting.',
+    title: 'Get in Touch | AGL Consulting',
+    description: 'Hard technical problems deserve a real conversation. Tell us what you\'re dealing with.',
     alternates: {
       canonical: `${baseUrl}/contact`,
     },
@@ -24,7 +24,7 @@ export default function ContactPage() {
     <div className="max-w-7xl mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-8">Get in Touch</h1>
       <p className="mb-8">
-        Talk Tech Strategy with AGL Consulting.
+        Hard technical problems deserve a real conversation. Tell us what you&apos;re dealing with.
       </p>
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Main Content Column */}

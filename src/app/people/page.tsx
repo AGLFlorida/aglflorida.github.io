@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   return {
-    title: 'Meet the Team | The People Behind Human-Centered Tech',
+    title: 'Meet the Team | AGL Consulting',
     alternates: {
       canonical: `${baseUrl}/people`,
     },
@@ -19,7 +19,7 @@ export default async function PeoplePage() {
     <div className="py-8">
       <h1 className="text-3xl font-bold mb-8">Our People</h1>
       <p className="mb-4">
-        The People Behind Human-Centered Tech.
+        Professionals who got tired of watching good teams get bad advice.
       </p>
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="w-full lg:w-2/3">
