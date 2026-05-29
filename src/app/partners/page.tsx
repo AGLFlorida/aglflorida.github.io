@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
   const title = 'Partners | AGL Consulting LLC';
   const description =
-    'Organizations we work with. Trusted partners in technology, design, and delivery.';
+    'We\'re selective about who we send clients to. These are the ones we trust.';
 
   return {
     title,
@@ -29,7 +29,7 @@ export default function PartnersPage() {
     <div className="py-8">
       <h1 className="text-3xl font-bold mb-8">Our Partners</h1>
       <p className="mb-8 text-gray-600">
-        Organizations we work with and recommend.
+        We&apos;re selective about who we send clients to. These are the ones we trust.
       </p>
       <div className="max-w-3xl mx-auto w-[60%] min-w-0">
         {partners.length === 0 ? (

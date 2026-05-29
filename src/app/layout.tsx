@@ -17,7 +17,7 @@ import type { Metadata } from 'next';
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
   const title = 'AGL Consulting LLC';
-  const description = 'AGL Consulting LLC is a software development company based in Florida.';
+  const description = 'Fractional technical leadership for companies that need CTO-level outcomes without a full-time hire. We build. We ship. We don\'t disappear after the deck.';
 
   return {
     title,

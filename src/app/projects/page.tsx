@@ -8,7 +8,7 @@ import { IconLink, IconAppStore, IconGooglePlay, IconGithub } from "@/lib/icons"
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
   const title = 'Projects | Practical Tech with Real-World Impact';
-  const description = 'Projects under development or found interesting. Practical Tech with Real-World Impact.';
+  const description = 'Things we\'re building. Some shipping, some experimental — all worth the effort.';
 
   return {
     title,
@@ -33,7 +33,7 @@ export default async function ProjectsPage() {
       />
       <h1 className="text-3xl font-bold mb-8">Projects</h1>
       <p className="mb-4">
-        The projects we have under development or found interesting. Practical Tech with Real-World Impact.
+        Things we&apos;re building. Some shipping, some experimental — all worth the effort.
       </p>
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="w-full lg:w-2/3">
