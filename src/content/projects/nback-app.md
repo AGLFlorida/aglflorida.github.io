@@ -15,8 +15,8 @@ technologies:
 links:
   # - text: "App Store"
   #   url: "https://apps.apple.com/your-app"
-  # - text: "Play Store"
-  #   url: "https://play.google.com/store/your-app"
+  - text: "Play Store"
+    url: "https://play.google.com/store/apps/details?id=com.agl.nback"
 ---
 
 Link: [Founder's Notes: N-Back](https://brandonshoop.com/projects/nback-app)

@@ -3,7 +3,7 @@ title: "Workflow Automation Audit and Roadmap"
 date: "2026-04-09"
 description: "Find and eliminate the bottlenecks slowing your software delivery—whether the answer is AI, better tooling, or a smarter pipeline."
 type: "consulting"
-price: "Starting at $15,000"
+price: "Contact for Pricing"
 duration: "6-10 weeks"
 deliverables:
   - "SDLC automation assessment and prioritized roadmap"

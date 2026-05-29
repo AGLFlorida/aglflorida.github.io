@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getSortedProducts } from '@/lib/getProducts';
 import { Metadata } from 'next';
 import { generateOpenGraphMetadata, generateTwitterMetadata } from '@/lib/metadata';
@@ -44,10 +45,21 @@ export default async function ProductsPage() {
 
           {/* Mobile Apps Section */}
           <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Mobile Applications</h2>
+        <h2 className="text-2xl font-bold mb-6">Software Products</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {mobileApps.map((product) => (
             <div key={product.id} className="bg-white p-6 rounded-lg shadow">
+              {product.image && (
+                <div className="mb-4">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    width={64}
+                    height={64}
+                    className="rounded-xl"
+                  />
+                </div>
+              )}
               <h3 className="text-2xl font-semibold mb-2">
                 <Link href={`/products/${product.id}`}>
                   {product.title} <IconLink className="h-5 w-5 inline" aria-hidden />
@@ -68,7 +80,7 @@ export default async function ProductsPage() {
                   >
                     {link.text === 'App Store' && <IconAppStore className="h-5 w-5" aria-hidden />}
                     {link.text === 'Play Store' && <IconGooglePlay className="h-5 w-5" aria-hidden />}
-                    {link.text === 'Github' && <IconGithub className="h-5 w-5" aria-hidden />}
+                    {(link.text === 'Github' || link.text === 'GitHub') && <IconGithub className="h-5 w-5" aria-hidden />}
                     <span>{link.text}</span>
                   </a>
                 ))}

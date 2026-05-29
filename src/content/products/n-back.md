@@ -4,6 +4,7 @@ date: "2026-05-28"
 description: "A cognitive training game designed to improve working memory and fluid intelligence."
 type: "mobile-app"
 price: "Free"
+image: "/assets/nback.png"
 features:
   - "Dual N-Back mode combining auditory and visual stimuli"
   - "Single N-Back mode for focused auditory or visual training"
@@ -17,8 +18,8 @@ technologies:
 links:
   # - text: "App Store"
   #   url: "https://apps.apple.com"
-  # - text: "Play Store"
-  #   url: "https://play.google.com"
+  - text: "Play Store"
+    url: "https://play.google.com/store/apps/details?id=com.agl.nback"
 ---
 
 Dual N-Back is a cognitive training game based on the classic N-Back task—a research-backed method for improving working memory and fluid intelligence. The game challenges you to track a sequence of spoken letters and grid positions, identifying when each matches what appeared N steps earlier.

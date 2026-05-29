@@ -3,7 +3,7 @@ title: "Fractional CTO"
 date: "2026-04-09"
 description: "Executive technology leadership for companies that need CTO-level strategy, architecture, and organizational design—without the full-time cost."
 type: "consulting"
-price: "Pricing Varies"
+price: "Contact for Pricing"
 duration: "Ongoing engagement"
 deliverables:
   - "Technology strategy and roadmap"
