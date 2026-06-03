@@ -44,12 +44,11 @@ export default function PartnersPage() {
                 rel={EXTERNAL_LINK_REL}
                 className="flex items-center gap-6 p-6 bg-white rounded-lg shadow hover:bg-gray-50 transition block"
               >
-                <div className="flex-shrink-0 w-[211px] h-[87px] flex items-center justify-center">
+                <div className="flex-shrink-0 w-[211px] h-[87px] relative">
                   <Image
                     src={partner.logo}
                     alt={partner.title}
-                    width={211}
-                    height={87}
+                    fill
                     className="object-contain object-left"
                     unoptimized={partner.logo.startsWith('http')}
                   />
