@@ -16,8 +16,8 @@ technologies:
   - "React Native"
   - "TypeScript"
 links:
-  # - text: "App Store"
-  #   url: "https://apps.apple.com"
+  - text: "App Store"
+    url: "https://apps.apple.com/us/app/n-back-a-memory-game/id6743125322"
   - text: "Play Store"
     url: "https://play.google.com/store/apps/details?id=com.agl.nback"
 ---
