@@ -1,6 +1,6 @@
 {
   "name": "aglflorida.github.io",
-  "version": "0.29.18",
+  "version": "0.29.19",
   "private": true,
   "browserslist": [
     "defaults and fully supports es6-module"
