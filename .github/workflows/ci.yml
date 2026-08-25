@@ -37,6 +37,9 @@ jobs:
       - name: Validate schemas
         run: npm run validate:schemas
 
+      - name: Check for smart typography characters
+        run: npm run check:unicode
+
       - name: Compile typescript
         run: npm run compile
 

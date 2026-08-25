@@ -66,7 +66,7 @@ const PRICING_TIERS = [
     name: 'Fleet',
     price: 'Contact Us',
     cadence: '',
-    description: 'Managing a large fleet or a marine service business? Let’s talk pricing.',
+    description: 'Managing a large fleet or a marine service business? Let\'s talk pricing.',
     features: [
       'Volume pricing for large fleets',
       'Priority support',

@@ -13,6 +13,7 @@
     "test": "jest --no-watchman",
     "compile": "npx tsc --noEmit",
     "validate:schemas": "tsx scripts/validate-schemas.ts",
+    "check:unicode": "tsx scripts/check-unicode.ts",
     "lighthouse": "lhci autorun"
   },
   "dependencies": {
