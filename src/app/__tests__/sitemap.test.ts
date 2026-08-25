@@ -166,6 +166,21 @@ describe('sitemap', () => {
     expect(people?.priority).toBe(0.25);
   });
 
+  it('should include the vesselog marketing page', async () => {
+    mockGetSortedPosts.mockReturnValue([]);
+    mockGetSortedProducts.mockResolvedValue([]);
+    mockGetSortedProjects.mockResolvedValue([]);
+    mockGetSortedReleases.mockResolvedValue([]);
+    mockGetPolicies.mockResolvedValue([]);
+
+    const result = await sitemap();
+
+    const vesselog = result.find(item => item.url === 'https://example.com/vesselog');
+    expect(vesselog).toBeDefined();
+    expect(vesselog?.changeFrequency).toBe('monthly');
+    expect(vesselog?.priority).toBe(0.7);
+  });
+
   it('should handle empty data gracefully', async () => {
     mockGetSortedPosts.mockReturnValue([]);
     mockGetSortedProducts.mockResolvedValue([]);

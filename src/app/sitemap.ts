@@ -71,6 +71,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...productPages,
     {
+      url: `${baseUrl}/vesselog`,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/projects`,
       changeFrequency: 'monthly',
       priority: 0.8,
