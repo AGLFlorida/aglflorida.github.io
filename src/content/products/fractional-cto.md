@@ -45,8 +45,8 @@ This isn't an advisory retainer where someone reviews your architecture once a q
 Many companies hit a growth stage where they've clearly outgrown ad-hoc technical decision-making but aren't ready—financially or organizationally—for a full-time executive hire. A full-time CTO at the right level is expensive, takes months to recruit, and may be more capacity than you need right now.
 
 A fractional engagement gives you access to that same experience, calibrated to what you actually need:
-- **Strategic Advisory** (8–16 hours/month) — Regular strategy sessions, architecture reviews, and decision support. Right for companies that need a trusted technical voice at the leadership table.
-- **Active Leadership** (20–40 hours/month) — Hands-on involvement in planning, team leadership, and execution. Right for companies in a period of significant change or growth.
+- **Strategic Advisory** (8-16 hours/month) — Regular strategy sessions, architecture reviews, and decision support. Right for companies that need a trusted technical voice at the leadership table.
+- **Active Leadership** (20-40 hours/month) — Hands-on involvement in planning, team leadership, and execution. Right for companies in a period of significant change or growth.
 - **Project-Based** — Focused, time-bound engagements for specific initiatives: an architecture overhaul, an M&A diligence process, an organizational restructure.
 
 ## Who This Is For

@@ -24,6 +24,6 @@ It includes a NodeJS script that:
 ## What It Does
 - Uses git describe and git log to get commit messages since the last tag
 - Builds a natural-language prompt with that history
-- Sends it to Ollama’s local model endpoint
+- Sends it to Ollama's local model endpoint
 - Streams and sanitizes the response
 - Prints a one-paragraph customer-facing summary

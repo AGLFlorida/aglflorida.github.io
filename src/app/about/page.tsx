@@ -37,7 +37,7 @@ export default function AboutPage() {
             </p>
 
             <p>
-              We work with organizations that need serious technical outcomes but don’t have the in-house capacity to drive them. Our engagements focus on lasting results rather than short-term hype—technology in service of what the business does, not the other way around.
+              We work with organizations that need serious technical outcomes but don&apos;t have the in-house capacity to drive them. Our engagements focus on lasting results rather than short-term hype—technology in service of what the business does, not the other way around.
             </p>
 
             <p className="mt-6">

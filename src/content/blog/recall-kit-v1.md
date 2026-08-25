@@ -30,7 +30,7 @@ RecallKit is available now on the **App Store**, supporting iPhone with a native
 
 ## Why RecallKit?
 
-> “We wanted to build something minimal, powerful, and grounded in how people actually learn. RecallKit is the study tool we wish we had in school — focused, flexible, and fun.”  
+> "We wanted to build something minimal, powerful, and grounded in how people actually learn. RecallKit is the study tool we wish we had in school — focused, flexible, and fun."  
 > — Brandon Shoop, Founder of AGL Consulting
 
 ## Download Now
