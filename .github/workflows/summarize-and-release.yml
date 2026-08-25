@@ -1,12 +1,12 @@
 # Summarization is disabled via job `if: false`. To re-enable: (1) fix summarization
 # logic/Gemini integration, (2) remove or set to true the job-level `if: false`,
-# (3) in nextjs.yml switch deploy trigger from workflow_run (Tag Release) to
-# workflow_run (Summarize Release) so order is tag → summarize → nextjs.
+# (3) in nextjs.yml switch deploy trigger from workflow_run (Tag and Release)
+# to workflow_run (Summarize Release) so order is tag → summarize → nextjs.
 name: Summarize Release
 
 on:
   workflow_run:
-    workflows: ['Tag Release']
+    workflows: ['Tag and Release']
     types: [completed]
 
 permissions:
