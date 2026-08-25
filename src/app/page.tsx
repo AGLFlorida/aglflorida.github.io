@@ -33,7 +33,7 @@ export default async function Home() {
             {featuredProducts.map((product) => (
               <li key={product.id}>
                 <Link
-                  href={`/products/${product.id}`}
+                  href={product.href || `/products/${product.id}`}
                   className="block hover:bg-gray-50 p-2 -mx-2 rounded transition"
                 >
                   <h3 className="font-medium text-blue-800 hover:text-blue-900">

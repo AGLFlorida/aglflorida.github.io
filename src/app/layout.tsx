@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-gray-100 text-gray-900">
-        <header className="relative h-36 md:h-44">
+        <header className="relative h-12 md:h-14">
           <picture className="absolute inset-0 z-0 block h-full w-full">
             <source srcSet="/header.avif" type="image/avif" />
             <source srcSet="/header.webp" type="image/webp" />
@@ -89,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </picture>
 
           <div className="absolute inset-0 bg-gray-900/70 shadow-sm z-10">
-            <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center h-full">
+            <div className="max-w-7xl mx-auto px-4 flex justify-between items-center h-full">
               <Link href="/" className="flex items-center space-x-3 hover:text-gray-300 transition">
                 <picture className="h-10 w-10 shrink-0">
                   <source srcSet="/siteicon.avif" type="image/avif" />
@@ -102,11 +102,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     className="h-10 w-10 rounded-full"
                   />
                 </picture>
-                <span className="text-4xl font-bold text-gray-100">
+                <span className="text-lg font-bold text-gray-100">
                   AGL <span className="hidden md:inline">Consulting</span>
                 </span>
               </Link>
-            
+
               <div className="flex items-center space-x-4">
                 <Link
                   href="/contact"

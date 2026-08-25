@@ -61,8 +61,8 @@ export default async function ProductsPage() {
                 </div>
               )}
               <h3 className="text-2xl font-semibold mb-2">
-                <Link href={`/products/${product.id}`}>
-                  {product.title} <IconLink className="h-5 w-5 inline" aria-hidden />
+                <Link href={product.href || `/products/${product.id}`}>
+                  {product.title} {!product.hideTitleIcon && <IconLink className="h-5 w-5 inline" aria-hidden />}
                 </Link>
               </h3>
               <p className="text-gray-600 mb-4">{product.description}</p>

@@ -22,7 +22,7 @@ This information may include:
 
 We do not have access to this data and do not store it on our own servers. The collection and use of this data is governed by the privacy policies of the ad providers.
 
-3. Children’s Privacy
+3. Children's Privacy
 
 This App is not directed to children under the age of 13. If you are a parent or guardian and believe your child has provided personal information, please contact us and we will take appropriate action.
 

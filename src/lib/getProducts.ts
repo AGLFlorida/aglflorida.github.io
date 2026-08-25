@@ -23,6 +23,8 @@ export type Product = {
   }>;
   deliverables?: string[];
   duration?: string;
+  href?: string;
+  hideTitleIcon?: boolean;
 };
 
 export async function getSortedProducts(): Promise<Product[]> {

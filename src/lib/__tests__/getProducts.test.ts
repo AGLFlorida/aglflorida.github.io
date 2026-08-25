@@ -95,6 +95,13 @@ describe('getProducts', () => {
       });
     });
 
+    it('should support an href override for a bespoke product page', async () => {
+      const product = await getProductById('vesselog');
+
+      expect(product).not.toBeNull();
+      expect(product?.href).toBe('/vesselog');
+    });
+
     it('should contain both mobile-app and consulting type products', async () => {
       const products = await getSortedProducts();
       const mobileApps = products.filter(p => p.type === 'mobile-app');
