@@ -5,11 +5,11 @@
 name: Deploy Next.js site to Pages
 
 on:
-  # Run after Tag Release completes (order: tag → nextjs). When summarize is
-  # re-enabled: switch to workflow_run workflows: ["Summarize Release"],
+  # Run after Tag and Release completes (order: tag → nextjs). When summarize
+  # is re-enabled: switch to workflow_run workflows: ["Summarize Release"],
   # types: [completed], so deploy order is tag → summarize → nextjs.
   workflow_run:
-    workflows: ['Tag Release']
+    workflows: ['Tag and Release']
     types: [completed]
 
   # Allows you to run this workflow manually from the Actions tab

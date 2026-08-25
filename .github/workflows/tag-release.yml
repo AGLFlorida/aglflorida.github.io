@@ -1,4 +1,4 @@
-name: Tag Release
+name: Tag and Release
 
 on:
   workflow_run:
@@ -29,53 +29,76 @@ jobs:
             echo "tag=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_OUTPUT
           fi
 
+      - name: Determine Bump Type from Conventional Commits
+        id: bump
+        run: |
+          latest_tag="${{ steps.latest_tag.outputs.tag }}"
+          if git rev-parse "$latest_tag" >/dev/null 2>&1; then
+            commits=$(git log "$latest_tag"..HEAD --pretty=format:"%s%n%b")
+          else
+            commits=$(git log --pretty=format:"%s%n%b")
+          fi
+
+          if echo "$commits" | grep -qE '^[a-zA-Z]+(\([^)]*\))?!:|BREAKING CHANGE:'; then
+            bump="major"
+          elif echo "$commits" | grep -qE '^feat(\([^)]*\))?:'; then
+            bump="minor"
+          else
+            bump="patch"
+          fi
+
+          echo "bump=$bump" >> $GITHUB_OUTPUT
+
       - name: Compute Next Version
         id: version
         run: |
           current_tag="${{ steps.latest_tag.outputs.tag }}"
+          bump="${{ steps.bump.outputs.bump }}"
+
           if [[ "$current_tag" =~ ^v([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
             major="${BASH_REMATCH[1]}"
             minor="${BASH_REMATCH[2]}"
             patch="${BASH_REMATCH[3]}"
-            new_tag="v$major.$minor.$((patch + 1))"
-            version_only="$major.$minor.$((patch + 1))"
+
+            case "$bump" in
+              major)
+                major=$((major + 1)); minor=0; patch=0
+                ;;
+              minor)
+                minor=$((minor + 1)); patch=0
+                ;;
+              patch)
+                patch=$((patch + 1))
+                ;;
+            esac
+
+            new_tag="v$major.$minor.$patch"
           else
             new_tag="v0.1.0"
-            version_only="0.1.0"
           fi
+
           echo "tag=$new_tag" >> $GITHUB_OUTPUT
-          echo "version_only=$version_only" >> $GITHUB_OUTPUT
-
-      - name: Set version in package.json
-        run: |
-          jq --arg v "${{ steps.version.outputs.version_only }}" '.version = $v' package.json > package.json.tmp && mv package.json.tmp package.json
-
-      - name: Refresh lockfile
-        run: npm install
-
-      - name: Configure Git user
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Commit and Push Version Bump
-        run: |
-          git add package.json package-lock.json
-          if git diff --cached --quiet; then
-            echo "No version change to commit."
-            exit 0
-          fi
-          commit_message="chore: bump version to ${{ steps.version.outputs.version_only }} [skip ci]"
-          sanitized_message=$(echo "$commit_message" | tr -d '\n' | sed 's/[^[:print:]]//g')
-          git commit -m "$sanitized_message"
-          git push
 
       - name: Tag Release Commit
+        id: tag
         run: |
           tag="${{ steps.version.outputs.tag }}"
           if git rev-parse "$tag" >/dev/null 2>&1; then
             echo "Tag $tag already exists. Skipping."
+            echo "created=false" >> $GITHUB_OUTPUT
             exit 0
           fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git tag -a "$tag" -m "Release $tag"
           git push origin "$tag"
+          echo "created=true" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        if: steps.tag.outputs.created == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.version.outputs.tag }}" \
+            --title "${{ steps.version.outputs.tag }}" \
+            --generate-notes
