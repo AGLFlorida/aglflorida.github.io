@@ -1,8 +1,11 @@
 #!/usr/bin/env tsx
 /**
  * Scans src/ for smart-typography characters that commonly slip in via
- * autocorrect (curly quotes, en/em dashes, ellipsis) and reports them as
+ * autocorrect (curly quotes, en dash, ellipsis) and reports them as
  * GitHub Actions warning annotations. Non-blocking: always exits 0.
+ *
+ * Em dash (—) and the copyright symbol (©) are intentionally allowed and
+ * excluded from this check.
  */
 
 import fs from 'fs';
@@ -16,7 +19,6 @@ const SUSPECT_CHARS: Record<string, string> = {
   '“': 'left double quote (“) - use a straight quote (")',
   '”': 'right double quote (”) - use a straight quote (")',
   '–': 'en dash (–) - use a hyphen (-)',
-  '—': 'em dash (—) - use a hyphen (-) or "--"',
   '…': 'ellipsis (…) - use "..."',
 };
 
