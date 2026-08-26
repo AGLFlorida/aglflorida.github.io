@@ -1,4 +1,4 @@
-# Privacy Policy for Tellurion
+# Privacy Policy for VesseLog
 
 Last updated: 17-Aug-2026
 
