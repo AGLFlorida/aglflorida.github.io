@@ -35,14 +35,18 @@ export async function getPolicies(): Promise<Policy[]> {
 export async function getPolicyById(id: string): Promise<Policy | null> {
   try {
     const fullPath = path.join(policiesDirectory, `${id}.md`);
-    const content = fs.readFileSync(fullPath, 'utf8');
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+    const processedContent = await remark()
+      .use(html)
+      .process(fileContents);
 
     return {
       id,
-      title: id.split('-').map(word => 
+      title: id.split('-').map(word =>
         word.charAt(0).toUpperCase() + word.slice(1)
       ).join(' '),
-      content,
+      content: processedContent.toString(),
     };
   } catch {
     return null;
