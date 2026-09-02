@@ -147,4 +147,20 @@ describe('getPolicies', () => {
       expect(policy).toBeNull();
     });
   });
+
+  describe('age suitability policies', () => {
+    const ageSuitabilityIds = [
+      'n-back-age-suitability',
+      'vesselog-age-suitability',
+      'recall-kit-age-suitability',
+    ];
+
+    it.each(ageSuitabilityIds)('should provide an age suitability policy for %s', async (id) => {
+      if (!policiesDirectoryExists) {
+        return;
+      }
+      const policy = await getPolicyById(id);
+      expect(policy).not.toBeNull();
+    });
+  });
 });
