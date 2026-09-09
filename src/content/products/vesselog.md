@@ -3,7 +3,7 @@ title: "VesseLog"
 date: "2026-08-25"
 description: "Your complete vessel maintenance companion — schedules, service history, and vendors for your whole fleet."
 type: "mobile-app"
-price: "From $19.99/mo"
+price: "Pricing Coming Soon"
 image: "/assets/vesselog.png"
 href: "/vesselog"
 features:

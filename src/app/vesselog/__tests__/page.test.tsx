@@ -11,11 +11,16 @@ describe('VesseLogPage', () => {
     expect(screen.getByText('Smart Scheduling')).toBeInTheDocument();
 
     expect(screen.getByText('Starter')).toBeInTheDocument();
-    expect(screen.getByText('$19.99')).toBeInTheDocument();
     expect(screen.getByText('Additional Boats')).toBeInTheDocument();
-    expect(screen.getByText('+$1.99')).toBeInTheDocument();
     expect(screen.getByText('Fleet')).toBeInTheDocument();
+    expect(screen.getAllByText('Pricing Coming Soon').length).toBe(2);
     expect(screen.getAllByText('Contact Us').length).toBeGreaterThan(0);
+  });
+
+  it('does not display any actual prices', () => {
+    const { container } = render(<VesseLogPage />);
+
+    expect(container.textContent).not.toMatch(/\$\d/);
   });
 
   it('shows a coming-soon banner instead of a clickable hero CTA', () => {
