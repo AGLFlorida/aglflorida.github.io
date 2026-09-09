@@ -35,8 +35,8 @@ const FEATURES = [
 const PRICING_TIERS = [
   {
     name: 'Starter',
-    price: '$19.99',
-    cadence: '/mo',
+    price: 'Pricing Coming Soon',
+    cadence: '',
     description: 'Everything you need to manage up to 3 boats.',
     features: [
       'Up to 3 boats',
@@ -50,8 +50,8 @@ const PRICING_TIERS = [
   },
   {
     name: 'Additional Boats',
-    price: '+$1.99',
-    cadence: '/mo per boat',
+    price: 'Pricing Coming Soon',
+    cadence: '',
     description: 'Growing a fleet? Add boats to your Starter plan as you go.',
     features: [
       'Add any number of extra boats',
@@ -80,7 +80,7 @@ const PRICING_TIERS = [
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
   const title = 'VesseLog | Your Complete Vessel Maintenance Companion';
-  const description = 'VesseLog helps boat owners and marine professionals manage vessel maintenance schedules, track service history, and stay on top of upcoming tasks. Plans start at $19.99/mo.';
+  const description = 'VesseLog helps boat owners and marine professionals manage vessel maintenance schedules, track service history, and stay on top of upcoming tasks.';
   const url = `${baseUrl}/vesselog`;
 
   return {

@@ -40,6 +40,9 @@ jobs:
       - name: Check for smart typography characters
         run: npm run check:unicode
 
+      - name: Check for duplicated code
+        run: npm run check:dupes
+
       - name: Compile typescript
         run: npm run compile
 

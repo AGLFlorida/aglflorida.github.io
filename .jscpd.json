@@ -1,0 +1,13 @@
+{
+  "threshold": 6,
+  "reporters": ["consoleFull"],
+  "ignore": [
+    "**/node_modules/**",
+    "**/out/**",
+    "**/.next/**",
+    "**/reports/**",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ],
+  "absolute": true
+}
