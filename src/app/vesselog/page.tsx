@@ -45,7 +45,7 @@ const PRICING_TIERS = [
       'Vendor management',
       'Service history for every vessel',
     ],
-    cta: 'Coming Soon',
+    cta: 'Contact Sales',
     highlighted: true,
   },
   {
@@ -59,7 +59,7 @@ const PRICING_TIERS = [
       'Prorated billing',
       'Cancel anytime',
     ],
-    cta: 'Coming Soon',
+    cta: 'Contact Sales',
     highlighted: false,
   },
   {

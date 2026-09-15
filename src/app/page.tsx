@@ -17,7 +17,7 @@ export default async function Home() {
       {/* Main Content Column */}
       <div className="w-full lg:w-2/3 space-y-8">
         <div className="bg-white p-6 rounded-lg shadow">
-          <h1 className="text-2xl font-bold mb-4">We don&apos;t just advise. We teach businesses how to leverage AI to tighten the SLDC.</h1>
+          <h1 className="text-2xl font-bold mb-4">We don&apos;t just advise. We build.</h1>
           <p className="mb-4">
             AGL Consulting delivers technical expertise to organizations facing hard problems. Not from a whiteboard, but from the trenches of building real products. Our consultants are practitioners. The same rigor we apply to our own software is what you get when you hire us.
           </p>
