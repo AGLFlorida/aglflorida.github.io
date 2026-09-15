@@ -43,6 +43,11 @@ jobs:
       - name: Check for duplicated code
         run: npm run check:dupes
 
+      - name: Run njsscan (Node.js SAST)
+        uses: ajinabraham/njsscan-action@master
+        with:
+          args: 'src --exit-warning'
+
       - name: Compile typescript
         run: npm run compile
 
