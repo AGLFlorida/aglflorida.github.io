@@ -35,7 +35,7 @@ export default async function ProductsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <h1 className="text-3xl font-bold mb-8">Products & Services</h1>
+      <h1 className="text-3xl font-bold mb-8">Products &amp; Services</h1>
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Main Content Column */}
         <div className="w-full lg:w-2/3">
