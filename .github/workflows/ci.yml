@@ -44,8 +44,9 @@ jobs:
         run: npm run check:dupes
 
       - name: Run njsscan (Node.js SAST)
-        # Pinned: njsscan 1.0.1 fails on unscannable files (src/app/products/page.tsx). The action installs unpinned.
-        run: pipx run njsscan==1.0.0 src --exit-warning
+        uses: ajinabraham/njsscan-action@master
+        with:
+          args: 'src --exit-warning'
 
       - name: Compile typescript
         run: npm run compile
