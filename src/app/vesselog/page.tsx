@@ -32,6 +32,19 @@ const FEATURES = [
   },
 ];
 
+const EXAMPLES = [
+  {
+    title: 'Crew Coaching Staff',
+    description:
+      'Coaches run their motorized safety and coaching launches hard \u2014 on the water every practice, every regatta, all season long. Between chase-boat duty and towing, engines rack up hours fast. With VesseLog, the coaching staff logs oil changes, prop checks, and engine service across the whole fleet of launches in one place, so no boat gets left waiting on a broken part on race day.',
+  },
+  {
+    title: 'Boat Owners',
+    description:
+      "A weekend on the water shouldn't start with wondering when the impeller was last replaced. Boat owners use VesseLog to keep every service record, vendor contact, and upcoming maintenance task for their vessel in one app \u2014 so the only thing left to plan is where to go.",
+  },
+];
+
 const PRICING_TIERS = [
   {
     name: 'Starter',
@@ -136,6 +149,19 @@ export default function VesseLogPage() {
             <div key={feature.title} className="bg-white p-6 rounded-lg shadow">
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Examples */}
+      <section className="py-12">
+        <h2 className="text-3xl font-bold text-center mb-10">See it in action</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {EXAMPLES.map((example) => (
+            <div key={example.title} className="bg-white p-6 rounded-lg shadow">
+              <h3 className="text-lg font-semibold mb-2">{example.title}</h3>
+              <p className="text-gray-600">{example.description}</p>
             </div>
           ))}
         </div>
