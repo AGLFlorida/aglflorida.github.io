@@ -5,7 +5,6 @@ description: "Your complete vessel maintenance companion — schedules, service 
 type: "mobile-app"
 price: "Pricing Coming Soon"
 image: "/assets/vesselog.png"
-href: "/vesselog"
 features:
   - "Smart maintenance scheduling calendar"
   - "Service history for every vessel"
@@ -13,11 +12,14 @@ features:
 technologies:
   - "React Native"
   - "TypeScript"
+links:
+  - text: "Website"
+    url: "https://vesselog.com"
 ---
 
 VesseLog helps boat owners and marine professionals manage vessel maintenance schedules, track service history, and stay on top of upcoming tasks.
 
-See the full [VesseLog product page](/vesselog) for pricing and details.
+Visit [vesselog.com](https://vesselog.com) for pricing and details.
 
 ## Examples
 
