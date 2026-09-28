@@ -1,0 +1,44 @@
+{
+  "skill_name": "product-marketing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/product-marketing vesselog 1.2.1",
+      "expected_output": "X + LinkedIn drafts built from user-facing items in the vesselog 1.2.1 GH release (Delete My Data, doc upload/camera fix, readable fonts), no internal/infra details, intent links, saved to marketing/vesselog-1.2.1.md",
+      "files": [],
+      "assertions": [
+        "X post is <= 280 chars (URLs counted as 23)",
+        "No internal/dev details in posts (infra, secrets, CI, deps, PR numbers)",
+        "Includes a prefilled x.com/intent/tweet link",
+        "Headlines a real user-facing change (Delete My Data, upload/camera fix, or readable text)",
+        "Links to vesselog.com",
+        "Output saved as vesselog-1.2.1.md"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "we just pushed n-back 1.7.0 to both stores. can you whip up the tweet and linkedin post for it?",
+      "expected_output": "Drafts leading with visual guess feedback; both store links; no dependabot/CI noise",
+      "files": [],
+      "assertions": [
+        "X post is <= 280 chars (URLs counted as 23)",
+        "No internal/dev details in posts (infra, secrets, CI, deps, PR numbers)",
+        "Includes a prefilled x.com/intent/tweet link",
+        "Headlines visual guess feedback",
+        "Includes both App Store and Play Store links",
+        "Output saved as n-back-1.7.0.md"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "write the launch posts for recallkit",
+      "expected_output": "Finds no GitHub release, tells user, asks for highlights instead of inventing features",
+      "files": [],
+      "assertions": [
+        "Reports that no GitHub release exists for RecallKit",
+        "Asks the user for highlights (or explicitly flags assumptions) instead of inventing new-release features",
+        "Does not claim unverified new features"
+      ]
+    }
+  ]
+}
