@@ -5,6 +5,7 @@ import { Source_Sans_3 } from 'next/font/google';
 import { Breadcrumbs } from '@/lib/Breadcrumbs';
 import {
   IconLinkedIn,
+  IconX,
   IconGithub,
   IconGooglePlay,
   IconAppStore,
@@ -219,6 +220,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     aria-label="LinkedIn"
                   >
                     <IconLinkedIn className="h-5 w-5" aria-hidden />
+                  </a>
+                  <a
+                    href="https://x.com/AGLFlorida"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xl text-gray-300 hover:text-white transition inline-flex"
+                    aria-label="X"
+                  >
+                    <IconX className="h-5 w-5" aria-hidden />
                   </a>
                   <a
                     href="https://github.com/aglflorida/"
