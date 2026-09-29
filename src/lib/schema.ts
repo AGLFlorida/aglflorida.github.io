@@ -259,6 +259,7 @@ export function generateOrganizationSchema(baseUrl?: string): OrganizationSchema
       'Fractional technical leadership and software development for small and mid-sized businesses. We help organizations modernize technology—infrastructure, developer workflows, and platform migrations—without the overhead of a full-time executive.',
     sameAs: [
       'https://www.linkedin.com/company/agl-consulting-llc/',
+      'https://x.com/AGLFlorida',
       'https://github.com/aglflorida/',
       'https://play.google.com/store/apps/dev?id=5851403031328766349',
       'https://apps.apple.com/us/developer/agl-consulting-llc/id1801519023',
