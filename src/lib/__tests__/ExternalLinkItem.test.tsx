@@ -21,6 +21,14 @@ describe('ExternalLinkItem', () => {
     expect(screen.getByRole('img')).toHaveAttribute('src', expect.stringContaining('google-play.png'));
   });
 
+  it('renders the web app badge', () => {
+    render(<ExternalLinkItem link={{ text: 'Web App', url: 'https://vesselog.com/app' }} />);
+
+    const link = screen.getByRole('link', { name: 'Open in your Browser' });
+    expect(link).toHaveAttribute('href', 'https://vesselog.com/app');
+    expect(screen.getByRole('img')).toHaveAttribute('src', expect.stringContaining('web-app.svg'));
+  });
+
   it.each(['Github', 'GitHub'])('keeps the icon and text for %s links', (text) => {
     const { container } = render(<ExternalLinkItem link={{ text, url: 'https://github.com/x' }} />);
 

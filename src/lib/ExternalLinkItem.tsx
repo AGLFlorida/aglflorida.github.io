@@ -15,13 +15,15 @@ type StoreBadge = {
 
 // Official badge artwork, unmodified (served from public/badges). Apple's badge is 48px tall;
 // Google's PNG carries built-in clear space, so drawn 75px tall its badge is about 50px.
+// The web app badge is our own, drawn in the store badges' style and sized like Apple's.
 const STORE_BADGES: Record<string, StoreBadge> = {
   'App Store': { src: '/badges/app-store.svg', alt: 'Download on the App Store', width: 144, height: 48 },
   'Play Store': { src: '/badges/google-play.png', alt: 'Get it on Google Play', width: 194, height: 75 },
+  'Web App': { src: '/badges/web-app.svg', alt: 'Open in your Browser', width: 132, height: 48 },
 };
 
 /**
- * Renders a product/project link. App Store and Play Store links use the official badges;
+ * Renders a product/project link. App Store, Play Store and Web App links use badges;
  * everything else keeps the icon plus text treatment.
  */
 export function ExternalLinkItem({ link }: { link: ExternalLinkData }) {
