@@ -57,8 +57,8 @@ export function generateTwitterMetadata(
 
 // Looks like the interface for this changed between Next 14 and 15?
 // Adding a small workaround (hack) to make the typescript compiler happy.
-type Params = { 
-  params: Promise<{ slug?: string, id?: string }> 
+type Params = {
+  params: Promise<{ slug?: string, id?: string, page?: string }>
 }
 
 export interface MetadataFactoryOptions {
@@ -83,12 +83,18 @@ export function metadataFactory(
   ): Promise<Metadata> {
     const resolvedParams = await params;
     const slugOrId = resolvedParams.slug ?? resolvedParams.id
+    const page = resolvedParams.page
 
     let customTitle;
     let parameterizedSlugOrId;
     if (slugOrId) {
       customTitle = humanize(slugOrId);
       parameterizedSlugOrId = '/' + slugOrId
+    } else if (page) {
+      if (page !== '1') {
+        customTitle = `${title} - Page ${page}`;
+      }
+      parameterizedSlugOrId = '/page/' + page
     }
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
     const fullTitle = `${base}: ${customTitle || title}`;
