@@ -64,6 +64,41 @@ Read `SOCIAL_STRATEGY.md` (same directory) and apply its "Rules for every draft"
 - Can nod to the craft (e.g. accessibility, privacy) since the audience includes prospective consulting clients, but keep it about the product.
 - 2-4 hashtags at the end.
 
+## Blog post
+
+Write a companion post to `src/content/blog/<product-id>-<version>.md`. The blog URL is the filename itself (`getSortedPosts` strips only `.md`), so replace every `.` in the version with `-` (e.g. version `1.7.0` -> `n-back-1-7-0.md`, not `n-back-1.7.0.md`). Match the frontmatter and structure of existing posts in that directory (e.g. `recall-kit-v1.md`, `n-back-1-7-0.md`):
+
+```markdown
+---
+title: "<headline>"
+date: "<YYYY-MM-DD>"
+excerpt: "<one-sentence summary>"
+---
+
+# <headline>
+
+**<Month DD, YYYY>** — <opening paragraph: what shipped and for whom>
+
+## <section headings as fit, e.g. "Key Features" / "What Changed" / "Why We Built It">
+...
+
+## Get It / Get Started
+- <store/website links>
+
+## Contact & Media Inquiries
+
+For interviews, partnerships, or review access, please contact:
+
+**Brandon Shoop**
+Founder, AGL Consulting
+Website: https://aglflorida.com/contact
+```
+
+- Minimum 300 words. Count before finalizing; if short, add a section that explains the problem being solved, how the feature/release works, or who it's for, grounded in facts already gathered from the release notes or product page. Never pad with invented features, numbers, or quotes.
+- Same voice and ASCII-only rule as the social posts. No hype words.
+- Same content rules as the social posts: user-facing changes only, no internal details (cloud providers, repo names, PR numbers).
+- If the social posts get a future-dated queue slot from the founder, date the blog post the same day so it surfaces alongside them (the blog list and `[slug]` pages hide posts dated after today, see `src/lib/getPosts.ts`).
+
 ## Output
 
 Write `marketing/<product-id>-<version>.md` (repo root) with this structure:
@@ -109,4 +144,4 @@ URL-encode with `python3 -c 'import urllib.parse,sys;print(urllib.parse.quote(sy
 
 Each post gets its own Buffer link because the X and LinkedIn text differ; picking only the matching channel keeps the 280-char post off LinkedIn and the long post off X.
 
-Then print both posts in chat plus the file path. Don't post or queue anything yourself.
+Then print both posts in chat plus the marketing file path and the blog post file path. Don't post or queue anything yourself.
