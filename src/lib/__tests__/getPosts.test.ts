@@ -50,6 +50,14 @@ describe('getPosts', () => {
         expect(post.slug.length).toBeGreaterThan(0);
       });
     });
+
+    it('should exclude posts dated after today', () => {
+      const posts = getSortedPosts();
+      const today = new Date().toISOString().slice(0, 10);
+      posts.forEach((post: BlogPost) => {
+        expect(post.date <= today).toBe(true);
+      });
+    });
   });
 
   describe('getPostBySlug', () => {
