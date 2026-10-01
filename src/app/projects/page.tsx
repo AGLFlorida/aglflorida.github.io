@@ -3,7 +3,8 @@ import { getSortedProjects } from "@/lib/getProjects";
 import { Metadata } from 'next';
 import { generateOpenGraphMetadata, generateTwitterMetadata } from "@/lib/metadata";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
-import { IconLink, IconAppStore, IconGooglePlay, IconGithub } from "@/lib/icons";
+import { IconLink } from "@/lib/icons";
+import { ExternalLinkItem } from '@/lib/ExternalLinkItem';
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
@@ -46,20 +47,9 @@ export default async function ProjectsPage() {
                   </Link>
                 </h2>
                 <p className="text-gray-600 mb-4">{project.description}</p>
-                <div className="flex space-x-4">
-                  {project.links?.map((link, index) => (
-                    <a
-                      key={index}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-800 hover:text-blue-900 flex items-center space-x-1"
-                    >
-                      {link.text === "App Store" && <IconAppStore className="h-5 w-5" aria-hidden />}
-                      {link.text === "Play Store" && <IconGooglePlay className="h-5 w-5" aria-hidden />}
-                      {link.text === "Github" && <IconGithub className="h-5 w-5" aria-hidden />}
-                      <span>{link.text}</span>
-                    </a>
+                <div className="flex flex-wrap items-center gap-4">
+                  {project.links?.map((link) => (
+                    <ExternalLinkItem key={link.url} link={link} compact />
                   ))}
                   {/* <Link
                     href={`/projects/${project.id}`}
@@ -80,7 +70,7 @@ export default async function ProjectsPage() {
             </p>
             <Link
               href="/blog/page/1"
-              className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
+              className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
             >
               Read the blog
             </Link>

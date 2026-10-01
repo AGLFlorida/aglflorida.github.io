@@ -3,7 +3,7 @@ title: "VesseLog"
 date: "2026-08-25"
 description: "Your complete vessel maintenance companion — schedules, service history, and vendors for your whole fleet."
 type: "mobile-app"
-price: "Pricing Coming Soon"
+price: "Contact for Pricing"
 image: "/assets/vesselog.png"
 features:
   - "Smart maintenance scheduling calendar"
@@ -13,13 +13,17 @@ technologies:
   - "React Native"
   - "TypeScript"
 links:
-  - text: "Website"
-    url: "https://vesselog.com"
+  - text: "App Store"
+    url: "https://apps.apple.com/us/app/vesselog/id6755565982"
+  - text: "Play Store"
+    url: "https://play.google.com/store/apps/details?id=com.aglflorida.vesselog"
+  - text: "Web App"
+    url: "https://vesselog.com/app"
 ---
 
 VesseLog helps boat owners and marine professionals manage vessel maintenance schedules, track service history, and stay on top of upcoming tasks.
 
-Visit [vesselog.com](https://vesselog.com) for pricing and details.
+[Contact us](https://aglflorida.com/contact) for pricing, or visit [vesselog.com](https://vesselog.com) for details.
 
 ## Examples
 
