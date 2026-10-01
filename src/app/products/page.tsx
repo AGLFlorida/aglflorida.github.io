@@ -72,7 +72,7 @@ export default async function ProductsPage() {
               )}
               <div className="flex flex-wrap items-center gap-4">
                 {product.links?.map((link) => (
-                  <ExternalLinkItem key={link.url} link={link} />
+                  <ExternalLinkItem key={link.url} link={link} compact />
                 ))}
               </div>
             </div>

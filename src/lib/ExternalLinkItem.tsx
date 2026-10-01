@@ -22,12 +22,21 @@ const STORE_BADGES: Record<string, StoreBadge> = {
   'Web App': { src: '/badges/web-app.svg', alt: 'Open in your Browser', width: 132, height: 48 },
 };
 
+// Overview tiles are dense, so their badges are drawn at half the detail page size.
+const COMPACT_SCALE = 0.5;
+
+type ExternalLinkItemProps = {
+  link: ExternalLinkData;
+  compact?: boolean;
+};
+
 /**
  * Renders a product/project link. App Store, Play Store and Web App links use badges;
  * everything else keeps the icon plus text treatment.
  */
-export function ExternalLinkItem({ link }: { link: ExternalLinkData }) {
+export function ExternalLinkItem({ link, compact = false }: ExternalLinkItemProps) {
   const badge = STORE_BADGES[link.text];
+  const scale = compact ? COMPACT_SCALE : 1;
 
   return (
     <a
@@ -37,7 +46,12 @@ export function ExternalLinkItem({ link }: { link: ExternalLinkData }) {
       className="text-blue-800 hover:text-blue-900 flex items-center space-x-1"
     >
       {badge ? (
-        <Image src={badge.src} alt={badge.alt} width={badge.width} height={badge.height} />
+        <Image
+          src={badge.src}
+          alt={badge.alt}
+          width={Math.round(badge.width * scale)}
+          height={Math.round(badge.height * scale)}
+        />
       ) : (
         <>
           {(link.text === 'Github' || link.text === 'GitHub') && <IconGithub className="h-5 w-5" aria-hidden />}

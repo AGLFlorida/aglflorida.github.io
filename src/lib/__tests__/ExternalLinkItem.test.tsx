@@ -29,6 +29,14 @@ describe('ExternalLinkItem', () => {
     expect(screen.getByRole('img')).toHaveAttribute('src', expect.stringContaining('web-app.svg'));
   });
 
+  it('draws badges at half the size when compact', () => {
+    render(<ExternalLinkItem link={{ text: 'App Store', url: 'https://apps.apple.com/app' }} compact />);
+
+    const img = screen.getByRole('img');
+    expect(img).toHaveAttribute('width', '72');
+    expect(img).toHaveAttribute('height', '24');
+  });
+
   it.each(['Github', 'GitHub'])('keeps the icon and text for %s links', (text) => {
     const { container } = render(<ExternalLinkItem link={{ text, url: 'https://github.com/x' }} />);
 

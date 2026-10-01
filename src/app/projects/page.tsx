@@ -49,7 +49,7 @@ export default async function ProjectsPage() {
                 <p className="text-gray-600 mb-4">{project.description}</p>
                 <div className="flex flex-wrap items-center gap-4">
                   {project.links?.map((link) => (
-                    <ExternalLinkItem key={link.url} link={link} />
+                    <ExternalLinkItem key={link.url} link={link} compact />
                   ))}
                   {/* <Link
                     href={`/projects/${project.id}`}
