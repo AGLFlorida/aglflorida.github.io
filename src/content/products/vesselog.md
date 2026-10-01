@@ -19,8 +19,6 @@ links:
     url: "https://play.google.com/store/apps/details?id=com.aglflorida.vesselog"
   - text: "Web App"
     url: "https://vesselog.com/app"
-  - text: "Website"
-    url: "https://vesselog.com"
 ---
 
 VesseLog helps boat owners and marine professionals manage vessel maintenance schedules, track service history, and stay on top of upcoming tasks.
