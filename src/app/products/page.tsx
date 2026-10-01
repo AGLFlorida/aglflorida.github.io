@@ -68,7 +68,7 @@ export default async function ProductsPage() {
               </h3>
               <p className="text-gray-600 mb-4">{product.description}</p>
               {product.price && (
-                <p className="text-lg font-semibold text-blue-800 mb-4">{product.price}</p>
+                <p className="text-lg font-semibold text-gray-800 mb-4">{product.price}</p>
               )}
               <div className="flex flex-wrap items-center gap-4">
                 {product.links?.map((link) => (
@@ -93,7 +93,7 @@ export default async function ProductsPage() {
               </h3>
               <p className="text-gray-600 mb-4">{product.description}</p>
               {product.price && (
-                <p className="text-lg font-semibold text-blue-800 mb-2">{product.price}</p>
+                <p className="text-lg font-semibold text-gray-800 mb-2">{product.price}</p>
               )}
               {product.duration && (
                 <p className="text-sm text-gray-700 mb-4">Duration: {product.duration}</p>
@@ -119,7 +119,7 @@ export default async function ProductsPage() {
             </p>
             <Link
               href="/contact/"
-              className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
+              className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
             >
               Contact Us
             </Link>

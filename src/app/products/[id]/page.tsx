@@ -46,13 +46,20 @@ export default async function ProductPage({ params }: { params: Params }) {
         {/* Main Content Column */}
         <div className="w-full lg:w-2/3">
           <div className="bg-white p-6 rounded-lg shadow mb-8">
+        {product.links && (
+          <div className="flex flex-wrap items-center gap-4 mb-6">
+            {product.links.map((link) => (
+              <ExternalLinkItem key={link.url} link={link} />
+            ))}
+          </div>
+        )}
         <h2 className="text-xl font-semibold mb-4">Overview</h2>
         <div className="prose max-w-none mb-6" dangerouslySetInnerHTML={{ __html: product.contentHtml }} />
 
         {product.price && (
           <div className="mb-6">
             <h2 className="text-xl font-semibold mb-2">Pricing</h2>
-            <p className="text-2xl font-bold text-blue-800">{product.price}</p>
+            <p className="text-2xl font-bold text-gray-800">{product.price}</p>
           </div>
         )}
 
@@ -101,13 +108,6 @@ export default async function ProductPage({ params }: { params: Params }) {
           </>
         )}
 
-        {product.links && (
-          <div className="flex flex-wrap items-center gap-4">
-            {product.links.map((link) => (
-              <ExternalLinkItem key={link.url} link={link} />
-            ))}
-          </div>
-        )}
           </div>
         </div>
 
@@ -120,13 +120,13 @@ export default async function ProductPage({ params }: { params: Params }) {
             </p>
             <Link
               href="/contact/"
-              className="inline-block bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full mb-4"
+              className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full mb-4"
             >
               Contact Us
             </Link>
             <Link
               href="/products/"
-              className="inline-block border-2 border-blue-800 text-blue-800 px-6 py-3 rounded-lg hover:bg-blue-50 transition text-center font-semibold w-full"
+              className="inline-block border-2 border-gray-800 text-gray-800 px-6 py-3 rounded-lg hover:bg-blue-50 transition text-center font-semibold w-full"
             >
               See All Products
             </Link>
