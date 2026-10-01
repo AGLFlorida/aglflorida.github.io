@@ -11,24 +11,58 @@ type StoreBadge = {
   alt: string;
   width: number;
   height: number;
+  // Visible area of the artwork as fractions of its drawn size, for images with built-in clear space.
+  crop?: { left: number; top: number; width: number; height: number };
 };
 
-// Official badge artwork, unmodified (served from public/badges). Apple's badge is 48px tall;
-// Google's PNG carries built-in clear space, so drawn 75px tall its badge is about 50px.
-// The web app badge is our own, drawn in the store badges' style and sized like Apple's.
 const STORE_BADGES: Record<string, StoreBadge> = {
   'App Store': { src: '/badges/app-store.svg', alt: 'Download on the App Store', width: 144, height: 48 },
-  'Play Store': { src: '/badges/google-play.png', alt: 'Get it on Google Play', width: 194, height: 75 },
+  'Play Store': {
+    src: '/badges/google-play.png',
+    alt: 'Get it on Google Play',
+    width: 194,
+    height: 75,
+    crop: { left: 40 / 646, top: 40 / 250, width: 567 / 646, height: 168 / 250 },
+  },
   'Web App': { src: '/badges/web-app.svg', alt: 'Open in your Browser', width: 132, height: 48 },
 };
 
-// Overview tiles are dense, so their badges are drawn at half the detail page size.
-const COMPACT_SCALE = 0.5;
+// Overview tiles are dense, so their badges are drawn at two thirds of the detail page size.
+const COMPACT_SCALE = 2 / 3;
 
 type ExternalLinkItemProps = {
   link: ExternalLinkData;
   compact?: boolean;
 };
+
+function StoreBadgeImage({ badge, scale }: { badge: StoreBadge; scale: number }) {
+  const width = Math.round(badge.width * scale);
+  const height = Math.round(badge.height * scale);
+  const { crop } = badge;
+
+  if (!crop) {
+    return <Image src={badge.src} alt={badge.alt} width={width} height={height} />;
+  }
+
+  return (
+    <span
+      className="block overflow-hidden"
+      style={{ width: Math.round(width * crop.width), height: Math.round(height * crop.height) }}
+    >
+      <Image
+        src={badge.src}
+        alt={badge.alt}
+        width={width}
+        height={height}
+        style={{
+          maxWidth: 'none',
+          marginLeft: -Math.round(width * crop.left),
+          marginTop: -Math.round(height * crop.top),
+        }}
+      />
+    </span>
+  );
+}
 
 /**
  * Renders a product/project link. App Store, Play Store and Web App links use badges;
@@ -46,12 +80,7 @@ export function ExternalLinkItem({ link, compact = false }: ExternalLinkItemProp
       className="text-blue-800 hover:text-blue-900 flex items-center space-x-1"
     >
       {badge ? (
-        <Image
-          src={badge.src}
-          alt={badge.alt}
-          width={Math.round(badge.width * scale)}
-          height={Math.round(badge.height * scale)}
-        />
+        <StoreBadgeImage badge={badge} scale={scale} />
       ) : (
         <>
           {(link.text === 'Github' || link.text === 'GitHub') && <IconGithub className="h-5 w-5" aria-hidden />}

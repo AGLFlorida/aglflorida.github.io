@@ -18,7 +18,11 @@ describe('ExternalLinkItem', () => {
 
     const link = screen.getByRole('link', { name: 'Get it on Google Play' });
     expect(link).toHaveAttribute('href', 'https://play.google.com/app');
-    expect(screen.getByRole('img')).toHaveAttribute('src', expect.stringContaining('google-play.png'));
+    const img = screen.getByRole('img');
+    expect(img).toHaveAttribute('src', expect.stringContaining('google-play.png'));
+    // The artwork's built-in clear space is cropped away so the badge sits flush.
+    expect(img.parentElement).toHaveClass('overflow-hidden');
+    expect(img).toHaveStyle({ marginLeft: '-12px', marginTop: '-12px' });
   });
 
   it('renders the web app badge', () => {
@@ -29,12 +33,12 @@ describe('ExternalLinkItem', () => {
     expect(screen.getByRole('img')).toHaveAttribute('src', expect.stringContaining('web-app.svg'));
   });
 
-  it('draws badges at half the size when compact', () => {
+  it('draws badges at two thirds of the size when compact', () => {
     render(<ExternalLinkItem link={{ text: 'App Store', url: 'https://apps.apple.com/app' }} compact />);
 
     const img = screen.getByRole('img');
-    expect(img).toHaveAttribute('width', '72');
-    expect(img).toHaveAttribute('height', '24');
+    expect(img).toHaveAttribute('width', '96');
+    expect(img).toHaveAttribute('height', '32');
   });
 
   it.each(['Github', 'GitHub'])('keeps the icon and text for %s links', (text) => {
