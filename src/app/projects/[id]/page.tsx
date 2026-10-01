@@ -4,7 +4,7 @@ import { generateProjectSchema } from "@/lib/schema";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
 import type { ResolvingMetadata } from 'next';
 import Link from 'next/link';
-import { IconAppStore, IconGooglePlay, IconGithub } from "@/lib/icons";
+import { ExternalLinkItem } from '@/lib/ExternalLinkItem';
 
 type Params = Promise<{ id: string }>;
 
@@ -91,20 +91,9 @@ export default async function ProjectPage({ params }: { params: Params }) {
         )}
 
         {project.links && (
-          <div className="flex space-x-4">
-            {project.links.map((link, index) => (
-              <a
-                key={index}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-800 hover:text-blue-900 flex items-center space-x-1"
-              >
-                {link.text === "App Store" && <IconAppStore className="h-5 w-5" aria-hidden />}
-                {link.text === "Play Store" && <IconGooglePlay className="h-5 w-5" aria-hidden />}
-                {link.text === "Github" && <IconGithub className="h-5 w-5" aria-hidden />}
-                <span>{link.text}</span>
-              </a>
+          <div className="flex flex-wrap items-center gap-4">
+            {project.links.map((link) => (
+              <ExternalLinkItem key={link.url} link={link} />
             ))}
           </div>
         )}

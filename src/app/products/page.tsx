@@ -4,7 +4,8 @@ import { getSortedProducts } from '@/lib/getProducts';
 import { Metadata } from 'next';
 import { generateOpenGraphMetadata, generateTwitterMetadata } from '@/lib/metadata';
 import { generateBreadcrumbSchemaForPath } from '@/lib/BreadcrumbSchema';
-import { IconLink, IconAppStore, IconGooglePlay, IconGithub, IconGlobe } from '@/lib/icons';
+import { IconLink } from '@/lib/icons';
+import { ExternalLinkItem } from '@/lib/ExternalLinkItem';
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
@@ -69,21 +70,9 @@ export default async function ProductsPage() {
               {product.price && (
                 <p className="text-lg font-semibold text-blue-800 mb-4">{product.price}</p>
               )}
-              <div className="flex space-x-4">
-                {product.links?.map((link, index) => (
-                  <a
-                    key={index}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-800 hover:text-blue-900 flex items-center space-x-1"
-                  >
-                    {link.text === 'App Store' && <IconAppStore className="h-5 w-5" aria-hidden />}
-                    {link.text === 'Play Store' && <IconGooglePlay className="h-5 w-5" aria-hidden />}
-                    {(link.text === 'Github' || link.text === 'GitHub') && <IconGithub className="h-5 w-5" aria-hidden />}
-                    {link.text === 'Website' && <IconGlobe className="h-5 w-5" aria-hidden />}
-                    <span>{link.text}</span>
-                  </a>
+              <div className="flex flex-wrap items-center gap-4">
+                {product.links?.map((link) => (
+                  <ExternalLinkItem key={link.url} link={link} />
                 ))}
               </div>
             </div>
