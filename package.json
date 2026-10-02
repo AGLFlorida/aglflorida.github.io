@@ -46,7 +46,7 @@
     "eslint-plugin-security": "^4.0.1",
     "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.5.2",
-    "jscpd": "^5.2.0",
+    "jscpd": "^5.3.3",
     "postcss": "^8.5.28",
     "tailwindcss": "^4.3.2",
     "ts-jest": "^29.4.14",
