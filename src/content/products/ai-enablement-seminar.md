@@ -4,7 +4,7 @@ date: "2026-04-21"
 description: "A five-day in-person workshop that equips developer and product teams with practical AI skills, bespoke tooling, and a partial roadmap for integrating AI into their work."
 type: "consulting"
 price: "Contact for Pricing"
-duration: "5 days on-site"
+duration: "5 days on-site or virtual"
 deliverables:
   - "Trained development and product team"
   - "Bespoke AI tools and prompt library tailored to your workflow"
@@ -15,7 +15,7 @@ deliverables:
 
 Most teams aren't behind on AI because they lack access to tools. They're behind because no one has shown them how to use those tools well—or honestly, where they fall short.
 
-This seminar changes that. Five days on-site with your developers and product team, working through practical AI techniques, building tools you'll actually use, and leaving with a clear picture of where AI fits in your workflow and where it doesn't.
+This seminar changes that. Five days with your developers and product team, working through practical AI techniques, building tools you'll actually use, and leaving with a clear picture of where AI fits in your workflow and where it doesn't.
 
 ## What We Cover
 
@@ -45,7 +45,7 @@ The clearest sign of a team that knows how to use AI is that they know when not 
 
 ## Format
 
-Five days on-site, designed for developer and product teams. Leadership is welcome and often benefits from attending portions of the workshop. We structure the week to balance instruction with hands-on work, so your team is building and experimenting throughout—not just sitting through slides.
+Five days, designed for developer and product teams. Leadership is welcome and often benefits from attending portions of the workshop. We structure the week to balance instruction with hands-on work, so your team is building and experimenting throughout—not just sitting through slides.
 
 An optional follow-up engagement is available for teams that want continued support as they put the roadmap into practice.
 
@@ -57,7 +57,7 @@ It's not the right fit for teams looking for an executive briefing or a vendor e
 
 ## Investment
 
-Starting at $18,500 for the five-day on-site engagement, plus reasonable travel and expenses. Exact pricing scales with team size and any pre-workshop discovery work required.
+Starting at $18,500 for the five-day engagement, plus reasonable travel and expenses. Exact pricing scales with team size and any pre-workshop discovery work required.
 
 ## Getting Started
 
