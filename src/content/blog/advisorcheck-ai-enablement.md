@@ -19,5 +19,5 @@ By the end of the engagement both engineers had the tools and the technical know
 That gap is not really an AdvisorCheck problem, it shows up almost everywhere we run this kind of engagement. Give a developer an agent and the default move is to keep it on a short leash: review every small change, re-prompt at the first sign of friction, never let it touch more than one file at a time. The real unlock comes later, when a developer trusts the agent enough to hand it a larger, more ambiguous piece of work and let it run. It is the same trust building that happens any time a team delegates more responsibility, whether to a junior engineer or a new hire, except the feedback loop is faster and the cost of a bad attempt is lower. That makes it one of the lowest risk places to practice letting go of control, and exactly where coaching style follow ups, rather than another tooling seminar, earn their keep.
 
 ## Get Started
-- Learn more about the AI Enablement Seminar: https://aglflorida.com/products#services
-- Start a conversation: https://aglflorida.com/contact
+- Learn more about the AI Enablement Seminar: [https://aglflorida.com/products#services](https://aglflorida.com/products#services)
+- Start a conversation: [https://aglflorida.com/contact](https://aglflorida.com/contact)

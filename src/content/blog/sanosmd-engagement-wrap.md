@@ -17,5 +17,5 @@ On infrastructure, we rebuilt the deploy and access model on Terraform: scoped I
 The result is a small team that can ship AI assisted changes quickly without that speed costing them control: every change reviewed, every environment scoped down to what it needs, and a system that is easier to reason about today than when we started.
 
 ## Get Started
-- Learn more about our engagements: https://aglflorida.com/products#services
-- Start a conversation: https://aglflorida.com/contact
+- Learn more about the AI Enablement Seminar: [https://aglflorida.com/products#services](https://aglflorida.com/products#services)
+- Start a conversation: [https://aglflorida.com/contact](https://aglflorida.com/contact)
