@@ -1,12 +1,16 @@
 # Github now issues a read-only cache token to workflows triggered by workflow_run
 # (see https://github.blog/changelog/2026-06-26-read-only-actions-cache-for-untrusted-triggers/),
 # which is how nextjs.yml's deploy build runs. That build can restore a cache but can
-# never save one. This workflow runs on push (a trusted trigger) so it can actually
-# save the cache, using the identical key scheme nextjs.yml reads from via restore-keys.
+# never save one. This workflow sits between Tag and Release and the deploy build
+# (tag -> warm-cache -> nextjs, see nextjs.yml's trigger), so the deploy build
+# literally cannot start until this one finishes saving the cache under the identical
+# key scheme nextjs.yml reads from via restore-keys.
 name: Warm Next.js Build Cache
 
 on:
-  push:
+  workflow_run:
+    workflows: ['Tag and Release']
+    types: [completed]
     branches: [main]
 
 permissions:
@@ -19,6 +23,7 @@ concurrency:
 
 jobs:
   warm-cache:
+    if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
