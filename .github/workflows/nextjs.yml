@@ -5,12 +5,11 @@
 name: Deploy Next.js site to Pages
 
 on:
-  # Run after Warm Next.js Build Cache completes (order: tag → warm-cache →
-  # nextjs; see warm-nextjs-cache.yml). This also means the cache is always
-  # saved before this build's restore step runs. When summarize is
-  # re-enabled: insert it into that chain the same way.
+  # Run after Tag and Release completes (order: tag → nextjs). When summarize
+  # is re-enabled: switch to workflow_run workflows: ["Summarize Release"],
+  # types: [completed], so deploy order is tag → summarize → nextjs.
   workflow_run:
-    workflows: ['Warm Next.js Build Cache']
+    workflows: ['Tag and Release']
     types: [completed]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -27,7 +26,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  actions: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
