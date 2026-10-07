@@ -15,11 +15,12 @@
     "validate:schemas": "tsx scripts/validate-schemas.ts",
     "check:unicode": "tsx scripts/check-unicode.ts",
     "check:dupes": "jscpd src",
-    "lighthouse": "lhci autorun"
+    "lighthouse": "lhci autorun",
+    "verify:dev": "npm run lint && npm run test && npm run compile && npm run validate:schemas && npm run check:unicode && npm run check:dupes"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
-    "next": "^16.3.4",
+    "next": "^16.3.6",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-google-recaptcha": "^3.1.0",
