@@ -113,6 +113,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </nav>
 
             <div className="col-start-3 flex items-center space-x-4 justify-self-end">
+              <a
+                href="https://github.com/AGLFlorida/aglflorida.github.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-100 hover:text-gray-300 transition"
+                aria-label="GitHub repository"
+              >
+                <IconGithub className="h-5 w-5" aria-hidden />
+              </a>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-900 font-medium rounded-md"
