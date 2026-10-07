@@ -135,37 +135,37 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </h2>
                 <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
                   <li>
-                    <Link href="/" className="hover:text-white transition">
+                    <Link href="/" prefetch={false} className="hover:text-white transition">
                       Home
                     </Link>
                   </li>
                   <li>
-                    <Link href="/projects" className="hover:text-white transition">
+                    <Link href="/projects" prefetch={false} className="hover:text-white transition">
                       Projects
                     </Link>
                   </li>
                   <li>
-                    <Link href="/products" className="hover:text-white transition">
+                    <Link href="/products" prefetch={false} className="hover:text-white transition">
                       Products
                     </Link>
                   </li>
                   <li>
-                    <Link href="/people" className="hover:text-white transition">
+                    <Link href="/people" prefetch={false} className="hover:text-white transition">
                       People
                     </Link>
                   </li>
                   <li>
-                    <Link href="/policies" className="hover:text-white transition">
+                    <Link href="/policies" prefetch={false} className="hover:text-white transition">
                       Policies
                     </Link>
                   </li>
                   <li>
-                    <Link href="/releases" className="hover:text-white transition">
+                    <Link href="/releases" prefetch={false} className="hover:text-white transition">
                       Releases
                     </Link>
                   </li>
                   <li>
-                    <Link href="/partners" className="hover:text-white transition">
+                    <Link href="/partners" prefetch={false} className="hover:text-white transition">
                       Partners
                     </Link>
                   </li>
@@ -177,12 +177,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </h2>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/about" className="hover:text-white transition">
+                    <Link href="/about" prefetch={false} className="hover:text-white transition">
                       About AGL
                     </Link>
                   </li>
                   <li>
-                    <Link href="/blog/page/1" className="hover:text-white transition">
+                    <Link href="/blog/page/1" prefetch={false} className="hover:text-white transition">
                       Company Blog
                     </Link>
                   </li>
@@ -194,17 +194,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </h2>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/privacy" className="hover:text-white transition">
+                    <Link href="/privacy" prefetch={false} className="hover:text-white transition">
                       Privacy Policy
                     </Link>
                   </li>
                   <li>
-                    <Link href="/security" className="hover:text-white transition">
+                    <Link href="/security" prefetch={false} className="hover:text-white transition">
                       Security Policy
                     </Link>
                   </li>
                   <li>
-                    <Link href="/accessibility" className="hover:text-white transition">
+                    <Link href="/accessibility" prefetch={false} className="hover:text-white transition">
                       Accessibility Statement
                     </Link>
                   </li>
@@ -263,7 +263,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/contact" className="hover:text-white transition">
+                    <Link href="/contact" prefetch={false} className="hover:text-white transition">
                       Contact Us
                     </Link>
                   </li>
