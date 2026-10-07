@@ -39,17 +39,17 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <h1 className="text-3xl font-bold mb-8">Blog Posts</h1>
+      <h1 className="font-heading text-h1 font-bold mb-8">Blog Posts</h1>
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Main Content Column */}
         <div className="w-full lg:w-2/3">
-          <div className="bg-white p-6 rounded-lg shadow">
+          <div className="bg-white p-6 rounded-lg shadow border border-gray-100">
         <PaginationControls currentPage={currentPage} totalPages={totalPages} />
         <div className="space-y-6">
           {currentPosts.map((post) => (
             <div key={post.slug} className="border-b last:border-0 pb-6 last:pb-0">
               <Link href={`/blog/${post.slug}`} className="block group">
-                <h2 className="text-2xl font-semibold text-blue-800 group-hover:text-blue-900 mb-2">
+                <h2 className="font-heading text-h2 font-semibold text-blue-800 group-hover:text-blue-900 mb-2">
                   {post.title}
                 </h2>
                 <div className="flex items-center gap-4 text-sm text-gray-700 mb-3">
@@ -69,20 +69,20 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         {/* Right Rail */}
         <div className="w-full lg:w-1/3">
           <div className="sticky top-8 space-y-8">
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h2 className="text-xl font-bold mb-4">The Team</h2>
+            <div className="bg-white p-6 rounded-lg shadow border border-gray-100">
+              <h2 className="font-heading text-h3 font-semibold mb-4">The Team</h2>
               <p className="text-gray-600 mb-4">
                 Learn more about the people behind AGL Consulting and our human-centered approach to technology.
               </p>
               <Link
                 href="/people"
-                className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
+                className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 hover:shadow-md transition-all text-center font-semibold w-full"
               >
                 Meet Our People
               </Link>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h2 className="text-xl font-bold mb-4">Founder&apos;s Blog</h2>
+            <div className="bg-white p-6 rounded-lg shadow border border-gray-100">
+              <h2 className="font-heading text-h3 font-semibold mb-4">Founder&apos;s Blog</h2>
               <p className="text-gray-600 mb-4">
                 Check out Brandon Shoop&apos;s personal blog for more insights on technology, development, and leadership.
               </p>
@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 href="https://brandonshoop.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
+                className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 hover:shadow-md transition-all text-center font-semibold w-full"
               >
                 Visit Founder&apos;s Blog <IconExternalLink className="text-sm ml-1 h-4 w-4 inline" aria-hidden />
               </a>

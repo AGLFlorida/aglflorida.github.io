@@ -18,11 +18,11 @@ export default async function PoliciesPage() {
 
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8">Policies</h1>
+      <h1 className="font-heading text-h1 font-bold mb-8">Policies</h1>
       <p className="mb-4">
         How AGL Works with Clarity and Care.
       </p>
-      <div className="bg-white p-6 rounded-lg shadow">
+      <div className="bg-white p-6 rounded-lg shadow border border-gray-100">
         <ul className="space-y-3">
           {policies.map((policy) => (
             <li key={policy.id}>

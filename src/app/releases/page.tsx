@@ -19,14 +19,14 @@ export default async function ReleasesPage() {
 
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8">Release Notes</h1>
+      <h1 className="font-heading text-h1 font-bold mb-8">Release Notes</h1>
       <p className="mb-4">
         What shipped, what changed, what&apos;s next. Built from the git log — no spin.
       </p>
       <div className="space-y-6">
         {releases.map((release) => (
-          <div key={release.id} className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold mb-2">
+          <div key={release.id} className="bg-white p-6 rounded-lg shadow border border-gray-100">
+            <h2 className="font-heading text-h2 font-semibold mb-2">
               <Link href={`/releases/${release.id}`}>
                 {release.title} <IconLink className="h-5 w-5 inline" aria-hidden />
               </Link>

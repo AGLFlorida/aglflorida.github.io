@@ -32,7 +32,7 @@ export default async function ProjectsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <h1 className="text-3xl font-bold mb-8">Projects</h1>
+      <h1 className="font-heading text-h1 font-bold mb-8">Projects</h1>
       <p className="mb-4">
         Things we&apos;re building. Some shipping, some experimental — all worth the effort.
       </p>
@@ -40,8 +40,8 @@ export default async function ProjectsPage() {
         <div className="w-full lg:w-2/3">
           <div className="space-y-6">
             {projects.map((project) => (
-              <div key={project.id} className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-2xl font-semibold mb-2">
+              <div key={project.id} className="bg-white p-6 rounded-lg shadow border border-gray-100">
+                <h2 className="font-heading text-h2 font-semibold mb-2">
                   <Link href={`/projects/${project.id}`}>
                     {project.title} <IconLink className="h-5 w-5 inline" aria-hidden />
                   </Link>
@@ -63,14 +63,14 @@ export default async function ProjectsPage() {
           </div>
         </div>
         <aside className="w-full lg:w-1/3">
-          <div className="bg-white p-6 rounded-lg shadow sticky top-8">
-            <h2 className="text-xl font-bold mb-4">Company Blog</h2>
+          <div className="bg-white p-6 rounded-lg shadow border border-gray-100 sticky top-8">
+            <h2 className="font-heading text-h3 font-semibold mb-4">Company Blog</h2>
             <p className="text-gray-600 mb-4">
               Ideas, updates, and practical tech from the team.
             </p>
             <Link
               href="/blog/page/1"
-              className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
+              className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 hover:shadow-md transition-all text-center font-semibold w-full"
             >
               Read the blog
             </Link>

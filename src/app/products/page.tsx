@@ -36,7 +36,7 @@ export default async function ProductsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <h1 className="text-3xl font-bold mb-8">Products &amp; Services</h1>
+      <h1 className="font-heading text-h1 font-bold mb-8">Products &amp; Services</h1>
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Main Content Column */}
         <div className="w-full lg:w-2/3">
@@ -46,10 +46,10 @@ export default async function ProductsPage() {
 
           {/* Mobile Apps Section */}
           <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6" id="#products">Software Products</h2>
+        <h2 className="font-heading text-h2 font-semibold mb-6" id="#products">Software Products</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {mobileApps.map((product) => (
-            <div key={product.id} className="bg-white p-6 rounded-lg shadow">
+            <div key={product.id} className="bg-white p-6 rounded-lg shadow border border-gray-100">
               {product.image && (
                 <div className="mb-4">
                   <Image
@@ -61,7 +61,7 @@ export default async function ProductsPage() {
                   />
                 </div>
               )}
-              <h3 className="text-2xl font-semibold mb-2">
+              <h3 className="font-heading text-h3 font-semibold mb-2">
                 <Link href={product.href || `/products/${product.id}`}>
                   {product.title} {!product.hideTitleIcon && <IconLink className="h-5 w-5 inline" aria-hidden />}
                 </Link>
@@ -82,11 +82,11 @@ export default async function ProductsPage() {
 
       {/* Consulting Packages Section */}
       <section>
-        <h2 className="text-2xl font-bold mb-6" id="services">Consulting Engagement Packages</h2>
+        <h2 className="font-heading text-h2 font-semibold mb-6" id="services">Consulting Engagement Packages</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {consultingPackages.map((product) => (
-            <div key={product.id} className="bg-white p-6 rounded-lg shadow">
-              <h3 className="text-2xl font-semibold mb-2">
+            <div key={product.id} className="bg-white p-6 rounded-lg shadow border border-gray-100">
+              <h3 className="font-heading text-h3 font-semibold mb-2">
                 <Link href={`/products/${product.id}`}>
                   {product.title} <IconLink className="h-5 w-5 inline" aria-hidden />
                 </Link>
@@ -112,14 +112,14 @@ export default async function ProductsPage() {
 
         {/* Right Rail */}
         <div className="w-full lg:w-1/3">
-          <div className="bg-white p-6 rounded-lg shadow sticky top-8">
-            <h2 className="text-xl font-bold mb-4">Contact Us</h2>
+          <div className="bg-white p-6 rounded-lg shadow border border-gray-100 sticky top-8">
+            <h2 className="font-heading text-h3 font-semibold mb-4">Contact Us</h2>
             <p className="text-gray-600 mb-4">
               Interested in learning more about our products or services? Get in touch with us to discuss how we can help.
             </p>
             <Link
               href="/contact/"
-              className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
+              className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 hover:shadow-md transition-all text-center font-semibold w-full"
             >
               Contact Us
             </Link>

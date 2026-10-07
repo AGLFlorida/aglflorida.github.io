@@ -20,8 +20,8 @@ export default function AccessibilityPage() {
           <SiteInfoNav currentPath="/accessibility" />
         </aside>
         <div className="min-w-0">
-          <h1 className="text-3xl font-bold mb-8">Accessibility Statement</h1>
-          <div className="bg-white p-6 rounded-lg shadow prose max-w-none">
+          <h1 className="font-heading text-h1 font-bold mb-8">Accessibility Statement</h1>
+          <div className="bg-white p-6 rounded-lg shadow border border-gray-100 prose max-w-none">
             <h2>Our Commitment</h2>
             <p>
               AGL Consulting LLC is committed to ensuring our website (aglflorida.com) is accessible to people with disabilities. We aim to provide an inclusive experience and to conform to widely adopted accessibility standards where practicable.

@@ -1,6 +1,6 @@
 import './globals.css';
 import Link from 'next/link';
-import { Source_Sans_3 } from 'next/font/google';
+import { Source_Sans_3, Source_Serif_4 } from 'next/font/google';
 
 import { Breadcrumbs } from '@/lib/Breadcrumbs';
 import {
@@ -51,6 +51,12 @@ const sourceSans = Source_Sans_3({
   weight: ['400', '600', '700'],
 });
 
+const sourceSerif = Source_Serif_4({
+  subsets: ['latin'],
+  variable: '--font-source-serif',
+  weight: ['600', '700'],
+});
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const currentYear = new Date().getFullYear();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
@@ -59,10 +65,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const websiteSchema = generateWebsiteSchema(baseUrl);
 
   return (
-    <html lang="en" className={sourceSans.variable}>
+    <html lang="en" className={`${sourceSans.variable} ${sourceSerif.variable}`}>
       <head>
-        <link rel="preload" as="image" href="/header.avif" type="image/avif" />
-        <link rel="preload" as="image" href="/header.webp" type="image/webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -77,45 +81,44 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-gray-100 text-gray-900">
-        <header className="relative h-12 md:h-14">
-          <picture className="absolute inset-0 z-0 block h-full w-full">
-            <source srcSet="/header.avif" type="image/avif" />
-            <source srcSet="/header.webp" type="image/webp" />
-            <img
-              src="/header.jpg"
-              alt="Header Background"
-              className="h-full w-full object-cover"
-              fetchPriority="high"
-            />
-          </picture>
+        <header className="sticky top-0 z-50 bg-gray-800 shadow-sm">
+          <div className="w-full px-4 grid grid-cols-3 items-center h-14">
+            <Link href="/" className="col-start-1 flex items-center space-x-3 hover:text-gray-300 transition justify-self-start">
+              <picture className="h-10 w-10 shrink-0">
+                <source srcSet="/siteicon.avif" type="image/avif" />
+                <source srcSet="/siteicon.webp" type="image/webp" />
+                <img
+                  src="/siteicon.png"
+                  alt="Site Icon"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 rounded-full"
+                />
+              </picture>
+              <span className="font-heading text-lg font-bold text-gray-100">
+                AGL <span className="hidden md:inline">Consulting</span>
+              </span>
+            </Link>
 
-          <div className="absolute inset-0 bg-gray-900/70 shadow-sm z-10">
-            <div className="max-w-7xl mx-auto px-4 flex justify-between items-center h-full">
-              <Link href="/" className="flex items-center space-x-3 hover:text-gray-300 transition">
-                <picture className="h-10 w-10 shrink-0">
-                  <source srcSet="/siteicon.avif" type="image/avif" />
-                  <source srcSet="/siteicon.webp" type="image/webp" />
-                  <img
-                    src="/siteicon.png"
-                    alt="Site Icon"
-                    width={40}
-                    height={40}
-                    className="h-10 w-10 rounded-full"
-                  />
-                </picture>
-                <span className="text-lg font-bold text-gray-100">
-                  AGL <span className="hidden md:inline">Consulting</span>
-                </span>
+            <nav className="col-start-2 hidden md:flex items-center justify-center space-x-8 justify-self-center">
+              <Link href="/products" className="text-gray-100 hover:text-gray-300 transition">
+                Products
               </Link>
+              <Link href="/about" className="text-gray-100 hover:text-gray-300 transition">
+                About
+              </Link>
+              <Link href="/blog/page/1" className="text-gray-100 hover:text-gray-300 transition">
+                Blog
+              </Link>
+            </nav>
 
-              <div className="flex items-center space-x-4">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-900 font-medium rounded-md"
-                >
-                  Contact
-                </Link>
-              </div>
+            <div className="col-start-3 flex items-center space-x-4 justify-self-end">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-900 font-medium rounded-md"
+              >
+                Contact
+              </Link>
             </div>
           </div>
         </header>
@@ -127,10 +130,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="max-w-7xl mx-auto px-4 py-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div>
-                <h2 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
+                <h2 className="text-caption font-semibold text-gray-100 uppercase tracking-wider mb-4">
                   Site
                 </h2>
-                <ul className="space-y-2">
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
                   <li>
                     <Link href="/" className="hover:text-white transition">
                       Home
@@ -169,7 +172,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
               <div>
-                <h2 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
+                <h2 className="text-caption font-semibold text-gray-100 uppercase tracking-wider mb-4">
                   About
                 </h2>
                 <ul className="space-y-2">
@@ -186,7 +189,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
               <div>
-                <h2 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
+                <h2 className="text-caption font-semibold text-gray-100 uppercase tracking-wider mb-4">
                   Legal
                 </h2>
                 <ul className="space-y-2">
@@ -208,7 +211,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
               <div>
-                <h2 className="text-sm font-semibold text-gray-100 uppercase tracking-wider mb-4">
+                <h2 className="text-caption font-semibold text-gray-100 uppercase tracking-wider mb-4">
                   Connect
                 </h2>
                 <div className="flex gap-4 mb-4">

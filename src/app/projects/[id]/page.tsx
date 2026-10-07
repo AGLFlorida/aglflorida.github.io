@@ -55,17 +55,17 @@ export default async function ProjectPage({ params }: { params: Params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <h1 className="text-3xl font-bold mb-8">{project.title}</h1>
+      <h1 className="font-heading text-h1 font-bold mb-8">{project.title}</h1>
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Main Content Column */}
         <div className="w-full lg:w-2/3">
-          <div className="bg-white p-6 rounded-lg shadow mb-8">
-        <h2 className="text-xl font-semibold mb-4">Overview</h2>
+          <div className="bg-white p-6 rounded-lg shadow border border-gray-100 mb-8">
+        <h2 className="font-heading text-h3 font-semibold mb-4">Overview</h2>
         <div className="prose max-w-none mb-6" dangerouslySetInnerHTML={{ __html: project.contentHtml }} />
 
         {project.features && (
           <>
-            <h2 className="text-xl font-semibold mb-4">Key Features</h2>
+            <h2 className="font-heading text-h3 font-semibold mb-4">Key Features</h2>
             <ul className="list-disc list-inside mb-6">
               {project.features.map((feature, index) => (
                 <li key={index} className="text-gray-600 mb-2">{feature}</li>
@@ -76,7 +76,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
         {project.technologies && (
           <>
-            <h2 className="text-xl font-semibold mb-4">Technologies Used</h2>
+            <h2 className="font-heading text-h3 font-semibold mb-4">Technologies Used</h2>
             <div className="flex flex-wrap gap-2 mb-6">
               {project.technologies.map((tech, index) => (
                 <span
@@ -102,14 +102,14 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
         {/* Right Rail */}
         <div className="w-full lg:w-1/3">
-          <div className="bg-white p-6 rounded-lg shadow sticky top-8">
-            <h2 className="text-xl font-bold mb-4">All Projects</h2>
+          <div className="bg-white p-6 rounded-lg shadow border border-gray-100 sticky top-8">
+            <h2 className="font-heading text-h3 font-semibold mb-4">All Projects</h2>
             <p className="text-gray-600 mb-4">
               Explore all of our projects and see the technology solutions we&apos;ve built.
             </p>
             <Link
               href="/projects"
-              className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition text-center font-semibold w-full"
+              className="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 hover:shadow-md transition-all text-center font-semibold w-full"
             >
               View All Projects
             </Link>

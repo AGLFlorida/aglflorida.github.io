@@ -146,8 +146,8 @@ export default function ContactForm() {
     "6Lc3-PoqAAAAAOBDfRKS8Es-iqAy3JQ4qWif_kJy";
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Contact Us</h2>
+    <div className="p-6 bg-white rounded-lg shadow-md border border-gray-100">
+      <h2 className="font-heading text-h3 font-semibold mb-4">Contact Us</h2>
       <p className="text-m mb-4">Expect to hear back from us within 3-5 business days.</p>
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         <div>
@@ -245,7 +245,7 @@ export default function ContactForm() {
         </div>
         <button
           type="submit"
-          className="w-full bg-gray-800 text-white p-2 rounded-md hover:bg-blue-900 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={status === "sending" || (!isLocalhost && !captchaToken)}
           aria-busy={status === "sending"}
         >
