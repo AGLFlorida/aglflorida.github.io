@@ -15,7 +15,8 @@
     "validate:schemas": "tsx scripts/validate-schemas.ts",
     "check:unicode": "tsx scripts/check-unicode.ts",
     "check:dupes": "jscpd src",
-    "lighthouse": "lhci autorun"
+    "lighthouse": "lhci autorun",
+    "verify:dev": "npm run lint && npm run test && npm run compile && npm run validate:schemas && npm run check:unicode && npm run check:dupes"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
