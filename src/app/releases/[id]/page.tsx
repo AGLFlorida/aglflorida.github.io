@@ -23,10 +23,10 @@ export default async function ReleasePage({ params }: { params: Params }) {
 
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8">{release.title}</h1>
+      <h1 className="font-heading text-h1 font-bold mb-8">{release.title}</h1>
 
-      <div className="bg-white p-6 rounded-lg shadow mb-8">
-        <h2 className="text-xl font-semibold mb-4">Overview</h2>
+      <div className="bg-white p-6 rounded-lg shadow border border-gray-100 mb-8">
+        <h2 className="font-heading text-h3 font-semibold mb-4">Overview</h2>
         <div className="prose max-w-none mb-6" dangerouslySetInnerHTML={{ __html: release.contentHtml }} />
 
       </div>

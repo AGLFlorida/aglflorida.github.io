@@ -27,7 +27,7 @@ export default function PartnersPage() {
 
   return (
     <div className="py-8">
-      <h1 className="text-3xl font-bold mb-8">Our Partners</h1>
+      <h1 className="font-heading text-h1 font-bold mb-8">Our Partners</h1>
       <p className="mb-8 text-gray-600">
         We&apos;re selective about who we send clients to. These are the ones we trust.
       </p>
@@ -42,7 +42,7 @@ export default function PartnersPage() {
                 href={partner.url}
                 target="_blank"
                 rel={EXTERNAL_LINK_REL}
-                className="flex items-center gap-6 p-6 bg-white rounded-lg shadow hover:bg-gray-50 transition block"
+                className="flex items-center gap-6 p-6 bg-white rounded-lg shadow border border-gray-100 hover:bg-gray-50 hover:shadow-md transition-all block"
               >
                 <div className="flex-shrink-0 w-[211px] h-[87px] relative">
                   <Image
@@ -54,7 +54,7 @@ export default function PartnersPage() {
                   />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-2">
+                  <h2 className="font-heading text-h3 font-semibold text-gray-900 mb-2">
                     {partner.title}
                   </h2>
                   <p className="text-gray-600">{partner.description}</p>

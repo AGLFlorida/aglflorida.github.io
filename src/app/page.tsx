@@ -16,15 +16,15 @@ export default async function Home() {
     <div className="flex flex-col lg:flex-row gap-8 mt-8">
       {/* Main Content Column */}
       <div className="w-full lg:w-2/3 space-y-8">
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h1 className="text-2xl font-bold mb-4">We don&apos;t just advise. We build.</h1>
-          <p className="mb-4">
+        <div className="bg-white p-6 rounded-lg shadow border border-gray-100">
+          <h1 className="font-heading text-h1 font-bold mb-4">We don&apos;t just advise. We build.</h1>
+          <p className="text-body mb-4">
             AGL Consulting delivers technical expertise to organizations facing hard problems. Not from a whiteboard, but from the trenches of building real products. Our consultants are practitioners. The same rigor we apply to our own software is what you get when you hire us.
           </p>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-2xl font-bold mb-4">
+        <div className="bg-white p-6 rounded-lg shadow border border-gray-100">
+          <h2 className="font-heading text-h2 font-semibold mb-4">
             <Link href="/products">
               Products &amp; Services
             </Link>
@@ -34,7 +34,7 @@ export default async function Home() {
               <li key={product.id}>
                 <Link
                   href={product.href || `/products/${product.id}`}
-                  className="block hover:bg-gray-50 p-2 -mx-2 rounded transition"
+                  className="block hover:bg-gray-50 hover:shadow-sm p-2 -mx-2 rounded transition"
                 >
                   <h3 className="font-medium text-blue-800 hover:text-blue-900">
                     {product.title}
@@ -54,8 +54,8 @@ export default async function Home() {
 
       {/* Sidebar */}
       <div className="w-full lg:w-1/3 space-y-8">
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-bold mb-4">
+        <div className="bg-white p-6 rounded-lg shadow border border-gray-100">
+          <h2 className="font-heading text-h3 font-semibold mb-4">
             <Link href="/blog/page/1" className="inline-flex items-center gap-1">Company Blog <IconLink className="h-5 w-5" aria-hidden /></Link>
           </h2>
           <ul className="space-y-3">
@@ -63,7 +63,7 @@ export default async function Home() {
               <li key={post.slug}>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="block hover:bg-gray-50 p-2 -mx-2 rounded transition"
+                  className="block hover:bg-gray-50 hover:shadow-sm p-2 -mx-2 rounded transition"
                 >
                   <h3 className="font-medium text-blue-800 hover:text-blue-900">
                     {post.title}
@@ -80,8 +80,8 @@ export default async function Home() {
           </Link>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-bold mb-4">
+        <div className="bg-white p-6 rounded-lg shadow border border-gray-100">
+          <h2 className="font-heading text-h3 font-semibold mb-4">
             <Link href="/projects/" className="inline-flex items-center gap-1">Projects <IconLink className="h-5 w-5" aria-hidden /></Link>
           </h2>
           <ul className="space-y-3">
@@ -89,7 +89,7 @@ export default async function Home() {
               <li key={project.id}>
                 <Link
                   href={`/projects/${project.id}`}
-                  className="block hover:bg-gray-50 p-2 -mx-2 rounded transition"
+                  className="block hover:bg-gray-50 hover:shadow-sm p-2 -mx-2 rounded transition"
                 >
                   <h3 className="font-medium text-blue-800 hover:text-blue-900">
                     {project.title}

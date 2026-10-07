@@ -20,8 +20,8 @@ export default function SecurityPage() {
           <SiteInfoNav currentPath="/security" />
         </aside>
         <div className="min-w-0">
-          <h1 className="text-3xl font-bold mb-8">Security Policy</h1>
-          <div className="bg-white p-6 rounded-lg shadow prose max-w-none">
+          <h1 className="font-heading text-h1 font-bold mb-8">Security Policy</h1>
+          <div className="bg-white p-6 rounded-lg shadow border border-gray-100 prose max-w-none">
         <h2>Reporting a Vulnerability</h2>
         <p>
           At AGL Consulting, we take security seriously and welcome reports from the security community to help keep our users and systems

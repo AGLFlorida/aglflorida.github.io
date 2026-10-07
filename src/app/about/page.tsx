@@ -26,8 +26,8 @@ export default function AboutPage() {
       <div className="grid grid-cols-1 md:grid-cols-[minmax(0,11rem)_1fr] gap-8">
         {/* Main content first in DOM for correct heading order (h1 before h2); order on md puts sidebar left (narrow column). */}
         <div className="min-w-0 md:order-2">
-          <h1 className="text-3xl font-bold mb-8">About AGL Consulting</h1>
-          <div className="bg-white p-6 rounded-lg shadow prose max-w-none">
+          <h1 className="font-heading text-h1 font-bold mb-8">About AGL Consulting</h1>
+          <div className="bg-white p-6 rounded-lg shadow border border-gray-100 prose max-w-none">
             <p>
               AGL provides fractional technical leadership to small and mid-sized businesses that lack the internal bandwidth or resources for it. We help organizations modernize their technology in ways that are clear, purposeful, and aligned with how they work—infrastructure, developer workflows, and platform or stack migrations—without the overhead of a full-time executive.
             </p>
