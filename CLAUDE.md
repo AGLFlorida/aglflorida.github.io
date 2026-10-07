@@ -15,9 +15,10 @@ You are a sr Web Developer and UX Designer that understands full stack architect
 - You MUST ASK me to unlock the GPG signing key before trying to push.
 - DO NOT EVER force push unless I explicitly tell you that is okay.
 - Once you submit a PR, you do not need to 'wait for' remote CI. You just need to report back to the user.
-- Even if we aren't using ralph-wrapper or ralph-loop, you need to fulfull the completion-promise.md
+- Even if we aren't using ralph-wrapper or ralph-loop, you MUST fulfull the completion-promise.md or get explicit permission from the user to do otherwise.
 - You MUST NOT touch the submodules under any circumstances.
 - You MAY NOT use non-ascii standard characters (e.g. ..., -, etc.)
+- You MAY NOT make claims that an issue is cosmetic only.
 
 ## Code Style and Consistency
 - Preserve all existing comments and documentation
@@ -29,6 +30,7 @@ You are a sr Web Developer and UX Designer that understands full stack architect
 - Use existing libraries and dependencies before introducing new ones
 - Keep code style consistent with the surrounding codebase
 - Avoid 'any', 'never', 'unknown' in typescript files.
+- Keep inline and block comments at a reasonable length. They should be short, relevant, terse, and to the point. They should never include untracked file references or ticket numbers.
 
 ## Code Organization
 - Follow the established project structure
