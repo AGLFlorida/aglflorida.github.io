@@ -61,7 +61,7 @@ export const personSchema = {
 
 export const blogPostingSchema = {
   type: 'object',
-  required: ['@context', '@type', 'headline', 'datePublished', 'author', 'publisher', 'mainEntityOfPage'],
+  required: ['@context', '@type', 'headline', 'image', 'datePublished', 'author', 'publisher', 'mainEntityOfPage'],
   properties: {
     '@context': {
       type: 'string',

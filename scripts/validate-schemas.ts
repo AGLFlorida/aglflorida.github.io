@@ -16,7 +16,7 @@ import {
 import { generateBreadcrumbSchemaForPath } from '../src/lib/BreadcrumbSchema';
 import { getSortedPosts } from '../src/lib/getPosts';
 import { getSortedProjects } from '../src/lib/getProjects';
-import { getSortedProducts } from '../src/lib/getProducts';
+import { getSortedProducts, isFreeMobileApp } from '../src/lib/getProducts';
 import {
   organizationSchemaDef,
   personSchema,
@@ -99,7 +99,8 @@ async function main() {
       url,
       post.excerpt,
       undefined,
-      baseUrl
+      baseUrl,
+      post.image ? [post.image] : undefined
     );
     validateSchema(
       articleSchema,
@@ -152,7 +153,7 @@ async function main() {
   // Validate free mobile-app product schemas
   console.log('Validating product schemas...');
   const products = await getSortedProducts();
-  const freeApps = products.filter((product) => product.type === 'mobile-app' && product.price?.startsWith('Free'));
+  const freeApps = products.filter(isFreeMobileApp);
   for (const product of freeApps) {
     const url = `${baseUrl}/products/${product.id}`;
     const productSchema = generateProjectSchema(

@@ -1,4 +1,4 @@
-import { getProductById, getSortedProducts } from '@/lib/getProducts';
+import { getProductById, getSortedProducts, isFreeMobileApp } from '@/lib/getProducts';
 import { metadataFactory } from '@/lib/metadata';
 import { generateProjectSchema } from '@/lib/schema';
 import { generateBreadcrumbSchemaForPath } from '@/lib/BreadcrumbSchema';
@@ -37,8 +37,7 @@ export default async function ProductPage({ params }: { params: Params }) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
   const url = `${baseUrl}/products/${id}`;
   const breadcrumbSchema = generateBreadcrumbSchemaForPath(`/products/${id}`);
-  const isFreeApp = product.type === 'mobile-app' && product.price?.startsWith('Free');
-  const softwareSchema = isFreeApp
+  const softwareSchema = isFreeMobileApp(product)
     ? generateProjectSchema(product.title, product.description, url, product.applicationCategory, product.operatingSystem)
     : null;
 

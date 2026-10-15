@@ -42,7 +42,15 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
   const url = `${baseUrl}/blog/${slug}`;
-  const articleSchema = generateArticleSchema(post.title, post.date, url, post.excerpt, undefined, baseUrl);
+  const articleSchema = generateArticleSchema(
+    post.title,
+    post.date,
+    url,
+    post.excerpt,
+    undefined,
+    baseUrl,
+    post.image ? [post.image] : undefined
+  );
   const breadcrumbSchema = generateBreadcrumbSchemaForPath(`/blog/${slug}`);
 
   return (

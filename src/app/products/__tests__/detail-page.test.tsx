@@ -1,4 +1,7 @@
-jest.mock('@/lib/getProducts');
+jest.mock('@/lib/getProducts', () => ({
+  ...jest.requireActual('@/lib/getProducts'),
+  getProductById: jest.fn(),
+}));
 jest.mock('remark-html', () => jest.fn());
 jest.mock('remark', () => ({
   remark: jest.fn(() => ({
