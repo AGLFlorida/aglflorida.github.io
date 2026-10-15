@@ -61,7 +61,7 @@ export const personSchema = {
 
 export const blogPostingSchema = {
   type: 'object',
-  required: ['@context', '@type', 'headline', 'datePublished', 'author', 'publisher', 'mainEntityOfPage'],
+  required: ['@context', '@type', 'headline', 'image', 'datePublished', 'author', 'publisher', 'mainEntityOfPage'],
   properties: {
     '@context': {
       type: 'string',
@@ -77,6 +77,14 @@ export const blogPostingSchema = {
     },
     description: {
       type: 'string',
+    },
+    image: {
+      type: 'array',
+      items: {
+        type: 'string',
+        format: 'uri',
+      },
+      minItems: 1,
     },
     datePublished: {
       type: 'string',

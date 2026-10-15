@@ -1,5 +1,7 @@
-import { getProductById, getSortedProducts } from '@/lib/getProducts';
+import { getProductById, getSortedProducts, isFreeMobileApp } from '@/lib/getProducts';
+import { getSortedPosts } from '@/lib/getPosts';
 import { metadataFactory } from '@/lib/metadata';
+import { generateProjectSchema } from '@/lib/schema';
 import { generateBreadcrumbSchemaForPath } from '@/lib/BreadcrumbSchema';
 import type { ResolvingMetadata } from 'next';
 import Link from 'next/link';
@@ -33,10 +35,22 @@ export default async function ProductPage({ params }: { params: Params }) {
     return <div style={{ whiteSpace: 'pre' }}>Product Not Found</div>;
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
+  const url = `${baseUrl}/products/${id}`;
   const breadcrumbSchema = generateBreadcrumbSchemaForPath(`/products/${id}`);
+  const softwareSchema = isFreeMobileApp(product)
+    ? generateProjectSchema(product.title, product.description, url, product.applicationCategory, product.operatingSystem)
+    : null;
+  const relatedPosts = getSortedPosts().filter((post) => post.products?.includes(id));
 
   return (
     <div className="max-w-7xl mx-auto py-8 px-4">
+      {softwareSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -113,6 +127,20 @@ export default async function ProductPage({ params }: { params: Params }) {
 
         {/* Right Rail */}
         <div className="w-full lg:w-1/3">
+          {relatedPosts.length > 0 && (
+            <div className="bg-white p-6 rounded-lg shadow border border-gray-100 mb-8">
+              <h2 className="font-heading text-h3 font-semibold mb-4">Related Posts</h2>
+              <ul className="space-y-3">
+                {relatedPosts.map((post) => (
+                  <li key={post.slug}>
+                    <Link href={`/blog/${post.slug}`} className="text-blue-800 hover:text-blue-900 font-semibold">
+                      {post.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <div className="bg-white p-6 rounded-lg shadow border border-gray-100 sticky top-8">
             <h2 className="font-heading text-h3 font-semibold mb-4">Contact Us</h2>
             <p className="text-gray-600 mb-4">

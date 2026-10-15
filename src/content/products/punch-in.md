@@ -5,6 +5,8 @@ description: "A Mac desktop app for tracking time across projects and clients."
 type: "mobile-app"
 price: "Free"
 image: "/assets/punchin.png"
+operatingSystem: "macOS"
+applicationCategory: "BusinessApplication"
 features:
   - "Menu-bar tray showing active project and live elapsed time"
   - "Timer view: start/stop sessions against existing or new tasks"

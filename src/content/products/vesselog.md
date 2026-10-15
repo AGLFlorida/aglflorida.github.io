@@ -5,6 +5,8 @@ description: "Your complete vessel maintenance companion — schedules, service 
 type: "mobile-app"
 price: "Contact for Pricing"
 image: "/assets/vesselog.png"
+operatingSystem: "iOS, Android, Web"
+applicationCategory: "BusinessApplication"
 features:
   - "Smart maintenance scheduling calendar"
   - "Service history for every vessel"

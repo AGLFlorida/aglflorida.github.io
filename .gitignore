@@ -54,3 +54,5 @@ specs/*
 
 SPEC.md
 ralph-loop.local.md
+.mcp.json
+completion-promise.md

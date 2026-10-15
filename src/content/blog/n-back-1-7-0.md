@@ -2,6 +2,8 @@
 title: "Dual N-Back 1.7.0: Guess Feedback"
 date: "2026-10-01"
 excerpt: "Dual N-Back now glows green or red the instant you guess, so you learn from every miss as it happens."
+products:
+  - "n-back"
 ---
 
 # Dual N-Back 1.7.0: Guess Feedback
@@ -32,7 +34,7 @@ Dual N-Back is free, works offline, and adapts its difficulty as you improve.
 
 - App Store: https://apps.apple.com/us/app/n-back-a-memory-game/id6743125322
 - Google Play: https://play.google.com/store/apps/details?id=com.agl.nback
-- Learn more: https://aglflorida.com/products/n-back
+- Learn more: [aglflorida.com/products/n-back](/products/n-back)
 
 ## Contact & Media Inquiries
 

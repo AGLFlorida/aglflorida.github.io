@@ -2,6 +2,8 @@
 title: "VesseLog Launches on iOS"
 date: "2026-10-08"
 excerpt: "VesseLog is live on iOS: maintenance schedules, service history, and vendor contacts for every boat you run, in one app."
+products:
+  - "vesselog"
 ---
 
 # VesseLog Launches on iOS
@@ -41,6 +43,7 @@ Plans start at up to 3 boats, with fleet pricing for larger operations and marin
 ## Get Started
 
 - Learn more: https://vesselog.com
+- Product page: [aglflorida.com/products/vesselog](/products/vesselog)
 
 ## Contact & Media Inquiries
 

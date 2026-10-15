@@ -8,7 +8,7 @@ jest.mock('remark', () => ({
 
 jest.mock('remark-html', () => jest.fn());
 
-import { getSortedProducts, getProductById, type Product } from '../getProducts';
+import { getSortedProducts, getProductById, isFreeMobileApp, type Product } from '../getProducts';
 
 describe('getProducts', () => {
   describe('getSortedProducts', () => {
@@ -191,6 +191,37 @@ describe('getProducts', () => {
           expect(Array.isArray(product.features)).toBe(true);
         }
       }
+    });
+  });
+
+  describe('isFreeMobileApp', () => {
+    const base: Product = {
+      id: 'x',
+      title: 'X',
+      date: '2026-01-01',
+      description: 'desc',
+      contentHtml: '',
+      type: 'mobile-app',
+    };
+
+    it('returns true for a free mobile app', () => {
+      expect(isFreeMobileApp({ ...base, price: 'Free' })).toBe(true);
+    });
+
+    it('returns true for a free-with-IAP mobile app', () => {
+      expect(isFreeMobileApp({ ...base, price: 'Free with in-app purchases, ad supported' })).toBe(true);
+    });
+
+    it('returns false for a priced mobile app', () => {
+      expect(isFreeMobileApp({ ...base, price: 'Contact for Pricing' })).toBe(false);
+    });
+
+    it('returns false for a consulting product', () => {
+      expect(isFreeMobileApp({ ...base, type: 'consulting', price: 'Free' })).toBe(false);
+    });
+
+    it('returns false when price is missing', () => {
+      expect(isFreeMobileApp({ ...base, price: undefined })).toBe(false);
     });
   });
 });

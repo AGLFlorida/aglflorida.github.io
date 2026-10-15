@@ -12,6 +12,8 @@ export type BlogPost = {
   title: string;
   date: string;
   excerpt: string;
+  image?: string;
+  products?: string[];
 };
 
 // Fetch all blog posts and sort by date
@@ -29,6 +31,8 @@ export function getSortedPosts(): BlogPost[] {
       title: data.title as string,
       date: data.date as string,
       excerpt: data.excerpt as string,
+      image: data.image as string | undefined,
+      products: data.products as string[] | undefined,
     };
   });
 
@@ -38,7 +42,7 @@ export function getSortedPosts(): BlogPost[] {
 }
 
 // Fetch a single blog post by slug
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string): Promise<BlogPost & { contentHtml: string }> {
   const filePath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(filePath, "utf8");
 
@@ -51,6 +55,7 @@ export async function getPostBySlug(slug: string) {
     title: data.title as string,
     date: data.date as string,
     excerpt: data.excerpt as string,
+    image: data.image as string | undefined,
     contentHtml,
   };
 }

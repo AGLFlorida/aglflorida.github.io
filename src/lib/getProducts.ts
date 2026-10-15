@@ -25,6 +25,8 @@ export type Product = {
   duration?: string;
   href?: string;
   hideTitleIcon?: boolean;
+  operatingSystem?: string;
+  applicationCategory?: string;
 };
 
 export async function getSortedProducts(): Promise<Product[]> {
@@ -76,4 +78,10 @@ export async function getProductById(id: string): Promise<Product | null> {
   } catch {
     return null;
   }
+}
+
+// A product is eligible for SoftwareApplication schema only when it is a
+// genuinely free mobile app; the schema's offers block always states price 0.
+export function isFreeMobileApp(product: Product): boolean {
+  return product.type === 'mobile-app' && (product.price?.startsWith('Free') ?? false);
 }

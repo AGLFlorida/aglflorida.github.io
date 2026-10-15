@@ -5,6 +5,8 @@ description: "A beautifully designed flashcard app built for simplicity and ease
 type: "mobile-app"
 price: "Free with in-app purchases, ad supported"
 image: "/assets/recallkit.png"
+operatingSystem: "iOS"
+applicationCategory: "EducationApplication"
 features:
   - "Create and customize flashcard decks"
   - "Support for hundreds of cards per set"

@@ -23,6 +23,7 @@ export interface ArticleSchema {
   '@type': 'BlogPosting';
   headline: string;
   description?: string;
+  image?: string[];
   datePublished: string;
   dateModified?: string;
   author: {
@@ -136,16 +137,21 @@ export function generateArticleSchema(
   url: string,
   excerpt?: string,
   dateModified?: string,
-  baseUrl?: string
+  baseUrl?: string,
+  image?: string[]
 ): ArticleSchema {
   const siteUrl = baseUrl || process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
   const logoUrl = `${siteUrl}/siteicon.png`;
+  const resolvedImages = (image || [`${siteUrl}/header.jpg`]).map((img) =>
+    img.startsWith('/') ? `${siteUrl}${img}` : img
+  );
 
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: title,
     description: excerpt,
+    image: resolvedImages,
     datePublished,
     dateModified: dateModified || datePublished,
     author: {
