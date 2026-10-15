@@ -25,6 +25,8 @@ export type Product = {
   duration?: string;
   href?: string;
   hideTitleIcon?: boolean;
+  operatingSystem?: string;
+  applicationCategory?: string;
 };
 
 export async function getSortedProducts(): Promise<Product[]> {

@@ -16,6 +16,7 @@ import {
 import { generateBreadcrumbSchemaForPath } from '../src/lib/BreadcrumbSchema';
 import { getSortedPosts } from '../src/lib/getPosts';
 import { getSortedProjects } from '../src/lib/getProjects';
+import { getSortedProducts } from '../src/lib/getProducts';
 import {
   organizationSchemaDef,
   personSchema,
@@ -147,6 +148,37 @@ async function main() {
     );
   }
   console.log(`  Validated ${projects.length} projects`);
+
+  // Validate free mobile-app product schemas
+  console.log('Validating product schemas...');
+  const products = await getSortedProducts();
+  const freeApps = products.filter((product) => product.type === 'mobile-app' && product.price?.startsWith('Free'));
+  for (const product of freeApps) {
+    const url = `${baseUrl}/products/${product.id}`;
+    const productSchema = generateProjectSchema(
+      product.title,
+      product.description,
+      url,
+      product.applicationCategory,
+      product.operatingSystem
+    );
+    validateSchema(
+      productSchema,
+      validateSoftwareApplication,
+      'SoftwareApplication',
+      `Product: ${product.id}`
+    );
+
+    // Validate breadcrumb schema for product
+    const breadcrumbSchema = generateBreadcrumbSchemaForPath(`/products/${product.id}`);
+    validateSchema(
+      breadcrumbSchema,
+      validateBreadcrumbList,
+      'BreadcrumbList',
+      `Product breadcrumb: ${product.id}`
+    );
+  }
+  console.log(`  Validated ${freeApps.length} free mobile-app products`);
 
   // Validate additional breadcrumb paths
   console.log('Validating additional breadcrumb schemas...');

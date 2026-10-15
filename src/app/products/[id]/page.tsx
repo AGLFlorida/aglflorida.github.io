@@ -1,5 +1,6 @@
 import { getProductById, getSortedProducts } from '@/lib/getProducts';
 import { metadataFactory } from '@/lib/metadata';
+import { generateProjectSchema } from '@/lib/schema';
 import { generateBreadcrumbSchemaForPath } from '@/lib/BreadcrumbSchema';
 import type { ResolvingMetadata } from 'next';
 import Link from 'next/link';
@@ -33,10 +34,22 @@ export default async function ProductPage({ params }: { params: Params }) {
     return <div style={{ whiteSpace: 'pre' }}>Product Not Found</div>;
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
+  const url = `${baseUrl}/products/${id}`;
   const breadcrumbSchema = generateBreadcrumbSchemaForPath(`/products/${id}`);
+  const isFreeApp = product.type === 'mobile-app' && product.price?.startsWith('Free');
+  const softwareSchema = isFreeApp
+    ? generateProjectSchema(product.title, product.description, url, product.applicationCategory, product.operatingSystem)
+    : null;
 
   return (
     <div className="max-w-7xl mx-auto py-8 px-4">
+      {softwareSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
