@@ -81,6 +81,21 @@ describe('schema', () => {
         '@type': 'WebPage',
         '@id': 'https://aglflorida.com/blog/test-post',
       });
+      expect(schema.image).toEqual(['https://aglflorida.com/header.jpg']);
+    });
+
+    it('should use provided image when given', () => {
+      const schema = generateArticleSchema(
+        'Test Post',
+        '2025-01-01',
+        'https://aglflorida.com/blog/test-post',
+        'Test excerpt',
+        undefined,
+        undefined,
+        ['https://aglflorida.com/custom-image.jpg']
+      );
+
+      expect(schema.image).toEqual(['https://aglflorida.com/custom-image.jpg']);
     });
 
     it('should use dateModified when provided', () => {

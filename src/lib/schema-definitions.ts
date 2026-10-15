@@ -78,6 +78,14 @@ export const blogPostingSchema = {
     description: {
       type: 'string',
     },
+    image: {
+      type: 'array',
+      items: {
+        type: 'string',
+        format: 'uri',
+      },
+      minItems: 1,
+    },
     datePublished: {
       type: 'string',
       pattern: '^\\d{4}-\\d{2}-\\d{2}',
