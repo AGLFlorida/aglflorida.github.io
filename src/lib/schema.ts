@@ -142,13 +142,16 @@ export function generateArticleSchema(
 ): ArticleSchema {
   const siteUrl = baseUrl || process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
   const logoUrl = `${siteUrl}/siteicon.png`;
+  const resolvedImages = (image || [`${siteUrl}/header.jpg`]).map((img) =>
+    img.startsWith('/') ? `${siteUrl}${img}` : img
+  );
 
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: title,
     description: excerpt,
-    image: image || [`${siteUrl}/header.jpg`],
+    image: resolvedImages,
     datePublished,
     dateModified: dateModified || datePublished,
     author: {

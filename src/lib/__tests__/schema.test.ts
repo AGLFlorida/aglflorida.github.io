@@ -98,6 +98,20 @@ describe('schema', () => {
       expect(schema.image).toEqual(['https://aglflorida.com/custom-image.jpg']);
     });
 
+    it('should resolve a site-relative image path to an absolute URL', () => {
+      const schema = generateArticleSchema(
+        'Test Post',
+        '2025-01-01',
+        'https://aglflorida.com/blog/test-post',
+        'Test excerpt',
+        undefined,
+        undefined,
+        ['/assets/custom-image.jpg']
+      );
+
+      expect(schema.image).toEqual(['https://aglflorida.com/assets/custom-image.jpg']);
+    });
+
     it('should use dateModified when provided', () => {
       const schema = generateArticleSchema(
         'Test Post',
