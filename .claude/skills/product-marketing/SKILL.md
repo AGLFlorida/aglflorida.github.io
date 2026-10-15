@@ -73,6 +73,8 @@ Write a companion post to `src/content/blog/<product-id>-<version>.md`. The blog
 title: "<headline>"
 date: "<YYYY-MM-DD>"
 excerpt: "<one-sentence summary>"
+products:
+  - "<product-id>"
 ---
 
 # <headline>
@@ -83,7 +85,8 @@ excerpt: "<one-sentence summary>"
 ...
 
 ## Get It / Get Started
-- <store/website links>
+- <store link(s), as plain URLs>
+- Learn more: [aglflorida.com/products/<product-id>](/products/<product-id>)
 
 ## Contact & Media Inquiries
 
@@ -91,9 +94,12 @@ For interviews, partnerships, or review access, please contact:
 
 **Brandon Shoop**
 Founder, AGL Consulting
-Website: https://aglflorida.com/contact
+Website: [aglflorida.com/contact](/contact)
 ```
 
+- `products:` frontmatter is required, not optional cosmetic metadata — `src/app/products/[id]/page.tsx` reads it to build each product's "Related Posts" back-link block. Every product id named in the post must be listed there, or that product page never links back to this post. List every product id discussed, not just the one in the filename (e.g. a post covering a bundled announcement across two apps lists both).
+- Every internal page this post references (product pages, `/contact`, other blog posts, `/products`) must be a real markdown link (`[text](/path)`), using a site-relative path, not a bare URL and not the `https://aglflorida.com/...` absolute form. Bare URLs don't render as clickable links, and absolute URLs survive a domain change or local preview worse than relative ones. External links (app stores, GitHub, client sites) stay as full `https://` URLs — only internal aglflorida.com links get the relative-path treatment.
+- If this post is about a product with prior posts (check `products:` frontmatter across `src/content/blog/*.md` for the same product id), link forward to the most relevant one too (e.g. "see also our last release" type nod), not just back to the product page. Don't link to posts about unrelated products just to pad links.
 - Minimum 300 words. Count before finalizing; if short, add a section that explains the problem being solved, how the feature/release works, or who it's for, grounded in facts already gathered from the release notes or product page. Never pad with invented features, numbers, or quotes.
 - Same voice and ASCII-only rule as the social posts. No hype words.
 - Same content rules as the social posts: user-facing changes only, no internal details (cloud providers, repo names, PR numbers).

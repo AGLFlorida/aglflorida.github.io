@@ -2,6 +2,7 @@ jest.mock('@/lib/getProducts', () => ({
   ...jest.requireActual('@/lib/getProducts'),
   getProductById: jest.fn(),
 }));
+jest.mock('@/lib/getPosts');
 jest.mock('remark-html', () => jest.fn());
 jest.mock('remark', () => ({
   remark: jest.fn(() => ({
@@ -13,10 +14,16 @@ jest.mock('remark', () => ({
 import { render, screen } from '@testing-library/react';
 import ProductPage from '../[id]/page';
 import { getProductById } from '@/lib/getProducts';
+import { getSortedPosts } from '@/lib/getPosts';
 
 const mockGetProductById = getProductById as jest.MockedFunction<typeof getProductById>;
+const mockGetSortedPosts = getSortedPosts as jest.MockedFunction<typeof getSortedPosts>;
 
 describe('ProductPage', () => {
+  beforeEach(() => {
+    mockGetSortedPosts.mockReturnValue([]);
+  });
+
   it('shows the store badges above the overview heading', async () => {
     mockGetProductById.mockResolvedValue({
       id: 'vesselog',
@@ -106,5 +113,44 @@ describe('ProductPage', () => {
       .find((schema) => schema['@type'] === 'SoftwareApplication');
 
     expect(softwareSchema).toBeUndefined();
+  });
+
+  it('renders a Related Posts section linking back to posts that mention the product', async () => {
+    mockGetProductById.mockResolvedValue({
+      id: 'n-back',
+      title: 'Dual N-Back',
+      date: '2026-05-28',
+      description: 'A cognitive training game.',
+      contentHtml: '<p>content</p>',
+      type: 'mobile-app',
+      price: 'Free',
+    });
+    mockGetSortedPosts.mockReturnValue([
+      { slug: 'n-back-1-7-0', title: 'Dual N-Back 1.7.0: Guess Feedback', date: '2026-10-01', excerpt: '', products: ['n-back'] },
+      { slug: 'unrelated-post', title: 'Unrelated Post', date: '2026-01-01', excerpt: '', products: ['vesselog'] },
+    ]);
+
+    render(await ProductPage({ params: Promise.resolve({ id: 'n-back' }) }));
+
+    expect(screen.getByRole('heading', { name: 'Related Posts' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Dual N-Back 1.7.0: Guess Feedback' })).toHaveAttribute('href', '/blog/n-back-1-7-0');
+    expect(screen.queryByRole('link', { name: 'Unrelated Post' })).not.toBeInTheDocument();
+  });
+
+  it('does not render a Related Posts section when no posts mention the product', async () => {
+    mockGetProductById.mockResolvedValue({
+      id: 'punch-in',
+      title: 'Punch In',
+      date: '2026-05-29',
+      description: 'A Mac desktop app.',
+      contentHtml: '<p>content</p>',
+      type: 'mobile-app',
+      price: 'Free',
+    });
+    mockGetSortedPosts.mockReturnValue([]);
+
+    render(await ProductPage({ params: Promise.resolve({ id: 'punch-in' }) }));
+
+    expect(screen.queryByRole('heading', { name: 'Related Posts' })).not.toBeInTheDocument();
   });
 });

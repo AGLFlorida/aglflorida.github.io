@@ -13,6 +13,7 @@ export type BlogPost = {
   date: string;
   excerpt: string;
   image?: string;
+  products?: string[];
 };
 
 // Fetch all blog posts and sort by date
@@ -31,6 +32,7 @@ export function getSortedPosts(): BlogPost[] {
       date: data.date as string,
       excerpt: data.excerpt as string,
       image: data.image as string | undefined,
+      products: data.products as string[] | undefined,
     };
   });
 

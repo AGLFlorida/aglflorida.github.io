@@ -2,6 +2,8 @@
 title: "VesseLog Is Now on the Web"
 date: "2026-10-29"
 excerpt: "VesseLog runs in your browser now, same maintenance calendar, service history, and vendor contacts as the mobile app."
+products:
+  - "vesselog"
 ---
 
 # VesseLog Is Now on the Web
@@ -29,6 +31,7 @@ The web app isn't a stripped-down companion to the mobile apps. It's the same ap
 ## Get Started
 
 - Sign in at: https://vesselog.com
+- Product page: [aglflorida.com/products/vesselog](/products/vesselog)
 
 ## Contact & Media Inquiries
 

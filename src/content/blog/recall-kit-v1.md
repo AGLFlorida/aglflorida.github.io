@@ -2,6 +2,8 @@
 title: "RecallKit (iOS) released!"
 date: "2025-07-25"
 excerpt: "RecallKit Launches to Supercharge Studying with Smart Flashcards."
+products:
+  - "recall-kit"
 ---
 
 # RecallKit Launches to Supercharge Studying with Smart Flashcards
@@ -36,6 +38,7 @@ RecallKit is available now on the **App Store**, supporting iPhone with a native
 ## Download Now
 
 - iOS on the App Store: https://apps.apple.com/us/app/recallkit-study-cards/id6748545140
+- Learn more: [aglflorida.com/products/recall-kit](/products/recall-kit)
 
 ## Contact & Media Inquiries
 
