@@ -3,7 +3,6 @@ title: "AI Enablement Seminar"
 date: "2026-04-21"
 description: "A five-day in-person workshop that equips developer and product teams with practical AI skills, bespoke tooling, and a partial roadmap for integrating AI into their work."
 type: "consulting"
-price: "Contact for Pricing"
 duration: "5 days on-site or virtual"
 deliverables:
   - "Trained development and product team"
@@ -11,6 +10,17 @@ deliverables:
   - "Partial AI integration roadmap"
   - "Workshop materials and reference documentation"
   - "Optional follow-up sessions (available separately)"
+faq:
+  - question: "Is this seminar on-site or virtual?"
+    answer: "Either. It's a five-day engagement, delivered on-site or virtually depending on what works for your team."
+  - question: "Do we need existing AI tooling or a mature AI strategy before attending?"
+    answer: "No. Many of the best workshop outcomes come from teams starting from scratch. What you need is a willingness to engage seriously and people who will actually be doing the work."
+  - question: "What does the week actually cover?"
+    answer: "Four areas: AI-enabled development across the software lifecycle, effective prompting techniques for technical work, an overview of the Model Context Protocol (MCP), and a clear-eyed look at current AI limitations like hallucinations and context limits."
+  - question: "What do we walk away with?"
+    answer: "A trained team, bespoke tools and prompt libraries built around your own stack and workflows (which you own), and a partial roadmap of the highest-value AI integration opportunities in your organization, prioritized and scoped enough to act on."
+  - question: "Is there follow-up support after the workshop?"
+    answer: "An optional follow-up engagement is available separately for teams that want continued support putting the roadmap into practice."
 ---
 
 Most teams aren't behind on AI because they lack access to tools. They're behind because no one has shown them how to use those tools well—or honestly, where they fall short.

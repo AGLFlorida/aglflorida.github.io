@@ -12,6 +12,7 @@ import {
   generateArticleSchema,
   generateProjectSchema,
   generateWebsiteSchema,
+  generateFAQSchema,
 } from '../src/lib/schema';
 import { generateBreadcrumbSchemaForPath } from '../src/lib/BreadcrumbSchema';
 import { getSortedPosts } from '../src/lib/getPosts';
@@ -24,6 +25,7 @@ import {
   softwareApplicationSchema,
   breadcrumbListSchema,
   webSiteSchema,
+  faqPageSchema,
 } from '../src/lib/schema-definitions';
 
 interface ValidationError {
@@ -45,6 +47,7 @@ const validateBlogPosting = ajv.compile(blogPostingSchema);
 const validateSoftwareApplication = ajv.compile(softwareApplicationSchema);
 const validateBreadcrumbList = ajv.compile(breadcrumbListSchema);
 const validateWebSite = ajv.compile(webSiteSchema);
+const validateFAQPage = ajv.compile(faqPageSchema);
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
 const errors: ValidationError[] = [];
@@ -180,6 +183,23 @@ async function main() {
     );
   }
   console.log(`  Validated ${freeApps.length} free mobile-app products`);
+
+  // Validate FAQPage schemas for products with FAQ content
+  console.log('Validating product FAQ schemas...');
+  const productsWithFaq = products.filter(
+    (product): product is typeof product & { faq: NonNullable<typeof product.faq> } =>
+      Boolean(product.faq && product.faq.length > 0)
+  );
+  for (const product of productsWithFaq) {
+    const faqSchema = generateFAQSchema(product.faq);
+    validateSchema(
+      faqSchema,
+      validateFAQPage,
+      'FAQPage',
+      `Product FAQ: ${product.id}`
+    );
+  }
+  console.log(`  Validated ${productsWithFaq.length} product FAQ schemas`);
 
   // Validate additional breadcrumb paths
   console.log('Validating additional breadcrumb schemas...');

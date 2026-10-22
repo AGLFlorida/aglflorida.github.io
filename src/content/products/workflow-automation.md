@@ -3,7 +3,6 @@ title: "Workflow Automation Audit and Roadmap"
 date: "2026-04-09"
 description: "Find and eliminate the bottlenecks slowing your software delivery—whether the answer is AI, better tooling, or a smarter pipeline."
 type: "consulting"
-price: "Contact for Pricing"
 duration: "6-10 weeks"
 deliverables:
   - "SDLC automation assessment and prioritized roadmap"
@@ -21,6 +20,17 @@ technologies:
   - "Infrastructure as Code"
   - "Testing frameworks"
   - "Workflow orchestration"
+faq:
+  - question: "Is this engagement specifically about AI, or something broader?"
+    answer: "Broader. Sometimes the right fix is AI, sometimes it's a well-designed CI/CD pipeline, often it's both. We start with an assessment of your software delivery lifecycle and recommend whatever has the most impact."
+  - question: "What does the assessment actually look at?"
+    answer: "Build and test pipelines, deployment processes, developer workflows, code review and quality gates, and where AI could realistically accelerate a decision or catch a problem earlier. The output is a prioritized roadmap ranked by effort and return."
+  - question: "Do we need a mature DevOps practice to benefit?"
+    answer: "No. You don't need a mature DevOps practice to benefit from this engagement, earlier is often better."
+  - question: "Will we be dependent on AGL Consulting to maintain what you build?"
+    answer: "No. This isn't a managed service. We guide, you build, you own it, everything we design is documented, explained, and transferred to your team so you can maintain and extend it without us."
+  - question: "How long does the engagement take?"
+    answer: "6 to 10 weeks, with scope scaling based on the complexity of your current workflow, the number of services and environments involved, and the depth of AI integration you want."
 ---
 
 Your team didn't get into software to run manual deployments at 11 PM or wait forty-five minutes for a test suite to confirm what they already suspected. Yet here we are.
