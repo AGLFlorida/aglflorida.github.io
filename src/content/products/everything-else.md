@@ -4,6 +4,15 @@ date: "2026-01-23"
 description: "Have an interesting problem that doesn't fit into one of our standard packages? Let's have a conversation."
 type: "consulting"
 duration: "Variable"
+faq:
+  - question: "What if my problem doesn't fit your standard packages?"
+    answer: "That's exactly what this is for. If you have a unique challenge, an interesting opportunity, or a problem that needs a custom approach, reach out and we're happy to have a conversation."
+  - question: "What kind of work could this cover?"
+    answer: "Custom software development, architecture consulting, technology selection and evaluation, legacy system integration or migration support, security assessment or compliance work, developer tooling, or something else entirely we haven't thought of."
+  - question: "How does the process work?"
+    answer: "You reach out and tell us about your problem. We have a conversation to understand your context. If it's a good fit, we propose a custom engagement. Then we work together to solve it."
+  - question: "How is pricing determined?"
+    answer: "Pricing is variable and depends on scope and complexity, timeline and urgency, the skills and resources required, and your budget and constraints. We're transparent about costs and work with you to find an approach that fits."
 ---
 
 Not every problem fits neatly into a predefined package. Sometimes you have a unique challenge, an interesting opportunity, or a problem that requires a custom approach.
