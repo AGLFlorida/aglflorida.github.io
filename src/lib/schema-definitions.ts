@@ -377,3 +377,53 @@ export const webSiteSchema = {
   additionalProperties: false,
 };
 
+export const faqPageSchema = {
+  type: 'object',
+  required: ['@context', '@type', 'mainEntity'],
+  properties: {
+    '@context': {
+      type: 'string',
+      const: 'https://schema.org',
+    },
+    '@type': {
+      type: 'string',
+      const: 'FAQPage',
+    },
+    mainEntity: {
+      type: 'array',
+      minItems: 1,
+      items: {
+        type: 'object',
+        required: ['@type', 'name', 'acceptedAnswer'],
+        properties: {
+          '@type': {
+            type: 'string',
+            const: 'Question',
+          },
+          name: {
+            type: 'string',
+            minLength: 1,
+          },
+          acceptedAnswer: {
+            type: 'object',
+            required: ['@type', 'text'],
+            properties: {
+              '@type': {
+                type: 'string',
+                const: 'Answer',
+              },
+              text: {
+                type: 'string',
+                minLength: 1,
+              },
+            },
+            additionalProperties: false,
+          },
+        },
+        additionalProperties: false,
+      },
+    },
+  },
+  additionalProperties: false,
+};
+
