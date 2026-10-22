@@ -15,20 +15,17 @@ jest.mock('@/lib/getPolicies');
 jest.mock('@/lib/getPosts');
 jest.mock('@/lib/getProducts');
 jest.mock('@/lib/getProjects');
-jest.mock('@/lib/getReleases');
 
 import sitemap from '../sitemap';
 import { getPolicies } from '@/lib/getPolicies';
 import { getSortedPosts } from '@/lib/getPosts';
 import { getSortedProducts } from '@/lib/getProducts';
 import { getSortedProjects } from '@/lib/getProjects';
-import { getSortedReleases } from '@/lib/getReleases';
 
 const mockGetPolicies = getPolicies as jest.MockedFunction<typeof getPolicies>;
 const mockGetSortedPosts = getSortedPosts as jest.MockedFunction<typeof getSortedPosts>;
 const mockGetSortedProducts = getSortedProducts as jest.MockedFunction<typeof getSortedProducts>;
 const mockGetSortedProjects = getSortedProjects as jest.MockedFunction<typeof getSortedProjects>;
-const mockGetSortedReleases = getSortedReleases as jest.MockedFunction<typeof getSortedReleases>;
 
 describe('sitemap', () => {
   const originalEnv = process.env.NEXT_PUBLIC_BASE_URL;
@@ -52,9 +49,6 @@ describe('sitemap', () => {
     mockGetSortedProjects.mockResolvedValue([
       { id: 'project-1', title: 'Project 1', date: '2025-01-01', description: 'Desc', contentHtml: '', features: [], technologies: [], links: [] },
     ]);
-    mockGetSortedReleases.mockResolvedValue([
-      { id: 'release-1', title: 'Release 1', date: '2025-01-01', description: 'Desc', contentHtml: '' },
-    ]);
     mockGetPolicies.mockResolvedValue([
       { id: 'policy-1', title: 'Policy 1', content: 'Content' },
     ]);
@@ -74,7 +68,6 @@ describe('sitemap', () => {
     ]);
     mockGetSortedProducts.mockResolvedValue([]);
     mockGetSortedProjects.mockResolvedValue([]);
-    mockGetSortedReleases.mockResolvedValue([]);
     mockGetPolicies.mockResolvedValue([]);
 
     const result = await sitemap();
@@ -92,7 +85,6 @@ describe('sitemap', () => {
     mockGetSortedProjects.mockResolvedValue([
       { id: 'recall-kit', title: 'RecallKit', date: '2025-01-01', description: 'Desc', contentHtml: '', features: [], technologies: [], links: [] },
     ]);
-    mockGetSortedReleases.mockResolvedValue([]);
     mockGetPolicies.mockResolvedValue([]);
 
     const result = await sitemap();
@@ -103,28 +95,10 @@ describe('sitemap', () => {
     expect(project?.priority).toBe(0.5);
   });
 
-  it('should include releases in sitemap', async () => {
-    mockGetSortedPosts.mockReturnValue([]);
-    mockGetSortedProducts.mockResolvedValue([]);
-    mockGetSortedProjects.mockResolvedValue([]);
-    mockGetSortedReleases.mockResolvedValue([
-      { id: 'release-2025-01-01', title: 'Release', date: '2025-01-01', description: 'Desc', contentHtml: '' },
-    ]);
-    mockGetPolicies.mockResolvedValue([]);
-
-    const result = await sitemap();
-
-    const release = result.find(item => item.url === 'https://example.com/releases/release-2025-01-01');
-    expect(release).toBeDefined();
-    expect(release?.changeFrequency).toBe('monthly');
-    expect(release?.priority).toBe(0.5);
-  });
-
   it('should include policies in sitemap', async () => {
     mockGetSortedPosts.mockReturnValue([]);
     mockGetSortedProducts.mockResolvedValue([]);
     mockGetSortedProjects.mockResolvedValue([]);
-    mockGetSortedReleases.mockResolvedValue([]);
     mockGetPolicies.mockResolvedValue([
       { id: 'privacy-policy', title: 'Privacy Policy', content: 'Content' },
     ]);
@@ -141,7 +115,6 @@ describe('sitemap', () => {
     mockGetSortedPosts.mockReturnValue([]);
     mockGetSortedProducts.mockResolvedValue([]);
     mockGetSortedProjects.mockResolvedValue([]);
-    mockGetSortedReleases.mockResolvedValue([]);
     mockGetPolicies.mockResolvedValue([]);
 
     const result = await sitemap();
@@ -170,7 +143,6 @@ describe('sitemap', () => {
     mockGetSortedPosts.mockReturnValue([]);
     mockGetSortedProducts.mockResolvedValue([]);
     mockGetSortedProjects.mockResolvedValue([]);
-    mockGetSortedReleases.mockResolvedValue([]);
     mockGetPolicies.mockResolvedValue([]);
 
     const result = await sitemap();
@@ -187,7 +159,6 @@ describe('sitemap', () => {
       { id: 'mvp-development', title: 'MVP Development', date: '2025-01-19', type: 'consulting' as const, description: 'Desc', contentHtml: '' },
     ]);
     mockGetSortedProjects.mockResolvedValue([]);
-    mockGetSortedReleases.mockResolvedValue([]);
     mockGetPolicies.mockResolvedValue([]);
 
     const result = await sitemap();

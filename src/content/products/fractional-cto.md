@@ -1,9 +1,11 @@
 ---
 title: "Fractional CTO"
+seoTitle: "Fractional CTO in Miami & South Florida | AGL Consulting"
+h1: "Fractional CTO for Miami & South Florida Companies"
 date: "2026-04-09"
 description: "Executive technology leadership for companies that need CTO-level strategy, architecture, and organizational design—without the full-time cost."
+metaDescription: "Fractional CTO based in Miami, serving South Florida and remote clients nationwide. Technology strategy, architecture, and executive leadership without a full-time hire."
 type: "consulting"
-price: "Contact for Pricing"
 duration: "Ongoing engagement"
 deliverables:
   - "Technology strategy and roadmap"
@@ -16,6 +18,15 @@ deliverables:
   - "Cross-functional leadership and coordination"
   - "Technical due diligence and assessment"
   - "Strategic technology partnerships and vendor evaluation"
+faq:
+  - question: "Are you based in Miami?"
+    answer: "Yes. AGL Consulting is based in Miami and works with South Florida companies in person, and with clients nationwide remotely."
+  - question: "Do you only work with Miami-based companies?"
+    answer: "No. Most engagements are remote. Being based in Miami means we're available for in-person work with South Florida clients when it's useful, but it's not a requirement."
+  - question: "What's the difference between a fractional CTO and a consultant?"
+    answer: "A consultant typically advises. A fractional CTO is embedded and accountable for outcomes—setting technology strategy, making architecture calls, and owning the decisions, not just recommending them."
+  - question: "How much does a fractional CTO cost?"
+    answer: "It depends on hours involved, organizational complexity, and active strategic initiatives. Reach out through our contact form and we'll scope it to what you actually need."
 ---
 
 At some point, "we'll figure it out as we go" stops working. The codebase that was a scrappy MVP is now a liability. The team that shipped fast at five people is struggling at twenty. The board is asking questions about your technology strategy and you're not sure you have a real answer.
@@ -61,6 +72,12 @@ Fractional CTO works best when:
 
 If what you need is team-level management—1-on-1s, career planning, delivery coaching—that's a different engagement. Fractional CTO is the strategic tier: technology vision, organizational design, and executive leadership.
 
+## Based in Miami, Working Across South Florida and Remotely
+
+AGL Consulting is based in Miami. We work with South Florida companies directly and take on remote engagements nationwide—location isn't a constraint on how we work, it's just where we're from.
+
+Recent engagements include a technical wrap-up for [SanosMD](/blog/sanosmd-engagement-wrap) and an AI enablement initiative for [AdvisorCheck](/blog/advisorcheck-ai-enablement).
+
 ## How We Work
 
 We integrate into your leadership team, not just your engineering org. That means regular strategy sessions, architecture reviews, participation in planning and decision-making, and being available when something important comes up.
@@ -77,16 +94,8 @@ Our approach is:
 - **Practical** — Recommendations that work in real organizations with real constraints
 - **Opinionated** — You're not paying for a list of options. You're paying for a point of view.
 
-## Investment
-
-Fractional CTO engagements are ongoing, typically starting at $25,000 per month. Scope and pricing scale with:
-- Hours per month and depth of involvement
-- Complexity of the organization and technology
-- Active strategic initiatives and special projects
-- Team size and organizational stage
-
 ## Getting Started
 
-The right way to start is a conversation—about your technology challenges, your business goals, and what's actually keeping you up at night. We'll be honest about whether this is the right fit and what a useful engagement would look like.
+Engagements are scoped to what you actually need—hours per month, complexity of the organization and technology, and active strategic initiatives all factor in. The right way to start is a conversation: [contact us](/contact) about your technology challenges, your business goals, and what's actually keeping you up at night. We'll be honest about whether this is the right fit and what a useful engagement would look like.
 
 You don't need a full-time CTO to get world-class technology leadership. Let's talk about what you do need.

@@ -17,8 +17,8 @@ import type { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
-  const title = 'AGL Consulting LLC';
-  const description = 'Fractional technical leadership for companies that need CTO-level outcomes without a full-time hire. We build. We ship. We don\'t disappear after the deck.';
+  const title = 'AGL Consulting LLC | Fractional CTO in Miami';
+  const description = 'Fractional CTO based in Miami, serving South Florida and remote clients nationwide. We build. We ship. We don\'t disappear after the deck.';
 
   return {
     title,
@@ -166,11 +166,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li>
                     <Link href="/policies" prefetch={false} className="hover:text-white transition">
                       Policies
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/releases" prefetch={false} className="hover:text-white transition">
-                      Releases
                     </Link>
                   </li>
                   <li>

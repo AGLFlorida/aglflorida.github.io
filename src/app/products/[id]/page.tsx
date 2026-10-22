@@ -1,9 +1,9 @@
 import { getProductById, getSortedProducts, isFreeMobileApp } from '@/lib/getProducts';
 import { getSortedPosts } from '@/lib/getPosts';
-import { metadataFactory } from '@/lib/metadata';
-import { generateProjectSchema } from '@/lib/schema';
+import { metadataFactory, generateOpenGraphMetadata, generateTwitterMetadata } from '@/lib/metadata';
+import { generateProjectSchema, generateFAQSchema } from '@/lib/schema';
 import { generateBreadcrumbSchemaForPath } from '@/lib/BreadcrumbSchema';
-import type { ResolvingMetadata } from 'next';
+import type { Metadata, ResolvingMetadata } from 'next';
 import Link from 'next/link';
 import { ExternalLinkItem } from '@/lib/ExternalLinkItem';
 
@@ -14,12 +14,28 @@ export async function generateStaticParams() {
   return products.map((product) => ({ id: product.id }));
 }
 
-export async function generateMetadata({ params }: { params: Params }, parent: ResolvingMetadata) {
+export async function generateMetadata({ params }: { params: Params }, parent: ResolvingMetadata): Promise<Metadata> {
   const { id } = await params;
   const product = await getProductById(id);
 
   if (!product) {
     return metadataFactory('Products', 'Product Not Found')({ params: Promise.resolve({ id }) }, parent);
+  }
+
+  if (product.seoTitle) {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://aglflorida.com';
+    const canonicalUrl = `${baseUrl}/products/${id}`;
+    const description = product.metaDescription || product.description;
+
+    return {
+      title: product.seoTitle,
+      description,
+      alternates: {
+        canonical: canonicalUrl,
+      },
+      openGraph: generateOpenGraphMetadata(product.seoTitle, description, canonicalUrl),
+      twitter: generateTwitterMetadata(product.seoTitle, description),
+    };
   }
 
   return metadataFactory('Products', product.title, {
@@ -42,6 +58,7 @@ export default async function ProductPage({ params }: { params: Params }) {
     ? generateProjectSchema(product.title, product.description, url, product.applicationCategory, product.operatingSystem)
     : null;
   const relatedPosts = getSortedPosts().filter((post) => post.products?.includes(id));
+  const faqSchema = product.faq && product.faq.length > 0 ? generateFAQSchema(product.faq) : null;
 
   return (
     <div className="max-w-7xl mx-auto py-8 px-4">
@@ -51,11 +68,17 @@ export default async function ProductPage({ params }: { params: Params }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
         />
       )}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <h1 className="font-heading text-h1 font-bold mb-8">{product.title}</h1>
+      <h1 className="font-heading text-h1 font-bold mb-8">{product.h1 || product.title}</h1>
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Main Content Column */}
         <div className="w-full lg:w-2/3">
@@ -117,6 +140,20 @@ export default async function ProductPage({ params }: { params: Params }) {
                 >
                   {tech}
                 </span>
+              ))}
+            </div>
+          </>
+        )}
+
+        {product.faq && product.faq.length > 0 && (
+          <>
+            <h2 className="font-heading text-h3 font-semibold mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4 mb-6">
+              {product.faq.map((item, index) => (
+                <div key={index}>
+                  <h3 className="font-heading text-body font-semibold mb-1">{item.question}</h3>
+                  <p className="text-gray-600">{item.answer}</p>
+                </div>
               ))}
             </div>
           </>

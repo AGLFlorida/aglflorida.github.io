@@ -316,6 +316,24 @@ export const organizationSchemaDef = {
         format: 'uri',
       },
     },
+    areaServed: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['@type', 'name'],
+        properties: {
+          '@type': {
+            type: 'string',
+            enum: ['City', 'AdministrativeArea'],
+          },
+          name: {
+            type: 'string',
+            minLength: 1,
+          },
+        },
+        additionalProperties: false,
+      },
+    },
   },
   additionalProperties: false,
 };

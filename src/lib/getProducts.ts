@@ -27,6 +27,13 @@ export type Product = {
   hideTitleIcon?: boolean;
   operatingSystem?: string;
   applicationCategory?: string;
+  seoTitle?: string;
+  metaDescription?: string;
+  h1?: string;
+  faq?: Array<{
+    question: string;
+    answer: string;
+  }>;
 };
 
 export async function getSortedProducts(): Promise<Product[]> {

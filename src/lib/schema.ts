@@ -101,6 +101,23 @@ export interface OrganizationSchema {
   };
   description?: string;
   sameAs?: string[];
+  areaServed?: Array<{
+    '@type': 'City' | 'AdministrativeArea';
+    name: string;
+  }>;
+}
+
+export interface FAQSchema {
+  '@context': string;
+  '@type': 'FAQPage';
+  mainEntity: Array<{
+    '@type': 'Question';
+    name: string;
+    acceptedAnswer: {
+      '@type': 'Answer';
+      text: string;
+    };
+  }>;
 }
 
 /**
@@ -270,5 +287,27 @@ export function generateOrganizationSchema(baseUrl?: string): OrganizationSchema
       'https://play.google.com/store/apps/dev?id=5851403031328766349',
       'https://apps.apple.com/us/developer/agl-consulting-llc/id1801519023',
     ],
+    areaServed: [
+      { '@type': 'City', name: 'Miami, FL' },
+      { '@type': 'AdministrativeArea', name: 'South Florida' },
+    ],
+  };
+}
+
+/**
+ * Generate FAQPage schema for a set of question/answer pairs
+ */
+export function generateFAQSchema(items: Array<{ question: string; answer: string }>): FAQSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
   };
 }
