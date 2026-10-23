@@ -4,7 +4,7 @@ date: "2026-10-15"
 excerpt: "A small shell tool our founder built to switch Claude Code accounts the way nvm switches Node versions."
 ---
 
-# Founder Spotlight: claudenv v1.1.0
+## Founder Spotlight Series
 
 **October 15, 2026** — claudenv v1.1.0 is out, a small fix to the open-source tool our founder built to keep client and personal Claude Code accounts apart.
 

@@ -4,7 +4,7 @@ date: "2025-07-27"
 excerpt: "We tried vibe coding some CLI tooling."
 ---
 
-# Android Archivist: Because You'll Overwrite your `.aab` and deobfuscation files on the next build...
+## Because You'll Overwrite your `.aab` and deobfuscation files on the next build...
 
 We needed a CLI tool to help us keep track of our Android release artifacts. Because somewhere between `app-release.aab`, `mapping.txt`, three different version numbers, and a panicked upload to the Play Console... things tended to disappear.
 

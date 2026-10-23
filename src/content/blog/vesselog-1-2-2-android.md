@@ -6,8 +6,6 @@ products:
   - "vesselog"
 ---
 
-# VesseLog Launches on Android
-
 **October 22, 2026** — AGL Consulting is proud to announce the launch of **VesseLog** on Android, a vessel maintenance app for boat owners and anyone keeping a small fleet on the water.
 
 A weekend on the water shouldn't start with wondering when the impeller was last replaced. VesseLog keeps it all in one place.

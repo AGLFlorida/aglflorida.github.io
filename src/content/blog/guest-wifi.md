@@ -5,8 +5,6 @@ author: Brandon Shoop
 date: "2026-01-31"
 ---
 
-# Email Capture on Guest WiFi
-
 A friend reached out for one of those "fun" projects: they wanted email capture on open guest WiFi for their restaurant so they could use it for customer marketing. We hadn't done a job like this before, but the mix of networking and software fit what we do: routing, wireless, and a small capture stack running on-site.
 
 ## What We Built

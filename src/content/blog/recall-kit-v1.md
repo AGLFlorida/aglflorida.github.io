@@ -6,7 +6,7 @@ products:
   - "recall-kit"
 ---
 
-# RecallKit Launches to Supercharge Studying with Smart Flashcards
+## RecallKit Launches to Supercharge Studying with Smart Flashcards
 
 **July 25, 2025** — AGL Consulting is proud to announce the launch of **RecallKit**, a beautifully designed flashcard app built for modern learners who want to study smarter, not harder.
 

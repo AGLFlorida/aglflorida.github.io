@@ -6,8 +6,6 @@ products:
   - "n-back"
 ---
 
-# Dual N-Back 1.7.0: Guess Feedback
-
 **October 1, 2026** — Dual N-Back 1.7.0 is live on iOS and Android with Guess Feedback, a new setting that tells you the instant a guess is right or wrong.
 
 ## Why we built it
