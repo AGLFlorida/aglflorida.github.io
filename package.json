@@ -41,7 +41,7 @@
     "ajv": "^8.12.0",
     "ajv-formats": "^3.0.1",
     "baseline-browser-mapping": "^2.11.28",
-    "eslint": "^9",
+    "eslint": "^10",
     "eslint-config-next": "16.4.0",
     "eslint-plugin-no-unsanitized": "^4.1.5",
     "eslint-plugin-security": "^4.2.0",
