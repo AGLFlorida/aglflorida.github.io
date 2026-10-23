@@ -1,5 +1,7 @@
 # aglflorida.github.io
 
+[![CI](https://github.com/AGLFlorida/aglflorida.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/AGLFlorida/aglflorida.github.io/actions/workflows/ci.yml)
+
 Public website for my (very small) business.
 
 Find us on the web at [https://aglflorida.com](https://aglflorida.com), or here:
