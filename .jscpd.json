@@ -7,7 +7,10 @@
     "**/.next/**",
     "**/reports/**",
     "**/*.test.ts",
-    "**/*.test.tsx"
+    "**/*.test.tsx",
+    "package-lock.json",
+    "package.json",
+    "schema-definitions.ts"
   ],
   "absolute": true
 }
