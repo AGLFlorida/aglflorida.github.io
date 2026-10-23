@@ -17,7 +17,7 @@
     "check:dupes": "jscpd src",
     "test:e2e": "playwright test",
     "lighthouse": "lhci autorun",
-    "verify:dev": "npm run lint && npm run test && npm run compile && npm run validate:schemas && npm run check:unicode && npm run check:dupes"
+    "verify:dev": "npm run lint && npm run test && npm run compile && npm run validate:schemas && npm run check:unicode && npm run check:dupes && npm run test:e2e"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
