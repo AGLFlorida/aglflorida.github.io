@@ -6,7 +6,7 @@ products:
   - "everything-else"
 ---
 
-# A New Home Online for George Merrick Troop 7
+## A New Home Online for George Merrick Troop 7, Inc., a 501(c)(3)
 
 **October 15, 2026** — We designed and built the new website for [George Merrick Troop 7 of Coral Gables, Inc.](https://gmt7.org/), a Florida not-for-profit that serves as the chartering organization for Troop 7, Troop 719, Pack 7, and Crew 7. The organization owns the deed to the historic Troop 7 Cabin at 1107 South Greenway Drive in Coral Gables, manages the cabin's long-term lease with the City of Coral Gables, and funds the units that meet there.
 

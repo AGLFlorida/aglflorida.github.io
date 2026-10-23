@@ -6,8 +6,6 @@ products:
   - "vesselog"
 ---
 
-# VesseLog Is Now on the Web
-
 **October 29, 2026** — VesseLog now runs in your browser. Sign in from any computer and your whole fleet's maintenance is right there, no install required.
 
 Not every maintenance job gets planned from a phone. The coaching staff building next week's launch schedule, or the owner lining up winter work with the yard, usually has a laptop open. So we put the full app in the browser.

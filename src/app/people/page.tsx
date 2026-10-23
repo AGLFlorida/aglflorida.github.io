@@ -46,6 +46,7 @@ export default async function PeoplePage() {
             </div>
             <div className="bg-white p-6 rounded-lg shadow border border-gray-100 text-center">
               <Image
+                loading="eager"
                 src="/people/face.png"
                 alt="Co-founder 2"
                 width={96}

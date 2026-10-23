@@ -1,5 +1,5 @@
 ---
-title: "Three Ways to Get Senior Technical Help Without Hiring a Full-Time Executive"
+title: "Consul"
 date: "2026-11-05"
 excerpt: "AGL Consulting now offers three focused packages: an AI enablement seminar, fractional CTO leadership, and a workflow automation audit."
 products:
@@ -8,9 +8,7 @@ products:
   - "workflow-automation"
 ---
 
-# Three Ways to Get Senior Technical Help Without Hiring a Full-Time Executive
-
-**October 2, 2026** — Most founders and engineering leaders reach a point where ad-hoc technical decisions stop working, but a full-time executive hire is too much, too soon. AGL Consulting packages senior technical judgment into three focused engagements built for exactly that gap.
+Most founders and engineering leaders reach a point where ad-hoc technical decisions stop working, but a full-time executive hire is too much, too soon. AGL Consulting packages senior technical judgment into three focused engagements built for exactly that gap.
 
 ## [AI Enablement Seminar](/products/ai-enablement-seminar)
 
