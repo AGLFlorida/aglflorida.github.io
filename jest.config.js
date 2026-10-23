@@ -13,6 +13,7 @@ const customJestConfig = {
   transformIgnorePatterns: [
     'node_modules/(?!(remark|unified|unist|micromark|mdast|vfile)/)',
   ],
+  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/tests/'],
   testMatch: [
     '**/__tests__/**/*.[jt]s?(x)',
     '**/?(*.)+(spec|test).[jt]s?(x)',

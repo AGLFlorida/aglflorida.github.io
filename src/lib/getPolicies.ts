@@ -21,10 +21,10 @@ export async function getPolicies(): Promise<Policy[]> {
     const processedContent = await remark()
       .use(html)
       .process(fileContents);
-    
+
     return {
       id,
-      title: id.split('-').map(word => 
+      title: id.split('-').map(word =>
         word.charAt(0).toUpperCase() + word.slice(1)
       ).join(' '),
       content: processedContent.toString(),

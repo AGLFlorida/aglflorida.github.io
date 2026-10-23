@@ -15,6 +15,7 @@
     "validate:schemas": "tsx scripts/validate-schemas.ts",
     "check:unicode": "tsx scripts/check-unicode.ts",
     "check:dupes": "jscpd src",
+    "test:e2e": "playwright test",
     "lighthouse": "lhci autorun",
     "verify:dev": "npm run lint && npm run test && npm run compile && npm run validate:schemas && npm run check:unicode && npm run check:dupes"
   },
@@ -28,7 +29,9 @@
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@jest/transform": "^30.3.0",
+    "@playwright/test": "^1.64.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@tailwindcss/typography": "^0.5.20",
     "@testing-library/jest-dom": "^7.0.1",

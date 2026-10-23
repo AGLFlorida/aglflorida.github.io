@@ -23,9 +23,8 @@ export default async function PolicyPage({ params }: { params: Params }) {
 
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <h1 className="font-heading text-h1 font-bold mb-8">{policy.title}</h1>
       <div
-        className="bg-white p-6 rounded-lg shadow border border-gray-100 prose max-w-none"
+        className="bg-white p-6 rounded-lg shadow border border-gray-100 prose max-w-none prose-h1:font-heading prose-h1:text-h1 prose-h1:font-bold"
         dangerouslySetInnerHTML={{ __html: policy.content }}
       />
     </div>
