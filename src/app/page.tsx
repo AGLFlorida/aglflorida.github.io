@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { blogPostHref } from "@/lib/blogHref";
 import { getSortedPosts } from "@/lib/getPosts";
 import { getSortedProjects } from "@/lib/getProjects";
 import { getSortedProducts } from "@/lib/getProducts";
@@ -62,7 +63,7 @@ export default async function Home() {
             {featuredPosts.map((post) => (
               <li key={post.slug}>
                 <Link
-                  href={`/blog/${post.slug}`}
+                  href={blogPostHref(post.slug)}
                   className="block hover:bg-gray-50 hover:shadow-sm p-2 -mx-2 rounded transition"
                 >
                   <h3 className="font-medium text-blue-800 hover:text-blue-900">

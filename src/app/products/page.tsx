@@ -4,6 +4,7 @@ import { getSortedProducts } from '@/lib/getProducts';
 import { Metadata } from 'next';
 import { generateOpenGraphMetadata, generateTwitterMetadata } from '@/lib/metadata';
 import { generateBreadcrumbSchemaForPath } from '@/lib/BreadcrumbSchema';
+import { jsonLdScript } from '@/lib/jsonLd';
 import { IconLink } from '@/lib/icons';
 import { ExternalLinkItem } from '@/lib/ExternalLinkItem';
 
@@ -34,7 +35,7 @@ export default async function ProductsPage() {
     <div className="max-w-7xl mx-auto py-8 px-4">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbSchema) }}
       />
       <h1 className="font-heading text-h1 font-bold mb-8">Products &amp; Services</h1>
       <div className="flex flex-col lg:flex-row gap-8">

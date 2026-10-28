@@ -2,6 +2,7 @@ import { getPostBySlug, getSortedPosts } from "@/lib/getPosts";
 import { metadataFactory } from "@/lib/metadata";
 import { generateArticleSchema } from "@/lib/schema";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
+import { jsonLdScript } from "@/lib/jsonLd";
 import type { ResolvingMetadata } from 'next';
 import Link from 'next/link';
 
@@ -57,11 +58,11 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     <div className="max-w-7xl mx-auto py-8 px-4">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(articleSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbSchema) }}
       />
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Main Content Column */}

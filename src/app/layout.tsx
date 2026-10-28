@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Source_Sans_3, Source_Serif_4 } from 'next/font/google';
 
 import { Breadcrumbs } from '@/lib/Breadcrumbs';
+import { jsonLdScript } from '@/lib/jsonLd';
 import {
   IconLinkedIn,
   IconX,
@@ -69,15 +70,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationSchema) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(websiteSchema) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(personSchema) }}
         />
       </head>
       <body className="bg-gray-100 text-gray-900">
