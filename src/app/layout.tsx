@@ -45,21 +45,16 @@ export async function generateMetadata(): Promise<Metadata> {
 //   },
 // };
 
-// Latin variable fonts from @fontsource-variable 5.3.1 (Google Fonts builds, OFL-1.1: src/app/fonts/OFL-*.txt).
+// Latin variable fonts from @fontsource-variable 5.3.1 (Google Fonts builds, OFL-1.1: public/fonts/OFL-*.txt).
 const sourceSans = localFont({
-  src: [
-    { path: './fonts/source-sans-3-latin-wght-normal.woff2', weight: '400', style: 'normal' },
-    { path: './fonts/source-sans-3-latin-wght-normal.woff2', weight: '600', style: 'normal' },
-    { path: './fonts/source-sans-3-latin-wght-normal.woff2', weight: '700', style: 'normal' },
-  ],
+  src: './fonts/source-sans-3-latin-wght-normal.woff2',
+  weight: '400 700',
   variable: '--font-source-sans',
 });
 
 const sourceSerif = localFont({
-  src: [
-    { path: './fonts/source-serif-4-latin-wght-normal.woff2', weight: '600', style: 'normal' },
-    { path: './fonts/source-serif-4-latin-wght-normal.woff2', weight: '700', style: 'normal' },
-  ],
+  src: './fonts/source-serif-4-latin-wght-normal.woff2',
+  weight: '600 700',
   variable: '--font-source-serif',
   adjustFontFallback: 'Times New Roman',
 });
