@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { blogPostHref } from "@/lib/blogHref";
+import { blogPostHref } from '@/lib/blogHref';
 import { getSortedPosts } from "@/lib/getPosts";
 import { metadataFactory } from "@/lib/metadata";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
-import { jsonLdScript } from "@/lib/jsonLd";
+import { jsonLdScript } from '@/lib/jsonLd';
 import { IconExternalLink } from "@/lib/icons";
 
 const POSTS_PER_PAGE = 5;

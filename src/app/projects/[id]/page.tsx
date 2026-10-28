@@ -2,7 +2,7 @@ import { getProjectById, getSortedProjects } from "@/lib/getProjects";
 import { metadataFactory } from "@/lib/metadata";
 import { generateProjectSchema } from "@/lib/schema";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
-import { jsonLdScript } from "@/lib/jsonLd";
+import { jsonLdScript } from '@/lib/jsonLd';
 import type { ResolvingMetadata } from 'next';
 import Link from 'next/link';
 import { ExternalLinkItem } from '@/lib/ExternalLinkItem';

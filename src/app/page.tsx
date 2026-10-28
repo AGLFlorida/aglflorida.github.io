@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { blogPostHref } from "@/lib/blogHref";
+import { blogPostHref } from '@/lib/blogHref';
 import { getSortedPosts } from "@/lib/getPosts";
 import { getSortedProjects } from "@/lib/getProjects";
 import { getSortedProducts } from "@/lib/getProducts";

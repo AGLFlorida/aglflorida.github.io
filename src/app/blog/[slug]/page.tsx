@@ -2,7 +2,7 @@ import { getPostBySlug, getSortedPosts } from "@/lib/getPosts";
 import { metadataFactory } from "@/lib/metadata";
 import { generateArticleSchema } from "@/lib/schema";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
-import { jsonLdScript } from "@/lib/jsonLd";
+import { jsonLdScript } from '@/lib/jsonLd';
 import type { ResolvingMetadata } from 'next';
 import Link from 'next/link';
 

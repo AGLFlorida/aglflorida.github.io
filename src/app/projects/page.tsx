@@ -3,7 +3,7 @@ import { getSortedProjects } from "@/lib/getProjects";
 import { Metadata } from 'next';
 import { generateOpenGraphMetadata, generateTwitterMetadata } from "@/lib/metadata";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
-import { jsonLdScript } from "@/lib/jsonLd";
+import { jsonLdScript } from '@/lib/jsonLd';
 import { IconLink } from "@/lib/icons";
 import { ExternalLinkItem } from '@/lib/ExternalLinkItem';
 
