@@ -42,7 +42,7 @@ export default function ContactPage() {
             <div className="space-y-6">
               {featuredPosts.map((post) => (
                 <Link
-                  key={post.slug}
+                  key={blogPostHref(post.slug)}
                   href={blogPostHref(post.slug)}
                   className="block hover:bg-gray-50 hover:shadow-sm p-2 -mx-2 rounded transition"
                 >
