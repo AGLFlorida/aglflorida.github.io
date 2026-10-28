@@ -1,7 +1,8 @@
 // Mock remark before importing getPosts
+const useMock = jest.fn().mockReturnThis();
 jest.mock('remark', () => ({
   remark: jest.fn(() => ({
-    use: jest.fn().mockReturnThis(),
+    use: useMock,
     process: jest.fn().mockResolvedValue({ toString: () => '<p>test</p>' }),
   })),
 }));
@@ -95,6 +96,22 @@ describe('getPosts', () => {
 
     it('should throw error for non-existent slug', async () => {
       await expect(getPostBySlug('non-existent-slug-12345')).rejects.toThrow();
+    });
+
+    it('should not disable remark-html sanitization when rendering markdown', async () => {
+      const posts = getSortedPosts();
+      if (posts.length === 0) return;
+
+      useMock.mockClear();
+      await getPostBySlug(posts[0].slug);
+
+      // remark-html defaults to sanitize: true. Passing { sanitize: false }
+      // would disable XSS protection on rendered post HTML, so .use must be
+      // called with no options (or an options object that doesn't disable it).
+      const htmlUseCall = useMock.mock.calls.find((call) => call.length > 0);
+      if (htmlUseCall && htmlUseCall.length > 1) {
+        expect(htmlUseCall[1]).not.toEqual(expect.objectContaining({ sanitize: false }));
+      }
     });
   });
 });

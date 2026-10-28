@@ -1,8 +1,9 @@
 import './globals.css';
 import Link from 'next/link';
-import { Source_Sans_3, Source_Serif_4 } from 'next/font/google';
+import localFont from 'next/font/local';
 
 import { Breadcrumbs } from '@/lib/Breadcrumbs';
+import { jsonLdScript } from '@/lib/jsonLd';
 import {
   IconLinkedIn,
   IconX,
@@ -45,16 +46,18 @@ export async function generateMetadata(): Promise<Metadata> {
 //   },
 // };
 
-const sourceSans = Source_Sans_3({
-  subsets: ['latin'],
+// Latin variable fonts from @fontsource-variable 5.3.1 (Google Fonts builds, OFL-1.1: public/fonts/OFL-*.txt).
+const sourceSans = localFont({
+  src: './fonts/source-sans-3-latin-wght-normal.woff2',
+  weight: '400 700',
   variable: '--font-source-sans',
-  weight: ['400', '600', '700'],
 });
 
-const sourceSerif = Source_Serif_4({
-  subsets: ['latin'],
+const sourceSerif = localFont({
+  src: './fonts/source-serif-4-latin-wght-normal.woff2',
+  weight: '600 700',
   variable: '--font-source-serif',
-  weight: ['600', '700'],
+  adjustFontFallback: 'Times New Roman',
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -69,15 +72,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationSchema) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(websiteSchema) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(personSchema) }}
         />
       </head>
       <body className="bg-gray-100 text-gray-900">

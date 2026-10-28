@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { blogPostHref } from '@/lib/blogHref';
 import { getSortedPosts } from "@/lib/getPosts";
 import { metadataFactory } from "@/lib/metadata";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
+import { jsonLdScript } from '@/lib/jsonLd';
 import { IconExternalLink } from "@/lib/icons";
 
 const POSTS_PER_PAGE = 5;
@@ -37,7 +39,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     <div className="max-w-7xl mx-auto py-8 px-4">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbSchema) }}
       />
       <h1 className="font-heading text-h1 font-bold mb-8">Blog Posts</h1>
       <div className="flex flex-col lg:flex-row gap-8">
@@ -48,7 +50,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         <div className="space-y-6">
           {currentPosts.map((post) => (
             <div key={post.slug} className="border-b last:border-0 pb-6 last:pb-0">
-              <Link href={`/blog/${post.slug}`} className="block group">
+              <Link href={blogPostHref(post.slug)} className="block group">
                 <h2 className="font-heading text-h2 font-semibold text-blue-800 group-hover:text-blue-900 mb-2">
                   {post.title}
                 </h2>

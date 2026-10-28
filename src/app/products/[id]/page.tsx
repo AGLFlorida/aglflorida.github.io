@@ -1,8 +1,10 @@
 import { getProductById, getSortedProducts, isFreeMobileApp } from '@/lib/getProducts';
 import { getSortedPosts } from '@/lib/getPosts';
+import { blogPostHref } from '@/lib/blogHref';
 import { metadataFactory, generateOpenGraphMetadata, generateTwitterMetadata } from '@/lib/metadata';
 import { generateProjectSchema, generateFAQSchema } from '@/lib/schema';
 import { generateBreadcrumbSchemaForPath } from '@/lib/BreadcrumbSchema';
+import { jsonLdScript } from '@/lib/jsonLd';
 import type { Metadata, ResolvingMetadata } from 'next';
 import Link from 'next/link';
 import { ExternalLinkItem } from '@/lib/ExternalLinkItem';
@@ -65,18 +67,18 @@ export default async function ProductPage({ params }: { params: Params }) {
       {softwareSchema && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(softwareSchema) }}
         />
       )}
       {faqSchema && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(faqSchema) }}
         />
       )}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbSchema) }}
       />
       <h1 className="font-heading text-h1 font-bold mb-8">{product.h1 || product.title}</h1>
       <div className="flex flex-col lg:flex-row gap-8">
@@ -170,7 +172,7 @@ export default async function ProductPage({ params }: { params: Params }) {
               <ul className="space-y-3">
                 {relatedPosts.map((post) => (
                   <li key={post.slug}>
-                    <Link href={`/blog/${post.slug}`} className="text-blue-800 hover:text-blue-900 font-semibold">
+                    <Link href={blogPostHref(post.slug)} className="text-blue-800 hover:text-blue-900 font-semibold">
                       {post.title}
                     </Link>
                   </li>

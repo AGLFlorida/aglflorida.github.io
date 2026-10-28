@@ -1,5 +1,6 @@
 import ContactForm from './ContactForm';
 import type { Metadata } from 'next';
+import { blogPostHref } from '@/lib/blogHref';
 import { getSortedPosts } from '@/lib/getPosts';
 import { IconLink } from '@/lib/icons';
 import Link from 'next/link';
@@ -41,8 +42,8 @@ export default function ContactPage() {
             <div className="space-y-6">
               {featuredPosts.map((post) => (
                 <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
+                  key={blogPostHref(post.slug)}
+                  href={blogPostHref(post.slug)}
                   className="block hover:bg-gray-50 hover:shadow-sm p-2 -mx-2 rounded transition"
                 >
                   <h3 className="font-heading text-h3 font-semibold text-blue-800 mb-2">

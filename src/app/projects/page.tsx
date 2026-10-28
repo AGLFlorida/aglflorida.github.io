@@ -3,6 +3,7 @@ import { getSortedProjects } from "@/lib/getProjects";
 import { Metadata } from 'next';
 import { generateOpenGraphMetadata, generateTwitterMetadata } from "@/lib/metadata";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
+import { jsonLdScript } from '@/lib/jsonLd';
 import { IconLink } from "@/lib/icons";
 import { ExternalLinkItem } from '@/lib/ExternalLinkItem';
 
@@ -30,7 +31,7 @@ export default async function ProjectsPage() {
     <div className="py-8">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbSchema) }}
       />
       <h1 className="font-heading text-h1 font-bold mb-8">Projects</h1>
       <p className="mb-4">
