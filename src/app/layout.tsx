@@ -1,6 +1,6 @@
 import './globals.css';
 import Link from 'next/link';
-import { Source_Sans_3, Source_Serif_4 } from 'next/font/google';
+import localFont from 'next/font/local';
 
 import { Breadcrumbs } from '@/lib/Breadcrumbs';
 import {
@@ -45,16 +45,23 @@ export async function generateMetadata(): Promise<Metadata> {
 //   },
 // };
 
-const sourceSans = Source_Sans_3({
-  subsets: ['latin'],
+// Latin variable fonts from @fontsource-variable 5.3.1 (Google Fonts builds, OFL-1.1: src/app/fonts/OFL-*.txt).
+const sourceSans = localFont({
+  src: [
+    { path: './fonts/source-sans-3-latin-wght-normal.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/source-sans-3-latin-wght-normal.woff2', weight: '600', style: 'normal' },
+    { path: './fonts/source-sans-3-latin-wght-normal.woff2', weight: '700', style: 'normal' },
+  ],
   variable: '--font-source-sans',
-  weight: ['400', '600', '700'],
 });
 
-const sourceSerif = Source_Serif_4({
-  subsets: ['latin'],
+const sourceSerif = localFont({
+  src: [
+    { path: './fonts/source-serif-4-latin-wght-normal.woff2', weight: '600', style: 'normal' },
+    { path: './fonts/source-serif-4-latin-wght-normal.woff2', weight: '700', style: 'normal' },
+  ],
   variable: '--font-source-serif',
-  weight: ['600', '700'],
+  adjustFontFallback: 'Times New Roman',
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
