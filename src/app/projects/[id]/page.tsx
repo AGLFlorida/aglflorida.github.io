@@ -2,6 +2,7 @@ import { getProjectById, getSortedProjects } from "@/lib/getProjects";
 import { metadataFactory } from "@/lib/metadata";
 import { generateProjectSchema } from "@/lib/schema";
 import { generateBreadcrumbSchemaForPath } from "@/lib/BreadcrumbSchema";
+import { jsonLdScript } from '@/lib/jsonLd';
 import type { ResolvingMetadata } from 'next';
 import Link from 'next/link';
 import { ExternalLinkItem } from '@/lib/ExternalLinkItem';
@@ -49,11 +50,11 @@ export default async function ProjectPage({ params }: { params: Params }) {
     <div className="max-w-7xl mx-auto py-8 px-4">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(projectSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbSchema) }}
       />
       <h1 className="font-heading text-h1 font-bold mb-8">{project.title}</h1>
       <div className="flex flex-col lg:flex-row gap-8">

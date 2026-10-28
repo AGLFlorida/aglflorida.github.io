@@ -19,6 +19,9 @@ jobs:
     name: lint
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
@@ -38,6 +41,9 @@ jobs:
   test:
     name: test
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout code
@@ -59,6 +65,9 @@ jobs:
     name: validate-schemas
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
@@ -78,6 +87,9 @@ jobs:
   check-unicode:
     name: check-unicode
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout code
@@ -99,6 +111,9 @@ jobs:
     name: check-dupes
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
@@ -118,6 +133,9 @@ jobs:
   compile:
     name: compile
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout code

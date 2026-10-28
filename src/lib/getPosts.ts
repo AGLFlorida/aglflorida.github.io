@@ -47,7 +47,9 @@ export async function getPostBySlug(slug: string): Promise<BlogPost & { contentH
   const fileContents = fs.readFileSync(filePath, "utf8");
 
   const { data, content } = matter(fileContents);
-  const processedContent = await remark().use(html, { sanitize: false }).process(content);
+  // Use remark-html's default sanitize: true (hast-util-sanitize) to strip
+  // dangerous markup before this HTML is injected via dangerouslySetInnerHTML.
+  const processedContent = await remark().use(html).process(content);
   const contentHtml = processedContent.toString();
 
   return {
