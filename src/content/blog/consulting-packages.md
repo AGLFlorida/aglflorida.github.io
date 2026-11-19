@@ -1,5 +1,5 @@
 ---
-title: "Consul"
+title: "Consulting Packages"
 date: "2026-11-05"
 excerpt: "AGL Consulting now offers three focused packages: an AI enablement seminar, fractional CTO leadership, and a workflow automation audit."
 products:
