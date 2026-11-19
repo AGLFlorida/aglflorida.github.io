@@ -113,7 +113,7 @@ Our recommendations are:
 
 ## Investment
 
-Starting at $15,000 for a 6-10 week engagement. Scope scales with:
+Scope and pricing scale with:
 - Complexity of your current workflow and existing tooling
 - Number of services, environments, and repositories involved
 - Depth of AI integration desired
