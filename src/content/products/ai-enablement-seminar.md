@@ -67,7 +67,7 @@ It's not the right fit for teams looking for an executive briefing or a vendor e
 
 ## Investment
 
-Starting at $18,500 for the five-day engagement, plus reasonable travel and expenses. Exact pricing scales with team size and any pre-workshop discovery work required.
+Pricing scales with team size and any pre-workshop discovery work required. Reach out for a quote.
 
 ## Getting Started
 
